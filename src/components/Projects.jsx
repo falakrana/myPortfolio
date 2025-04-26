@@ -1,6 +1,3 @@
-
-// =====================================================================================
-
 import {
   Card,
   CardContent,
@@ -9,7 +6,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import CarouselContainer from "./carousel-container";
 import ScrollArrow from "./scroll-arrow";
 
 const projects = [
@@ -57,7 +53,7 @@ function Projects() {
         <h2 className="text-4xl font-bold text-center text-white mb-12">
           Projects
         </h2>
-        <CarouselContainer maxRows={2}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
           {projects.map((project, index) => (
             <Card
               key={index}
@@ -86,7 +82,7 @@ function Projects() {
               </CardContent>
             </Card>
           ))}
-        </CarouselContainer>
+          </div>
         <ScrollArrow targetId="skills" className="mt-12" />
       </div>
     </section>

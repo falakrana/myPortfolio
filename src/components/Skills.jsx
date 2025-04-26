@@ -1,11 +1,6 @@
-
-
-
-
-import { BarChart2, Database, TrendingUp, Code, Cloud } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import CarouselContainer from "./carousel-container"
-import ScrollArrow from "./scroll-arrow"
+import { BarChart2, Database, TrendingUp, Code, Cloud } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ScrollArrow from "./scroll-arrow";
 
 const skillsData = [
   {
@@ -38,16 +33,21 @@ const skillsData = [
     skills: ["AWS", "Google Cloud", "Big Data Processing"],
     gradient: "from-green-500 to-emerald-500",
   },
-]
+];
 
 function Skills() {
   return (
     <section id="skills" className="py-20">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-center text-white mb-12">Skills & Technologies</h2>
-        <CarouselContainer itemsPerRow={3} maxRows={2}>
+        <h2 className="text-4xl font-bold text-center text-white mb-12">
+          Skills & Technologies
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
           {skillsData.map((skill, index) => (
-            <Card key={index} className={`bg-card-to-br ${skill.gradient} text-white h-full flex flex-col`}>
+            <Card
+              key={index}
+              className={`bg-card-to-br ${skill.gradient} text-white h-full flex flex-col`}
+            >
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <skill.icon className="mr-2 h-6 w-6" />
@@ -63,11 +63,11 @@ function Skills() {
               </CardContent>
             </Card>
           ))}
-        </CarouselContainer>
+        </div>
         <ScrollArrow targetId="certifications" className="mt-12" />
       </div>
     </section>
-  )
+  );
 }
 
-export default Skills
+export default Skills;

@@ -1,21 +1,20 @@
-
-import { useInView } from "react-intersection-observer"
-import { FaCertificate } from "react-icons/fa"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import CarouselContainer from "./carousel-container"
-import ScrollArrow from "./scroll-arrow"
+import { useInView } from "react-intersection-observer";
+import { FaCertificate } from "react-icons/fa";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ScrollArrow from "./scroll-arrow";
 
 function Certifications() {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
-  })
+  });
 
   const certifications = [
     {
       title: "Excel Proficiency",
       issuer: "Coursera",
-      description: "Microsoft Excel for data entry, analysis, and visualization",
+      description:
+        "Microsoft Excel for data entry, analysis, and visualization",
       link: "https://www.coursera.org/account/accomplishments/verify/RYRYUT3L8EYB",
     },
     {
@@ -34,17 +33,26 @@ function Certifications() {
       title: "Tableau Visualization",
       issuer: "Tableau",
       description: "Data visualization and dashboard creation",
-      link: "https://www.udemy.com/certificate/UC-84202d8d-a010-44d8-917e-5cfd596a6314/",
+      link: "https://www.udemy.com/certificate/UC-791d7ea3-0890-4753-852a-dd8af11b71ae/",
     },
-  ]
+  ];
 
   return (
-    <section id="certifications" ref={ref} className={`py-20 ${inView ? "animate-fade-in-up" : "opacity-0"}`}>
+    <section
+      id="certifications"
+      ref={ref}
+      className={`py-20 ${inView ? "animate-fade-in-up" : "opacity-0"}`}
+    >
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-center text-white mb-12">Certifications</h2>
-        <CarouselContainer itemsPerRow={2} maxRows={2}>
+        <h2 className="text-4xl font-bold text-center text-white mb-12">
+          Certifications
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
           {certifications.map((cert, index) => (
-            <Card key={index} className="bg-card-to-br text-card-foreground h-full flex flex-col">
+            <Card
+              key={index}
+              className="bg-card-to-br text-card-foreground h-full flex flex-col"
+            >
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <FaCertificate className="mr-2 text-primary" />
@@ -53,7 +61,9 @@ function Certifications() {
               </CardHeader>
               <CardContent className="flex-grow flex flex-col justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-2">{cert.issuer}</p>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {cert.issuer}
+                  </p>
                   <p className="mb-4">{cert.description}</p>
                 </div>
                 <a
@@ -67,11 +77,11 @@ function Certifications() {
               </CardContent>
             </Card>
           ))}
-        </CarouselContainer>
+        </div>
         <ScrollArrow targetId="contact" className="mt-12" />
       </div>
     </section>
-  )
+  );
 }
 
-export default Certifications
+export default Certifications;
