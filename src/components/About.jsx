@@ -26,7 +26,7 @@ function About() {
             connect and create something impactful!
           </p>
         </div>
-        <ScrollArrow targetId="projects" className="mt-12" />
+        <ScrollArrow targetId="skills" className="mt-12" />
       </div>
     </section>
   )

@@ -90,7 +90,7 @@ function Projects() {
             </Card>
           ))}
         </div>
-        <ScrollArrow targetId="skills" className="mt-12" />
+        <ScrollArrow targetId="certifications" className="mt-12" />
       </div>
     </section>
   );

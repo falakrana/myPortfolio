@@ -64,7 +64,7 @@ function Skills() {
             </Card>
           ))}
         </div>
-        <ScrollArrow targetId="certifications" className="mt-12" />
+        <ScrollArrow targetId="projects" className="mt-12" />
       </div>
     </section>
   );

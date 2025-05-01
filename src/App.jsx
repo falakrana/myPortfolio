@@ -47,8 +47,8 @@ function App() {
         <Hero />
         <About/>
         <div className="space-y-32">
-          <Projects />
           <Skills />
+          <Projects />
           <Certifications />
           <Contact />
         </div>
