@@ -17,11 +17,11 @@ const projects = [
     tags: ["Machine Learning", "Flask", "Healthcare"],
   },
   {
-    title: "Bengaluru House Prediction",
+    title: "Data-Visualization-Analysis",
     description:
-      "Predicting house prices in Bengaluru using machine learning with Flask backend.",
-    link: "https://github.com/falakrana/bengluruHousePrediction.git",
-    tags: ["Machine Learning", "Flask", "Real Estate", "Regression"],
+      "Comprehensive data analysis and visualization projects using Python and Tableau with real-world datasets and dashboards. Check out my work on github.",
+    link: "https://github.com/falakrana/Data-Analysis-Visualization.git",
+    tags: ["Python", "Tableau", "Visualization"],
   },
   {
     title: "Virtual mouse using eyes.",
@@ -29,6 +29,13 @@ const projects = [
       "A virtual mouse system that allows users to control their cursor and perform click actions using eye movement and blinking.",
     link: "https://github.com/falakrana/virtualMouseDetectionUsingEyes.git",
     tags: ["OpenCV", "Mediapipe", "pyautogui", "python"],
+  },
+  {
+    title: "Bengaluru House Prediction",
+    description:
+      "Predicting house prices in Bengaluru using machine learning with Flask backend.",
+    link: "https://github.com/falakrana/bengluruHousePrediction.git",
+    tags: ["Machine Learning", "Flask", "Real Estate", "Regression"],
   },
   {
     title: "Vehicle sale price prediction",
@@ -82,7 +89,7 @@ function Projects() {
               </CardContent>
             </Card>
           ))}
-          </div>
+        </div>
         <ScrollArrow targetId="skills" className="mt-12" />
       </div>
     </section>
