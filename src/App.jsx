@@ -10,7 +10,6 @@ import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
-import Resume from "./components/Resume";
 import "./App.css";
 import GridOverlay from "./components/GridOverlay";
 import About from "./components/About";
@@ -30,7 +29,6 @@ function App() {
       { id: "experience", element: document.getElementById("experience") },
       { id: "projects", element: document.getElementById("projects") },
       { id: "certifications", element: document.getElementById("certifications") },
-      { id: "resume", element: document.getElementById("resume") },
       { id: "contact", element: document.getElementById("contact") },
     ].filter(section => section.element);
 
@@ -152,7 +150,6 @@ function App() {
           <Experience />
           <Projects />
           <Certifications />
-          <Resume />
           <Contact />
         </div>
       </main>

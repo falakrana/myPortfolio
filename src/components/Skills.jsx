@@ -1,4 +1,12 @@
-import { BarChart2, Database, TrendingUp, Code, Cloud } from "lucide-react";
+import {
+  BarChart2,
+  Database,
+  TrendingUp,
+  Code,
+  Cloud,
+  BracketsIcon,
+  Brain,
+} from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ScrollArrow from "./scroll-arrow";
 import { motion } from "framer-motion";
@@ -6,33 +14,40 @@ import { useInView } from "react-intersection-observer";
 
 const skillsData = [
   {
-    icon: BarChart2,
-    title: "Data Analysis & Visualization",
-    skills: ["Tableau", "Excel", "Power BI", "Data Storytelling"],
+    icon: Brain, // or your preferred AI-related icon
+    title: "Generative AI",
+    skills: [
+      "Large Language Models (LLMs)",
+      "LangChain",
+      "Vector Database(FAISS, ChromaDB)",
+      "Embeddings",
+    ],
     gradient: "from-[#dad7cd]/80 to-[#a3b18a]/80",
   },
-  {
-    icon: Database,
-    title: "Database Management",
-    skills: ["MySQL", "MongoDB", "Data Cleaning", "ETL Processes"],
-    gradient: "from-[#a3b18a]/80 to-[#588157]/80",
-  },
+
   {
     icon: TrendingUp,
     title: "Machine Learning",
     skills: ["Scikit-learn", "TensorFlow", "Deep Learning", "Neural Networks"],
+    gradient: "from-[#a3b18a]/80 to-[#588157]/80",
+  },
+  {
+    icon: Database,
+    title: "Database Management",
+    skills: ["MySQL", "MongoDB", "Data Cleaning"],
     gradient: "from-[#588157]/80 to-[#3a5a40]/80",
+  },
+
+  {
+    icon: BarChart2,
+    title: "Data Analysis & Visualization",
+    skills: ["Tableau", "Excel", "Power BI"],
+    gradient: "from-[#3a5a40]/80 to-[#344e41]/80",
   },
   {
     icon: Code,
     title: "Programming",
     skills: ["Python", "SQL", "JavaScript", "Java"],
-    gradient: "from-[#3a5a40]/80 to-[#344e41]/80",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Technologies",
-    skills: ["AWS", "Google Cloud", "Big Data Processing", "Docker"],
     gradient: "from-[#588157]/80 to-[#a3b18a]/80",
   },
 ];
@@ -69,9 +84,9 @@ function Skills() {
           repeatType: "reverse",
         }}
       />
-      
+
       <div className="container mx-auto">
-        <motion.h2 
+        <motion.h2
           className="text-4xl font-bold text-center text-white mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -81,8 +96,8 @@ function Skills() {
             Skills & Technologies
           </span>
         </motion.h2>
-        
-        <motion.div 
+
+        <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
@@ -94,22 +109,26 @@ function Skills() {
               key={index}
               variants={{
                 hidden: { opacity: 0, y: 20 },
-                visible: { 
-                  opacity: 1, 
+                visible: {
+                  opacity: 1,
                   y: 0,
-                  transition: { 
+                  transition: {
                     duration: 0.5,
                     ease: "easeOut",
-                  }
-                }
+                  },
+                },
               }}
-              whileHover={{ 
+              whileHover={{
                 y: -10,
-                transition: { type: "spring", stiffness: 300 }
+                transition: { type: "spring", stiffness: 300 },
               }}
             >
               <Card
-                className={`${skill.dark ? 'bg-black/80' : 'bg-gradient-to-br ' + skill.gradient} text-white h-full flex flex-col backdrop-blur-sm border-none shadow-lg overflow-hidden`}
+                className={`${
+                  skill.dark
+                    ? "bg-black/80"
+                    : "bg-gradient-to-br " + skill.gradient
+                } text-white h-full flex flex-col backdrop-blur-sm border-none shadow-lg overflow-hidden`}
               >
                 <CardHeader className="pb-2">
                   <motion.div
@@ -127,11 +146,11 @@ function Skills() {
                 <CardContent className="flex-grow pt-2">
                   <ul className="space-y-1">
                     {skill.skills.map((item, i) => (
-                      <motion.li 
+                      <motion.li
                         key={i}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.3 + (i * 0.1) }}
+                        transition={{ delay: 0.3 + i * 0.1 }}
                         className="flex items-center"
                       >
                         <span className="mr-2 w-1.5 h-1.5 bg-white rounded-full inline-block"></span>
@@ -144,7 +163,7 @@ function Skills() {
             </motion.div>
           ))}
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

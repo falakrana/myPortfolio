@@ -23,32 +23,33 @@ function Certifications() {
 
   const certifications = [
     {
-      title: "Excel Proficiency",
-      issuer: "Coursera",
-      description:
-        "Microsoft Excel for data entry, analysis, and visualization",
-      link: "https://www.coursera.org/account/accomplishments/verify/RYRYUT3L8EYB",
+      title: "Data Science Certification",
+      issuer: "Udemy",
+      description: "Machine learning, statistical analysis, and data cleaning",
+      link: "https://www.udemy.com/certificate/UC-84202d8d-a010-44d8-917e-5cfd596a6314/",
       gradient: "from-[#DAD7CD]/90 to-[#A3B18A]/90",
+    },
+
+    {
+      title: "Tableau Visualization",
+      issuer: "Tableau",
+      description: "Data visualization and dashboard creation",
+      link: "https://www.udemy.com/certificate/UC-791d7ea3-0890-4753-852a-dd8af11b71ae/",
+      gradient: "from-[#A3B18A]/90 to-[#588157]/90",
     },
     {
       title: "MySQL Competency",
       issuer: "Cursa",
       description: "SQL queries, database management, and data manipulation",
       link: "https://cursa.app/en/my-certificate/certf36808b31d88195365aeccdb9dced6cc/ok",
-      gradient: "from-[#A3B18A]/90 to-[#588157]/90",
-    },
-    {
-      title: "Data Science Certification",
-      issuer: "Udemy",
-      description: "Machine learning, statistical analysis, and data cleaning",
-      link: "https://www.udemy.com/certificate/UC-84202d8d-a010-44d8-917e-5cfd596a6314/",
       gradient: "from-[#588157]/90 to-[#3A5A40]/90",
     },
     {
-      title: "Tableau Visualization",
-      issuer: "Tableau",
-      description: "Data visualization and dashboard creation",
-      link: "https://www.udemy.com/certificate/UC-791d7ea3-0890-4753-852a-dd8af11b71ae/",
+      title: "Excel Proficiency",
+      issuer: "Coursera",
+      description:
+        "Microsoft Excel for data entry, analysis, and visualization",
+      link: "https://www.coursera.org/account/accomplishments/verify/RYRYUT3L8EYB",
       gradient: "from-[#3A5A40]/90 to-[#344E41]/90",
     },
   ];
@@ -57,7 +58,7 @@ function Certifications() {
     <section id="certifications" className="py-20 relative">
       {/* Background shapes */}
       <motion.div
-        className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-[#DAD7CD]/10 blur-3xl -z-10" 
+        className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-[#DAD7CD]/10 blur-3xl -z-10"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -68,9 +69,9 @@ function Certifications() {
           repeatType: "reverse",
         }}
       />
-      
+
       <div className="container mx-auto">
-        <motion.h2 
+        <motion.h2
           className="text-4xl font-bold text-center text-white mb-12"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,8 +81,8 @@ function Certifications() {
             Certifications
           </span>
         </motion.h2>
-        
-        <motion.div 
+
+        <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
@@ -93,18 +94,18 @@ function Certifications() {
               key={index}
               variants={{
                 hidden: { opacity: 0, y: 30 },
-                visible: { 
-                  opacity: 1, 
+                visible: {
+                  opacity: 1,
                   y: 0,
-                  transition: { 
+                  transition: {
                     duration: 0.6,
                     ease: "easeOut",
-                  }
-                }
+                  },
+                },
               }}
-              whileHover={{ 
+              whileHover={{
                 y: -8,
-                transition: { type: "spring", stiffness: 300 }
+                transition: { type: "spring", stiffness: 300 },
               }}
             >
               <Card
@@ -145,13 +146,13 @@ function Certifications() {
             </motion.div>
           ))}
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.5 }}
         >
-          <ScrollArrow targetId="resume" className="mt-12" />
+          <ScrollArrow targetId="contact" className="mt-12" />
         </motion.div>
       </div>
     </section>

@@ -1,22 +1,35 @@
 import ScrollArrow from "./scroll-arrow";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Award, Briefcase, Code, GraduationCap, Heart, Star } from "lucide-react";
+import {
+  Award,
+  Briefcase,
+  Code,
+  GraduationCap,
+  Heart,
+  Star,
+  FileText,
+  Download,
+  FileBadge,
+} from "lucide-react";
 
 function About() {
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: false
+    triggerOnce: false,
   });
+
+  // Use the correct path for the public folder asset
+  const resumePath = "/resume/myResume.pdf";
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -24,42 +37,17 @@ function About() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
-  // Personal details for the info cards
-  // const personalDetails = [
-  //   { 
-  //     title: "Education", 
-  //     content: "B.Tech Computer Science & Engineering",
-  //     icon: GraduationCap,
-  //     gradient: "from-[#dad7cd] to-[#a3b18a]"
-  //   },
-  //   { 
-  //     title: "Experience", 
-  //     content: "2+ years of ML projects & research",
-  //     icon: Briefcase,
-  //     gradient: "from-[#a3b18a] to-[#588157]"
-  //   },
-  //   { 
-  //     title: "Languages", 
-  //     content: "Python, SQL, JavaScript, Java",
-  //     icon: Code,
-  //     gradient: "from-[#588157] to-[#3a5a40]"
-  //   },
-  //   { 
-  //     title: "Interests", 
-  //     content: "AI, Machine Learning, Data Science",
-  //     icon: Heart,
-  //     gradient: "from-[#3a5a40] to-[#344e41]"
-  //   }
-  // ];
-
   return (
-    <section id="about" className="py-24 min-h-screen bg-transparent flex items-center relative">
+    <section
+      id="about"
+      className="py-24 min-h-screen bg-transparent flex items-center relative"
+    >
       {/* Enhanced animated background shapes */}
-      <motion.div 
+      <motion.div
         className="absolute top-20 left-10 w-40 h-40 rounded-full bg-[#a3b18a]/10 blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
@@ -69,10 +57,10 @@ function About() {
         transition={{
           duration: 8,
           repeat: Infinity,
-          repeatType: "reverse"
+          repeatType: "reverse",
         }}
       />
-      <motion.div 
+      <motion.div
         className="absolute bottom-20 right-10 w-60 h-60 rounded-full bg-[#588157]/10 blur-3xl"
         animate={{
           scale: [1, 1.3, 1],
@@ -82,10 +70,10 @@ function About() {
         transition={{
           duration: 10,
           repeat: Infinity,
-          repeatType: "reverse"
+          repeatType: "reverse",
         }}
       />
-      
+
       {/* Add floating particles for more visual interest */}
       {[...Array(12)].map((_, i) => (
         <motion.div
@@ -109,9 +97,9 @@ function About() {
           }}
         />
       ))}
-      
+
       <div className="container mx-auto z-10">
-        <motion.h2 
+        <motion.h2
           className="text-4xl font-bold text-center text-white mb-12 drop-shadow-lg"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -121,111 +109,185 @@ function About() {
             About Me
           </span>
         </motion.h2>
-        
-        <motion.div 
+
+        <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="flex flex-col md:flex-row items-center md:items-start justify-center gap-12 max-w-5xl mx-auto"
+          className="flex flex-col lg:flex-row items-start justify-center gap-12 max-w-6xl mx-auto"
         >
-          <motion.div 
+          {/* Left section: About content */}
+          <motion.div
             variants={itemVariants}
-            className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto mb-8 md:mb-0"
+            className="flex-1 flex flex-col items-start"
           >
-            <motion.div
-              className="relative group"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              {/* Profile image with animated border effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#dad7cd] to-[#588157] blur-md opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <img
-                src="/myImage.jpg"
-                alt="Falak Rana profile"
-                className="relative w-48 h-48 rounded-full border-4 border-[#588157] shadow-2xl object-cover"
-              />
-              
-             
-            </motion.div>
-          </motion.div>
-          
-          <div className="max-w-2xl w-full space-y-5">
-            <motion.h3 
-              variants={itemVariants}
-              className="text-3xl font-semibold text-white mb-4"
-            >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">
-                Falak Rana
-              </span>
-              <span className="ml-3 text-lg text-white/80 font-normal">Data Analytics Professional</span>
-            </motion.h3>
-            
-            <motion.p variants={itemVariants} className="text-lg leading-relaxed text-gray-200">
-              Hey! I'm Falak Rana, a tech enthusiast with a strong foundation in
-              Machine Learning and a growing passion for Full-Stack Development.
-              I'm currently pursuing my Bachelor's in Computer Science and
-              Engineering, and I enjoy solving real-world problems by combining
-              data-driven insights with clean, functional code.
-            </motion.p>
-            
-            <motion.p variants={itemVariants} className="text-lg leading-relaxed text-gray-200">
-              My primary focus is on Machine Learning, where I work on projects
-              involving deep learning, computer vision, and intelligent systems.
-              From handwritten digit recognition to disease prediction, I love
-              exploring how AI can improve everyday life.
-            </motion.p>
-            
-            <motion.p variants={itemVariants} className="text-lg leading-relaxed text-gray-200">
-              I also explore development side to bring my ML projects to life with
-              clean and functional interfaces.
-            </motion.p>
-            
-            <motion.p variants={itemVariants} className="text-lg leading-relaxed text-gray-200">
-              Always eager to learn and build, I'm open to collaborations,
-              internships, and exciting new challenges. Let's connect and create
-              something impactful!
-            </motion.p>
-          </div>
-        </motion.div>
-        
-        {/* Personal info cards */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-5xl mx-auto"
-        >
-          {/* {personalDetails.map((detail, index) => (
-            <motion.div
-              key={index}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { delay: 0.2 + (index * 0.1), duration: 0.5 }
-                }
-              }}
-              whileHover={{ 
-                y: -5,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-              className={`bg-gradient-to-br ${detail.gradient} rounded-lg p-1`}
-            >
-              <div className="bg-black/60 backdrop-blur-sm rounded-lg p-4 h-full">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-3">
-                    <detail.icon className="w-5 h-5 text-white" />
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8">
+              <motion.div
+                className="relative group flex-shrink-0"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {/* Profile image with animated border effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#dad7cd] to-[#588157] blur-md opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <img
+                  src="/myImage.jpg"
+                  alt="Falak Rana profile"
+                  className="relative w-40 h-40 rounded-full border-4 border-[#588157] shadow-2xl object-cover"
+                />
+              </motion.div>
+
+              <div>
+                <motion.h3
+                  variants={itemVariants}
+                  className="text-3xl font-semibold text-white mb-4 text-center md:text-left"
+                >
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">
+                    Falak Rana
+                  </span>
+                  <div className="text-lg text-white/80 font-normal mt-1">
+                    Machine learning Enthusiastic
                   </div>
-                  <h3 className="text-lg font-semibold text-white">{detail.title}</h3>
-                </div>
-                <p className="text-white/90">{detail.content}</p>
+                </motion.h3>
               </div>
-            </motion.div>
-          ))} */}
+            </div>
+
+            <div className="space-y-4">
+              <motion.p
+                variants={itemVariants}
+                className="text-lg leading-relaxed text-gray-200"
+              >
+                Student engaging in machine learning along with artificial intelligence with hands-on experience in
+                designing and deploying neural networks and generative AI
+                systems using frameworks like LangChain, Ollama, TensorFlow, and
+                PyTorch. Adept in solving real-world problems through Natural
+                Language Processing (NLP), computer vision, and advanced model
+                optimization techniques such as regularization and
+                hyperparameter tuning.
+              </motion.p>
+
+              <motion.p
+                variants={itemVariants}
+                className="text-lg leading-relaxed text-gray-200"
+              >
+                Skilled in working with structured and unstructured data using
+                SQL and MongoDB, with strong capabilities in data cleaning,
+                preprocessing, and analysis. Proficient in data visualization
+                tools like Tableau, Excel, and Matplotlib to uncover insights
+                and support data-driven decisions.
+              </motion.p>
+
+              <motion.p
+                variants={itemVariants}
+                className="text-lg leading-relaxed text-gray-200"
+              >
+                Solid foundation in Data Structures and Algorithms (DSA),
+                enabling the development of efficient and scalable solutions
+                across diverse problem domains.
+              </motion.p>
+
+              <motion.p
+                variants={itemVariants}
+                className="text-lg leading-relaxed text-gray-200"
+              >
+                Always eager to learn and build, I'm open to collaborations,
+                internships, and exciting new challenges. Let's connect and
+                create something impactful!
+              </motion.p>
+            </div>
+          </motion.div>
+
+          {/* Right section: Resume */}
+          <motion.div
+            variants={itemVariants}
+            className="w-full lg:w-2/5 mt-8 lg:mt-0"
+          >
+            <div className="bg-gradient-to-br from-[#588157] to-[#3a5a40] rounded-xl p-1 h-full">
+              <div className="bg-black/60 backdrop-blur-sm rounded-lg p-6 flex flex-col h-full">
+                <motion.div
+                  className="w-16 h-16 rounded-full bg-[#dad7cd]/20 flex items-center justify-center flex-shrink-0 mx-auto mb-4"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1, rotate: 360 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <FileText className="w-8 h-8 text-[#dad7cd]" />
+                </motion.div>
+
+                <div className="flex-grow text-center">
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    My Resume
+                  </h3>
+                  <p className="text-white/80 mb-6">
+                    Get a comprehensive overview of my skills, experience, and
+                    educational background. You'll find detailed information
+                    about my projects and technical competencies.
+                  </p>
+
+                  <div className="flex flex-wrap gap-4 justify-center">
+                    <motion.a
+                      href={resumePath}
+                      download="Falak_Rana_Resume.pdf"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-[#588157] to-[#3a5a40] text-white py-2 px-4 rounded-lg shadow-lg font-medium"
+                      whileHover={{ scale: 1.05, y: -3 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Download Resume</span>
+                    </motion.a>
+
+                    <motion.a
+                      href={resumePath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white py-2 px-4 rounded-lg shadow-lg font-medium"
+                      whileHover={{ scale: 1.05, y: -3 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <FileBadge className="w-4 h-4" />
+                      <span>View Resume</span>
+                    </motion.a>
+                  </div>
+                </div>
+
+                {/* Resume highlights */}
+                <div className="mt-8 grid grid-cols-1 gap-4">
+                  {[
+                    {
+                      title: "Technical Skills",
+                      content:
+                        "Python, ML, Deep Learning, Generative AI, Visualization, Data Analysis, SQL",
+                    },
+                    {
+                      title: "Experience",
+                      content: "Data Analysis, ML Projects",
+                    },
+                    {
+                      title: "Education",
+                      content:
+                        "Computer Science & Engineering from Parul University",
+                    },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={
+                        inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                      }
+                      transition={{ delay: 0.3 + i * 0.2, duration: 0.5 }}
+                      className="bg-gradient-to-br from-[#dad7cd]/20 to-[#588157]/20 p-4 rounded-lg backdrop-blur-sm"
+                    >
+                      <h3 className="text-md font-bold text-[#dad7cd] mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-white/80 text-sm">{item.content}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

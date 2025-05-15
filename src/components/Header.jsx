@@ -15,7 +15,6 @@ function Header({ activeSection }) {
     { title: "Experience", href: "#experience", id: "experience" },
     { title: "Projects", href: "#projects", id: "projects" },
     { title: "Certifications", href: "#certifications", id: "certifications" },
-    { title: "Resume", href: "#resume", id: "resume" },
     { title: "Contact", href: "#contact", id: "contact" },
   ];
 
@@ -59,7 +58,7 @@ function Header({ activeSection }) {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">Hii</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">Hey There!</span>
           </motion.a>
         </motion.h1>
 
