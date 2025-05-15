@@ -1,0 +1,167 @@
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Briefcase, GraduationCap, Award, Calendar, ArrowRight } from "lucide-react";
+import ScrollArrow from "./scroll-arrow";
+
+function Experience() {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+
+  const experiences = [
+    {
+      title: "Data Analytics Internship",
+      company: "Tech Innovations Inc.",
+      period: "May 2022 - Aug 2022",
+      description: "Analyzed large datasets using Python and SQL to extract actionable insights. Created interactive dashboards using Tableau for data visualization. Implemented machine learning models for predictive analytics.",
+      icon: Briefcase,
+      skills: ["Python", "SQL", "Tableau", "ML"],
+      gradient: "from-[#dad7cd]/80 to-[#a3b18a]/80",
+    },
+    {
+      title: "B.Tech Computer Science",
+      company: "University of Technology",
+      period: "2020 - 2024",
+      description: "Specialized in Artificial Intelligence and Data Science. Developed strong foundation in programming, algorithms, and data structures. Participated in hackathons and coding competitions.",
+      icon: GraduationCap,
+      skills: ["AI/ML", "DSA", "Algorithms", "Development"],
+      gradient: "from-[#588157]/80 to-[#3a5a40]/80",
+    },
+    {
+      title: "Machine Learning Research",
+      company: "AI Research Lab",
+      period: "Sep 2022 - Dec 2022",
+      description: "Conducted research on neural networks and deep learning techniques. Implemented and optimized various ML models for computer vision applications. Published findings in academic journals.",
+      icon: Award,
+      skills: ["Neural Networks", "Deep Learning", "CV", "Research"],
+      gradient: "from-[#a3b18a]/80 to-[#588157]/80",
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  return (
+    <section id="experience" className="py-16 relative">
+      {/* Background effects */}
+      <motion.div
+        className="absolute top-40 right-10 w-96 h-96 rounded-full bg-[#588157]/10 blur-3xl -z-10"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+      
+      <div className="container mx-auto">
+        <motion.h2 
+          className="text-4xl font-bold text-center text-white mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">
+            Experience
+          </span>
+        </motion.h2>
+        
+        <motion.div 
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="max-w-4xl mx-auto relative"
+        >
+          {/* Timeline line */}
+          <div className="absolute left-0 md:left-1/2 transform md:translate-x-[-50%] top-0 bottom-0 w-1 bg-gradient-to-b from-[#dad7cd]/40 via-[#588157]/40 to-[#344e41]/40 hidden md:block"></div>
+          
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { duration: 0.6, ease: "easeOut", delay: index * 0.2 }
+                }
+              }}
+              className={`mb-10 flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center`}
+            >
+              {/* Timeline date for mobile */}
+              <div className="flex items-center md:hidden mb-3">
+                <Calendar className="mr-2 text-[#dad7cd]" size={14} />
+                <span className="text-[#dad7cd] text-sm">{exp.period}</span>
+              </div>
+              
+              {/* Content card */}
+              <motion.div 
+                className={`w-full md:w-[calc(50%-20px)] ${index % 2 === 0 ? 'md:pr-6' : 'md:pl-6'}`}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300 }
+                }}
+              >
+                <div className={`bg-gradient-to-br ${exp.gradient} rounded-lg p-1 shadow-lg`}>
+                  <div className="bg-black/80 backdrop-blur-sm rounded-lg p-4 h-full">
+                    <div className="flex items-start mb-3">
+                      <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-3 flex-shrink-0">
+                        <exp.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">{exp.title}</h3>
+                        <p className="text-[#dad7cd]/90 font-medium text-sm">{exp.company}</p>
+                        {/* Date for desktop */}
+                        <p className="text-white/70 hidden md:flex items-center mt-1 text-xs">
+                          <Calendar className="mr-1" size={12} />
+                          {exp.period}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-white/90 mb-3 text-sm">{exp.description}</p>
+                    <div>
+                      <p className="text-white/90 font-medium mb-1 text-xs">Key Skills:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {exp.skills.map((skill, i) => (
+                          <span 
+                            key={i}
+                            className="bg-white/20 px-2 py-0.5 rounded-full text-white text-xs flex items-center"
+                          >
+                            <ArrowRight className="mr-1" size={10} />
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+        >
+          <ScrollArrow targetId="projects" className="mt-8" />
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+export default Experience; 

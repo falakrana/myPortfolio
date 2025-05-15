@@ -1,70 +1,157 @@
 import { BarChart2, Database, TrendingUp, Code, Cloud } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ScrollArrow from "./scroll-arrow";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const skillsData = [
   {
     icon: BarChart2,
     title: "Data Analysis & Visualization",
-    skills: ["Tableau", "Excel", "Python"],
-    gradient: "from-blue-500 to-cyan-500",
+    skills: ["Tableau", "Excel", "Power BI", "Data Storytelling"],
+    gradient: "from-[#dad7cd]/80 to-[#a3b18a]/80",
   },
   {
     icon: Database,
     title: "Database Management",
-    skills: ["MySQL", "MongoDB", "Data Cleaning"],
-    gradient: "from-violet-500 to-purple-500",
+    skills: ["MySQL", "MongoDB", "Data Cleaning", "ETL Processes"],
+    gradient: "from-[#a3b18a]/80 to-[#588157]/80",
   },
   {
     icon: TrendingUp,
     title: "Machine Learning",
-    skills: ["Scikit-learn", "Tensorflow", "Deep-learning", "Precitive Models"],
-    gradient: "from-pink-500 to-rose-500",
+    skills: ["Scikit-learn", "TensorFlow", "Deep Learning", "Neural Networks"],
+    gradient: "from-[#588157]/80 to-[#3a5a40]/80",
   },
   {
     icon: Code,
     title: "Programming",
-    skills: ["Python", "SQL", "JavaScript", "MongoDB queries", "Java"],
-    gradient: "from-yellow-500 to-orange-500",
+    skills: ["Python", "SQL", "JavaScript", "Java"],
+    gradient: "from-[#3a5a40]/80 to-[#344e41]/80",
   },
   {
     icon: Cloud,
     title: "Cloud Technologies",
-    skills: ["AWS", "Google Cloud", "Big Data Processing"],
-    gradient: "from-green-500 to-emerald-500",
+    skills: ["AWS", "Google Cloud", "Big Data Processing", "Docker"],
+    gradient: "from-[#588157]/80 to-[#a3b18a]/80",
   },
 ];
 
 function Skills() {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 relative">
+      {/* Background shapes */}
+      <motion.div
+        className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#dad7cd]/10 blur-3xl -z-10"
+        animate={{
+          scale: [1, 1.2, 1],
+          x: [0, -30, 0],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+      
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-center text-white mb-12">
-          Skills & Technologies
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <motion.h2 
+          className="text-4xl font-bold text-center text-white mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">
+            Skills & Technologies
+          </span>
+        </motion.h2>
+        
+        <motion.div 
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"
+        >
           {skillsData.map((skill, index) => (
-            <Card
+            <motion.div
               key={index}
-              className={`bg-card-to-br ${skill.gradient} text-white h-full flex flex-col`}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { 
+                    duration: 0.5,
+                    ease: "easeOut",
+                  }
+                }
+              }}
+              whileHover={{ 
+                y: -10,
+                transition: { type: "spring", stiffness: 300 }
+              }}
             >
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <skill.icon className="mr-2 h-6 w-6" />
-                  {skill.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="list-disc list-inside">
-                  {skill.skills.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+              <Card
+                className={`${skill.dark ? 'bg-black/80' : 'bg-gradient-to-br ' + skill.gradient} text-white h-full flex flex-col backdrop-blur-sm border-none shadow-lg overflow-hidden`}
+              >
+                <CardHeader className="pb-2">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    className="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 mb-2"
+                  >
+                    <skill.icon className="h-6 w-6" />
+                  </motion.div>
+                  <CardTitle className="text-xl font-semibold">
+                    {skill.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow pt-2">
+                  <ul className="space-y-1">
+                    {skill.skills.map((item, i) => (
+                      <motion.li 
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3 + (i * 0.1) }}
+                        className="flex items-center"
+                      >
+                        <span className="mr-2 w-1.5 h-1.5 bg-white rounded-full inline-block"></span>
+                        <span className="text-white/90">{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
-        <ScrollArrow targetId="projects" className="mt-12" />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+        >
+          <ScrollArrow targetId="experience" className="mt-16" />
+        </motion.div>
       </div>
     </section>
   );

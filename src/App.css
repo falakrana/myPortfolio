@@ -22,6 +22,13 @@
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 224.3 76.3% 48%;
+  
+  /* Custom sage green color palette */
+  --sage-light: #dad7cd;
+  --sage-medium: #a3b18a;
+  --sage-dark: #588157;
+  --sage-darker: #3a5a40;
+  --sage-darkest: #344e41;
 }
 
 .dark {
@@ -46,10 +53,16 @@
   --ring: 224.3 76.3% 48%;
 }
 
+@font-face {
+  font-family: 'Poppins';
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+}
+
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', 'Inter', sans-serif;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+  overflow-x: hidden;
 }
 
 .app {
@@ -67,6 +80,189 @@ body {
   background-position: center;
   z-index: -1;
   transition: filter 0.3s ease;
+}
+
+/* Enhanced scroll animations */
+.scroll-section {
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.scroll-section.in-view {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.scroll-section:not(.in-view) {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--sage-light), var(--sage-medium));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--sage-medium), var(--sage-dark));
+}
+
+/* Modern text selection */
+::selection {
+  background: rgba(218, 215, 205, 0.3);
+  color: white;
+}
+
+/* Enhanced gradient text effect */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, var(--sage-light), var(--sage-medium));
+}
+
+/* Enhanced hover effects */
+a, button {
+  transition: all 0.3s ease;
+}
+
+a:hover, button:hover {
+  transform: translateY(-2px);
+}
+
+/* Remove focus outlines but maintain keyboard accessibility */
+a:focus, button:focus, *:focus {
+  outline: none;
+}
+
+/* Glass effect for cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation utilities */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Section transitions */
+section {
+  transition: all 0.5s ease-out;
+}
+
+/* Custom glowing shadow effect */
+.glow {
+  box-shadow: 0 0 15px rgba(218, 215, 205, 0.3);
+}
+
+.glow:hover {
+  box-shadow: 0 0 25px rgba(218, 215, 205, 0.5);
+}
+
+/* Shine effect for images */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 6s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(30deg) translate(-100%, -100%);
+  }
+  100% {
+    transform: rotate(30deg) translate(100%, 100%);
+  }
+}
+
+/* Custom scrolling experience */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Active navigation item styling */
+.nav-link.active {
+  color: var(--sage-light);
+  font-weight: 500;
+}
+
+.nav-link.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--sage-light), var(--sage-medium));
+  margin-top: 3px;
+}
+
+/* Make buttons and links more accessible to keyboard users */
+a:focus-visible, button:focus-visible {
+  box-shadow: 0 0 0 2px var(--sage-medium);
+  outline: none;
+}
+
+/* Hide outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Ensure interactive elements have appropriate cursor */
+button, a, [role="button"] {
+  cursor: pointer;
 }
 
 
