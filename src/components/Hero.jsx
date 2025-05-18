@@ -32,7 +32,6 @@ const Hero = () => {
         }}></div>
       </div>
 
-      
       <div className="text-center max-w-3xl mx-auto px-4 z-10 relative">
         {/* Sparkle effect on name */}
         <motion.div 
@@ -69,13 +68,16 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="relative z-10"
         >
+          <p className="text-xl text-gray-300 mb-6">
+            Transforming complex data challenges into elegant, scalable solutions
+          </p>
           <TypeAnimation
             sequence={[
-              "Data Analytics Professional",
-              1000,
               "Machine Learning Enthusiast",
               1000,
-              "Data Visualization Expert",
+              "Data Engineering Student",
+              1000,
+              "AI Solutions Developer",
               1000,
             ]}
             wrapper="h2"
@@ -83,6 +85,24 @@ const Hero = () => {
             repeat={Number.POSITIVE_INFINITY}
             className="text-3xl font-light mb-8"
           />
+        </motion.div>
+
+        {/* Skills chips */}
+        <motion.div
+          className="flex flex-wrap gap-3 justify-center mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          {['Python', 'PyTorch', 'SQL', 'Spark', 'Java'].map((skill, i) => (
+            <motion.span 
+              key={i} 
+              className="bg-white/10 px-4 py-2 rounded-full text-sm"
+              whileHover={{ scale: 1.05 }}
+            >
+              {skill}
+            </motion.span>
+          ))}
         </motion.div>
 
         {/* CTA buttons */}
@@ -93,7 +113,8 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <motion.a
-            href="#projects"
+            href="/resume/myResume.pdf"
+            download
             className="bg-gradient-to-r from-[#588157] to-[#3a5a40] text-white py-3 px-6 rounded-lg flex items-center gap-2 font-medium glow"
             whileHover={{ 
               y: -5,
@@ -101,12 +122,12 @@ const Hero = () => {
             }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            View My Work
+            Download Resume
             <ChevronRight size={18} />
           </motion.a>
           
           <motion.a
-            href="#about"
+            href="#contact"
             className="bg-white/10 backdrop-blur-sm text-white py-3 px-6 rounded-lg flex items-center gap-2 border border-white/20 font-medium"
             whileHover={{ 
               y: -5,
@@ -114,19 +135,17 @@ const Hero = () => {
             }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            About Me
+            Connect
             <ChevronRight size={18} />
           </motion.a>
         </motion.div>
-
-        {/* <motion.div
-          className="mt-12"
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.9 }}
+          transition={{ delay: 1, duration: 0.8 }}
         >
-          <ScrollArrow targetId="about" />
-        </motion.div> */}
+          <ScrollArrow targetId="about" className="mt-16" />
+        </motion.div>
       </div>
     </section>
   )

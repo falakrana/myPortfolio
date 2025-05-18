@@ -19,7 +19,7 @@ function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const sections = useRef([]);
-
+  
   useEffect(() => {
     // Initialize sections
     sections.current = [
@@ -57,7 +57,7 @@ function App() {
         }
       }
     };
-
+    
     window.addEventListener("scroll", handleScroll);
     // Run once to set initial active section
     handleScroll();
@@ -74,7 +74,7 @@ function App() {
 
   // Pass the active section to the Header component
   return (
-    <div className="bg-background text-white min-h-screen relative">
+      <div className="bg-background text-white min-h-screen relative">
       {/* Background image with overlay */}
       <div className="fixed inset-0 z-0">
         <div
@@ -123,7 +123,7 @@ function App() {
           }}
         />
       ))}
-
+      
       {/* Magnetic Lines Effect */}
       <div className="hidden md:block">
         <MagnetLines
@@ -142,7 +142,7 @@ function App() {
 
       <main className="container mx-auto px-4 relative z-20">
         <section id="home">
-          <Hero />
+            <Hero />
         </section>
         <About />
         <div className="space-y-32">
@@ -170,7 +170,7 @@ function App() {
           </motion.button>
         )}
       </AnimatePresence>
-    </div>
+      </div>
   );
 }
 

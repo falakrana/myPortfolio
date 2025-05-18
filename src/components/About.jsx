@@ -18,10 +18,10 @@ function About() {
     threshold: 0.3,
     triggerOnce: false,
   });
-
+  
   // Use the correct path for the public folder asset
   const resumePath = "/resume/myResume.pdf";
-
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -40,7 +40,7 @@ function About() {
       transition: { duration: 0.6, ease: "easeOut" },
     },
   };
-
+  
   return (
     <section
       id="about"
@@ -99,16 +99,16 @@ function About() {
       ))}
 
       <div className="container mx-auto z-10">
-        <motion.h2
+          <motion.h2
           className="text-4xl font-bold text-center text-white mb-12 drop-shadow-lg"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">
-            About Me
-          </span>
-        </motion.h2>
+              About Me
+            </span>
+          </motion.h2>
 
         <motion.div
           ref={ref}
@@ -153,137 +153,47 @@ function About() {
             </div>
 
             <div className="space-y-4">
-              <motion.p
-                variants={itemVariants}
-                className="text-lg leading-relaxed text-gray-200"
-              >
-                Student engaging in machine learning along with artificial intelligence with hands-on experience in
-                designing and deploying neural networks and generative AI
-                systems using frameworks like LangChain, Ollama, TensorFlow, and
-                PyTorch. Adept in solving real-world problems through Natural
-                Language Processing (NLP), computer vision, and advanced model
-                optimization techniques such as regularization and
-                hyperparameter tuning.
-              </motion.p>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-lg leading-relaxed text-gray-200"
-              >
-                Skilled in working with structured and unstructured data using
-                SQL and MongoDB, with strong capabilities in data cleaning,
-                preprocessing, and analysis. Proficient in data visualization
-                tools like Tableau, Excel, and Matplotlib to uncover insights
-                and support data-driven decisions.
-              </motion.p>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-lg leading-relaxed text-gray-200"
-              >
-                Solid foundation in Data Structures and Algorithms (DSA),
-                enabling the development of efficient and scalable solutions
-                across diverse problem domains.
-              </motion.p>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-lg leading-relaxed text-gray-200"
-              >
-                Always eager to learn and build, I'm open to collaborations,
-                internships, and exciting new challenges. Let's connect and
-                create something impactful!
-              </motion.p>
-            </div>
-          </motion.div>
-
-          {/* Right section: Resume */}
-          <motion.div
-            variants={itemVariants}
-            className="w-full lg:w-2/5 mt-8 lg:mt-0"
-          >
-            <div className="bg-gradient-to-br from-[#588157] to-[#3a5a40] rounded-xl p-1 h-full">
-              <div className="bg-black/60 backdrop-blur-sm rounded-lg p-6 flex flex-col h-full">
-                <motion.div
-                  className="w-16 h-16 rounded-full bg-[#dad7cd]/20 flex items-center justify-center flex-shrink-0 mx-auto mb-4"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1, rotate: 360 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
+                <motion.p
+                  variants={itemVariants}
+                  className="text-lg leading-relaxed text-gray-200"
                 >
-                  <FileText className="w-8 h-8 text-[#dad7cd]" />
-                </motion.div>
+                  Student engaging in machine learning along with artificial
+                  intelligence with hands-on experience in designing and deploying
+                  neural networks and generative AI systems using frameworks like
+                  LangChain, Ollama, TensorFlow, and PyTorch. Adept in solving
+                  real-world problems through Natural Language Processing (NLP),
+                  computer vision, and advanced model optimization techniques such
+                  as regularization and hyperparameter tuning.
+                </motion.p>
 
-                <div className="flex-grow text-center">
-                  <h3 className="text-xl font-bold mb-3 text-white">
-                    My Resume
-                  </h3>
-                  <p className="text-white/80 mb-6">
-                    Get a comprehensive overview of my skills, experience, and
-                    educational background. You'll find detailed information
-                    about my projects and technical competencies.
-                  </p>
+                <motion.p
+                  variants={itemVariants}
+                  className="text-lg leading-relaxed text-gray-200"
+                >
+                  Skilled in working with structured and unstructured data using
+                  SQL and MongoDB, with strong capabilities in data cleaning,
+                  preprocessing, and analysis. Proficient in data visualization
+                  tools like Tableau, Excel, and Matplotlib to uncover insights
+                  and support data-driven decisions.
+                </motion.p>
 
-                  <div className="flex flex-wrap gap-4 justify-center">
-                    <motion.a
-                      href={resumePath}
-                      download="Falak_Rana_Resume.pdf"
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-[#588157] to-[#3a5a40] text-white py-2 px-4 rounded-lg shadow-lg font-medium"
-                      whileHover={{ scale: 1.05, y: -3 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>Download Resume</span>
-                    </motion.a>
+                <motion.p
+                  variants={itemVariants}
+                  className="text-lg leading-relaxed text-gray-200"
+                >
+                  Solid foundation in Data Structures and Algorithms (DSA),
+                  enabling the development of efficient and scalable solutions
+                  across diverse problem domains.
+                </motion.p>
 
-                    <motion.a
-                      href={resumePath}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white py-2 px-4 rounded-lg shadow-lg font-medium"
-                      whileHover={{ scale: 1.05, y: -3 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <FileBadge className="w-4 h-4" />
-                      <span>View Resume</span>
-                    </motion.a>
-                  </div>
-                </div>
-
-                {/* Resume highlights */}
-                <div className="mt-8 grid grid-cols-1 gap-4">
-                  {[
-                    {
-                      title: "Technical Skills",
-                      content:
-                        "Python, ML, Deep Learning, Generative AI, Visualization, Data Analysis, SQL",
-                    },
-                    {
-                      title: "Experience",
-                      content: "Data Analysis, ML Projects",
-                    },
-                    {
-                      title: "Education",
-                      content:
-                        "Computer Science & Engineering from Parul University",
-                    },
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={
-                        inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                      }
-                      transition={{ delay: 0.3 + i * 0.2, duration: 0.5 }}
-                      className="bg-gradient-to-br from-[#dad7cd]/20 to-[#588157]/20 p-4 rounded-lg backdrop-blur-sm"
-                    >
-                      <h3 className="text-md font-bold text-[#dad7cd] mb-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-white/80 text-sm">{item.content}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+                <motion.p
+                  variants={itemVariants}
+                  className="text-lg leading-relaxed text-gray-200"
+                >
+                    Always eager to learn and build, I'm open to collaborations,
+                    internships, and exciting new challenges. Let's connect and
+                    create something impactful!
+                </motion.p>
             </div>
           </motion.div>
         </motion.div>
