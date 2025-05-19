@@ -74,7 +74,7 @@ function App() {
 
   // Pass the active section to the Header component
   return (
-      <div className="bg-background text-white min-h-screen relative">
+      <div className="bg-background text-white min-h-screen relative font-poppins">
       {/* Background image with overlay */}
       <div className="fixed inset-0 z-0">
         <div

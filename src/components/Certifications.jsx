@@ -4,23 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ScrollArrow from "./scroll-arrow";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useState } from "react";
 
 function Certifications() {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false,
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
   const certifications = [
     {
       title: "Data Science Certification",
@@ -53,6 +42,72 @@ function Certifications() {
       gradient: "from-[#3A5A40]/90 to-[#344E41]/90",
     },
   ];
+  
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
+  
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+  
+  // Duplicate certifications for infinite carousel effect
+  const extendedCertifications = [...certifications, ...certifications];
+  
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 7000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: "linear",
+    pauseOnHover: true,
+    arrows: true,
+    swipeToSlide: true,
+    draggable: true,
+    centerMode: true,
+    centerPadding: '60px',
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 3,
+          centerPadding: '40px',
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          centerPadding: '40px',
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          centerPadding: '40px',
+        }
+      }
+    ]
+  };
+
+
 
   return (
     <section id="certifications" className="py-20 relative">
@@ -71,6 +126,7 @@ function Certifications() {
       />
 
       <div className="container mx-auto">
+
         <motion.h2
           className="text-4xl font-bold text-center text-white mb-12"
           initial={{ opacity: 0, y: -20 }}
@@ -87,35 +143,37 @@ function Certifications() {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"
+          className="carousel-container equal-height-cards"
         >
-          {certifications.map((cert, index) => (
-            <motion.div
-              key={index}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.6,
-                    ease: "easeOut",
-                  },
-                },
-              }}
-              whileHover={{
-                y: -8,
-                transition: { type: "spring", stiffness: 300 },
-              }}
-            >
+          {isClient && (
+            <Slider {...sliderSettings} className="certifications-carousel">
+              {extendedCertifications.map((cert, index) => (
+                <div key={index} className="px-3">
+                  <motion.div
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          duration: 0.6,
+                          ease: "easeOut",
+                        },
+                      },
+                    }}
+                    whileHover={{
+                      y: -8,
+                      transition: { type: "spring", stiffness: 300 },
+                    }}
+                  >
               <Card
-                className={`bg-gradient-to-br ${cert.gradient} text-white h-full flex flex-col backdrop-blur-sm border-none shadow-lg overflow-hidden`}
+                className={`bg-gradient-to-br ${cert.gradient} text-white h-[270px] flex flex-col backdrop-blur-sm border-none shadow-lg overflow-hidden`}
               >
                 <CardHeader className="pb-2">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    transition={{ duration: 0.3, delay: index * 0.1, infinite: true }}
                     className="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 mb-2"
                   >
                     <FaCertificate className="w-6 h-6" />
@@ -143,8 +201,11 @@ function Certifications() {
                   </motion.a>
                 </CardContent>
               </Card>
-            </motion.div>
-          ))}
+                  </motion.div>
+                </div>
+              ))}
+            </Slider>
+          )}
         </motion.div>
 
         <motion.div

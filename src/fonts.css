@@ -1,0 +1,77 @@
+/* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Apply Poppins to all elements by default */
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Font weight utility classes */
+.font-thin {
+  font-weight: 100;
+}
+
+.font-extralight {
+  font-weight: 200;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-black {
+  font-weight: 900;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+h4, h5, h6 {
+  font-weight: 400;
+}
+
+/* Button and link styles */
+a, button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+/* Code elements */
+code, pre {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}

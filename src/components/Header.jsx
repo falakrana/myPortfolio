@@ -47,14 +47,14 @@ function Header({ activeSection }) {
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <motion.h1
-          className="text-2xl font-bold"
+          className="text-2xl font-poppins font-bold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
           <motion.a
             href="#home"
-            className="font-extrabold italic gradient-text"
+            className="font-poppins font-extrabold italic gradient-text"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -73,7 +73,7 @@ function Header({ activeSection }) {
             <motion.a
               key={index}
               href={link.href}
-              className={`nav-link text-white hover:text-[#dad7cd] relative group text-sm font-medium outline-none ${activeSection === link.id ? 'active' : ''}`}
+              className={`nav-link text-white hover:text-[#dad7cd] relative group text-sm font-poppins font-medium outline-none ${activeSection === link.id ? 'active' : ''}`}
               whileHover={{ y: -2 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
@@ -175,7 +175,7 @@ function Header({ activeSection }) {
                 <motion.a
                   key={index}
                   href={link.href}
-                  className={`nav-link block py-2 text-white hover:text-[#dad7cd] border-b border-white/10 outline-none ${activeSection === link.id ? 'text-[#dad7cd] font-medium' : ''}`}
+                  className={`nav-link block py-2 text-white hover:text-[#dad7cd] border-b border-white/10 outline-none font-poppins ${activeSection === link.id ? 'text-[#dad7cd] font-medium' : ''}`}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: index * 0.1 }}

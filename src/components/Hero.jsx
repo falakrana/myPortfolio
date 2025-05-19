@@ -55,7 +55,7 @@ const Hero = () => {
             <Sparkles size={20} />
           </motion.span>
           
-          <h1 className="text-6xl font-bold mb-4 shine">
+          <h1 className="text-6xl font-poppins font-bold mb-4 shine">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">
               Falak Rana
             </span>
@@ -68,7 +68,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="relative z-10"
         >
-          <p className="text-xl text-gray-300 mb-6">
+          <p className="text-xl font-poppins text-gray-300 mb-6">
             Transforming complex data challenges into elegant, scalable solutions
           </p>
           <TypeAnimation
@@ -83,7 +83,7 @@ const Hero = () => {
             wrapper="h2"
             cursor={true}
             repeat={Number.POSITIVE_INFINITY}
-            className="text-3xl font-light mb-8"
+            className="text-3xl font-poppins font-light mb-8"
           />
         </motion.div>
 
@@ -97,7 +97,7 @@ const Hero = () => {
           {['Python', 'PyTorch', 'SQL', 'Spark', 'Java'].map((skill, i) => (
             <motion.span 
               key={i} 
-              className="bg-white/10 px-4 py-2 rounded-full text-sm"
+              className="bg-white/10 px-4 py-2 rounded-full text-sm font-poppins"
               whileHover={{ scale: 1.05 }}
             >
               {skill}
@@ -115,7 +115,7 @@ const Hero = () => {
           <motion.a
             href="/resume/myResume.pdf"
             download
-            className="bg-gradient-to-r from-[#588157] to-[#3a5a40] text-white py-3 px-6 rounded-lg flex items-center gap-2 font-medium glow"
+            className="bg-gradient-to-r from-[#588157] to-[#3a5a40] text-white py-3 px-6 rounded-lg flex items-center gap-2 font-poppins font-medium glow"
             whileHover={{ 
               y: -5,
               boxShadow: "0 10px 25px -5px rgba(88, 129, 87, 0.5)"
@@ -128,7 +128,7 @@ const Hero = () => {
           
           <motion.a
             href="#contact"
-            className="bg-white/10 backdrop-blur-sm text-white py-3 px-6 rounded-lg flex items-center gap-2 border border-white/20 font-medium"
+            className="bg-white/10 backdrop-blur-sm text-white py-3 px-6 rounded-lg flex items-center gap-2 border border-white/20 font-poppins font-medium"
             whileHover={{ 
               y: -5,
               backgroundColor: "rgba(255, 255, 255, 0.15)"

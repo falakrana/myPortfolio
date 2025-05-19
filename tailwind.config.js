@@ -8,6 +8,10 @@ module.exports = {
     './src/**/*.{js,jsx}',
 	],
   theme: {
+    fontFamily: {
+      sans: ['Poppins', 'sans-serif'],
+      poppins: ['Poppins', 'sans-serif'],
+    },
     container: {
       center: true,
       padding: "2rem",

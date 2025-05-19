@@ -1,3 +1,6 @@
+/* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -53,16 +56,30 @@
   --ring: 224.3 76.3% 48%;
 }
 
-@font-face {
-  font-family: 'Poppins';
-  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Poppins font for the entire portfolio */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --font-primary: 'Poppins', sans-serif;
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
 }
 
 body {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-regular);
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   overflow-x: hidden;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
 }
 
 .app {
@@ -122,6 +139,37 @@ body {
 }
 
 /* Enhanced gradient text effect */
+/* Heading styles with Poppins */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  font-weight: var(--font-weight-semibold);
+}
+
+h3 {
+  font-weight: var(--font-weight-medium);
+}
+
+h4, h5, h6 {
+  font-weight: var(--font-weight-regular);
+}
+
+/* Code elements with Poppins */
+code, pre, .code {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-light);
+  font-size: 0.95em;
+  letter-spacing: 0;
+}
+
 .gradient-text {
   background-clip: text;
   -webkit-background-clip: text;
@@ -130,7 +178,11 @@ body {
 }
 
 /* Enhanced hover effects */
+/* Button and link typography */
 a, button {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+
   transition: all 0.3s ease;
 }
 
@@ -234,9 +286,17 @@ html {
 }
 
 /* Active navigation item styling */
+/* Navigation typography */
+.nav-link {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.01em;
+  font-size: 0.95em;
+}
+
 .nav-link.active {
   color: var(--sage-light);
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
 }
 
 .nav-link.active::after {

@@ -10,6 +10,10 @@ import ScrollArrow from "./scroll-arrow";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ExternalLink, Github, Link, Code } from "lucide-react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useState } from "react";
 
 const projects = [
   {
@@ -79,6 +83,12 @@ function Projects() {
     threshold: 0.1,
     triggerOnce: false,
   });
+  
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -90,38 +100,75 @@ function Projects() {
     },
   };
   
+  // Duplicate projects for infinite carousel effect
+  const extendedProjects = [...projects, ...projects];
+  
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 8000,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: "linear",
+    pauseOnHover: true,
+    arrows: true,
+    rtl: true, // Right to left direction
+    swipeToSlide: true,
+    draggable: true,
+    centerMode: true,
+    centerPadding: '60px',
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 2,
+          centerPadding: '40px',
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          centerPadding: '40px',
+        }
+      }
+    ]
+  };
+
   const cardVariants = {
     hidden: { y: 30, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
-      transition: { 
+      transition: {
         duration: 0.6,
         ease: "easeOut",
       }
     },
     hover: {
       y: -12,
-      transition: { 
-        type: "spring", 
-        stiffness: 200, 
-        damping: 15 
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 15
       }
     },
   };
-  
+
   const imageVariants = {
     hidden: { scale: 1.2, opacity: 0.3 },
-    visible: { 
-      scale: 1, 
+    visible: {
+      scale: 1,
       opacity: 1,
       transition: { duration: 0.6 }
     },
-    hover: { 
+    hover: {
       scale: 1.1,
-      transition: { 
+      transition: {
         duration: 0.3,
-        ease: "easeOut" 
+        ease: "easeOut"
       }
     }
   };
@@ -130,7 +177,7 @@ function Projects() {
     <section id="projects" className="py-20 relative overflow-hidden">
       {/* Enhanced background shapes */}
       <motion.div
-        className="absolute top-20 left-10 w-80 h-80 rounded-full bg-[#DAD7CD]/10 blur-3xl -z-10" 
+        className="absolute top-20 left-10 w-80 h-80 rounded-full bg-[#DAD7CD]/10 blur-3xl -z-10"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -142,10 +189,10 @@ function Projects() {
           repeatType: "reverse",
         }}
       />
-      
+
       {/* Add more animated background elements */}
       <motion.div
-        className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3A5A40]/10 blur-3xl -z-10" 
+        className="absolute bottom-40 right-10 w-80 h-96 rounded-full bg-[#3A5A40]/10 blur-3xl -z-10"
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.2, 0.4, 0.2],
@@ -156,9 +203,10 @@ function Projects() {
           duration: 18,
           repeat: Infinity,
           repeatType: "reverse",
+          infinite: true,
         }}
       />
-      
+
       {/* Floating particles */}
       {[...Array(10)].map((_, i) => (
         <motion.div
@@ -169,8 +217,8 @@ function Projects() {
             height: Math.random() * 8 + 3,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            background: i % 2 === 0 
-              ? 'radial-gradient(circle, rgba(218,215,205,0.15) 0%, rgba(218,215,205,0) 70%)' 
+            background: i % 2 === 0
+              ? 'radial-gradient(circle, rgba(218,215,205,0.15) 0%, rgba(218,215,205,0) 70%)'
               : 'radial-gradient(circle, rgba(88,129,87,0.15) 0%, rgba(88,129,87,0) 70%)',
           }}
           animate={{
@@ -187,16 +235,16 @@ function Projects() {
           }}
         />
       ))}
-      
+
       <div className="container mx-auto">
         <motion.div className="relative mb-16">
-          <motion.div 
+          <motion.div
             className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-[#A3B18A]/50 to-transparent"
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           />
-          <motion.h2 
+          <motion.h2
             className="text-5xl font-bold text-center text-white"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -215,131 +263,117 @@ function Projects() {
           >
             A selection of my recent data engineering projects
           </motion.p>
-          <motion.div 
+          <motion.div
             className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-transparent via-[#A3B18A]/30 to-transparent"
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
           />
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          animate={inView ? "visible" : "visible"}
+          className="carousel-container equal-height-cards"
         >
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover="hover"
-              className="h-full"
-            >
-              <Card className="relative h-full overflow-hidden rounded-xl border-0 bg-black/5 backdrop-blur-sm flex flex-col hover:shadow-2xl transition-shadow duration-500">
-                {/* Project image with overlay gradient */}
-                <div className="relative w-full h-52 overflow-hidden">
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 z-10" 
-                    initial={{ opacity: 0.7 }}
-                    whileHover={{ opacity: 0.9 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <motion.img
-                    src={project.image} 
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                    variants={imageVariants}
-                    initial="hidden"
-                    animate="visible"
-                    whileHover="hover"
-                  />
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-overlay z-10"/>
-                  
-                  {/* Animated overlay indicator */}
-                  <motion.div
-                    className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-sm p-2 rounded-full"
-                    whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Github className="w-5 h-5 text-white" />
-                  </motion.div>
-                  
-                  {/* Project title on the image */}
-                  <div className="absolute bottom-0 left-0 w-full p-4 z-20">
-                    <motion.h3 
-                      className="text-xl font-bold text-white mb-1 drop-shadow-md"
-                      initial={{ y: 10, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      {project.title}
-                    </motion.h3>
-                  </div>
-                </div>
-                
-                <div className="flex-1 p-5 flex flex-col"> 
-                  <CardDescription className="text-white/90 font-medium text-base mb-4">
-                    {project.description}
-                  </CardDescription>
-                  
-                  <div className="flex flex-wrap gap-2 mb-5 mt-auto">
-                    {project.tags.map((tag, i) => (
+          {isClient && (
+            <Slider {...sliderSettings} className="projects-carousel">
+              {extendedProjects.map((project, index) => (
+                <motion.div
+                  key={index}
+                  variants={cardVariants}
+                  whileHover="hover"
+                  className="h-full w-full"
+                >
+                  <Card className="relative h-full overflow-hidden rounded-xl border-0 bg-black/5 backdrop-blur-sm flex flex-col hover:shadow-2xl transition-shadow duration-500">
+                    {/* Project image with overlay gradient */}
+                    <div className="relative w-full h-52 overflow-hidden">
                       <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.3 + (i * 0.1) }}
+                        className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 z-10"
+                        initial={{ opacity: 0.7 }}
+                        whileHover={{ opacity: 0.9 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.img
+                        src={project.image}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover object-center"
+                        variants={imageVariants}
+                        initial="hidden"
+                        animate="visible"
+                        whileHover="hover"
+                      />
+                      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-overlay z-10" />
+
+                      {/* Animated overlay indicator */}
+                      <motion.div
+                        className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-sm p-2 rounded-full"
+                        whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+                        transition={{ type: "spring", stiffness: 300 }}
                       >
-                        <Badge className="bg-[#588157]/20 hover:bg-[#588157]/30 text-white/90 border border-[#588157]/20 font-medium backdrop-blur-sm">
-                          {tag}
-                        </Badge>
+                        <Github className="w-5 h-5 text-white" />
                       </motion.div>
-                    ))}
-                  </div>
-                  
-                  <motion.a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 text-white bg-gradient-to-r from-[#588157]/80 to-[#3A5A40]/80 py-2 px-4 rounded-lg mt-2 hover:shadow-lg transition-shadow group w-full"
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span>View Project</span>
-                    <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </motion.a>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
+
+                      {/* Project title on the image */}
+                      <div className="absolute bottom-0 left-0 w-full p-4 z-20">
+                        <motion.h3
+                          className="text-xl font-bold text-white mb-1 drop-shadow-md"
+                          initial={{ y: 10, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          {project.title}
+                        </motion.h3>
+                      </div>
+                    </div>
+
+                    <div className="flex-1 p-5 flex flex-col">
+                      <CardDescription className="text-white/90 font-medium text-base mb-4">
+                        {project.description}
+                      </CardDescription>
+
+                      <div className="flex flex-wrap gap-2 mb-5 mt-auto">
+                        {project.tags.map((tag, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.3 + (i * 0.1) }}
+                          >
+                            <Badge className="bg-[#588157]/20 hover:bg-[#588157]/30 text-white/90 border border-[#588157]/20 font-medium backdrop-blur-sm">
+                              {tag}
+                            </Badge>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 text-white bg-gradient-to-r from-[#588157]/80 to-[#3A5A40]/80 py-2 px-4 rounded-lg mt-2 hover:shadow-lg transition-shadow group w-full"
+                        whileHover={{ y: -3 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span>View Project</span>
+                        <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </motion.a>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </Slider>
+          )}
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.5 }}
           className="mt-16 mb-8 relative"
         >
-          {/* <motion.div 
-            className="absolute left-1/2 transform -translate-x-1/2 -top-12 text-white/30"
-            animate={{ 
-              y: [0, 10, 0],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{ 
-              duration: 3,
-              repeat: Infinity,
-              repeatType: "reverse" 
-            }}
-          >
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M25 5C13.9543 5 5 13.9543 5 25C5 36.0457 13.9543 45 25 45C36.0457 45 45 36.0457 45 25C45 13.9543 36.0457 5 25 5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M25 15V30" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M18 23L25 30L32 23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </motion.div> */}
           <ScrollArrow targetId="certifications" className="relative z-10" />
         </motion.div>
       </div>
