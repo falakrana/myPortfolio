@@ -1,0 +1,19 @@
+### prompt 1
+
+- Here in skill.jsx file, instead of carousel effect, I want sort of badges which will rotate and show the skills on hovering respective badges. Make it modern.
+
+- In project.jsx file, the projects card are not using full width of the screen, there is still some space left.
+
+- I also want that on hovering on any card, the moving cards should stop and on leaving the card, the cards should start moving again. also in whatever direction uesr want to move the card, the cards should move in that direction. These feature should be there with both project.jsx and certification.jsx files.
+
+- In contact.jsx file, the form is not working. Make it more modern and responsive. 
+
+
+
+
+### prompt 2
+
+
+- in skills.jsx file, I want that on hovering on any skill, the sub topics will be displayed at a very area, don't want to use card over there.
+
+- and yes, place the whole skills section at the middle of the screen. it is at left side. 

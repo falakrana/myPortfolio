@@ -61,7 +61,7 @@ function Skills() {
     threshold: 0.1,
     triggerOnce: false,
   });
-  
+
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -77,10 +77,10 @@ function Skills() {
       },
     },
   };
-  
+
   // Duplicate skills for infinite carousel effect
   const extendedSkillsData = [...skillsData, ...skillsData];
-  
+
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -95,30 +95,30 @@ function Skills() {
     swipeToSlide: true,
     draggable: true,
     centerMode: true,
-    centerPadding: '60px',
+    centerPadding: "60px",
     responsive: [
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: 3,
-          centerPadding: '40px',
-        }
+          centerPadding: "40px",
+        },
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          centerPadding: '40px',
-        }
+          centerPadding: "40px",
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerPadding: '40px',
-        }
-      }
-    ]
+          centerPadding: "40px",
+        },
+      },
+    ],
   };
 
   return (
@@ -178,43 +178,47 @@ function Skills() {
                       transition: { type: "spring", stiffness: 300 },
                     }}
                   >
-              <Card
-                className={`${
-                  skill.dark
-                    ? "bg-black/80"
-                    : "bg-gradient-to-br " + skill.gradient
-                } text-white h-[270px] flex flex-col backdrop-blur-sm border-none shadow-lg overflow-hidden`}
-              >
-                <CardHeader className="pb-2">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.1, infinite: true }}
-                    className="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 mb-2"
-                  >
-                    <skill.icon className="h-6 w-6" />
-                  </motion.div>
-                  <CardTitle className="text-xl font-semibold">
-                    {skill.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow pt-2">
-                  <ul className="space-y-1">
-                    {skill.skills.map((item, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.3 + i * 0.1 }}
-                        className="flex items-center"
-                      >
-                        <span className="mr-2 w-1.5 h-1.5 bg-white rounded-full inline-block"></span>
-                        <span className="text-white/90">{item}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                    <Card
+                      className={`${
+                        skill.dark
+                          ? "bg-black/80"
+                          : "bg-gradient-to-br " + skill.gradient
+                      } text-white h-[270px] flex flex-col backdrop-blur-sm border-none shadow-lg overflow-hidden`}
+                    >
+                      <CardHeader className="pb-2">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: index * 0.1,
+                            infinite: true,
+                          }}
+                          className="w-12 h-12 rounded-full flex items-center justify-center bg-white/20 mb-2"
+                        >
+                          <skill.icon className="h-6 w-6" />
+                        </motion.div>
+                        <CardTitle className="text-xl font-semibold">
+                          {skill.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-grow pt-2">
+                        <ul className="space-y-1">
+                          {skill.skills.map((item, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.3 + i * 0.1 }}
+                              className="flex items-center"
+                            >
+                              <span className="mr-2 w-1.5 h-1.5 bg-white rounded-full inline-block"></span>
+                              <span className="text-white/90">{item}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
                   </motion.div>
                 </div>
               ))}
