@@ -1,30 +1,19 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import ScrollArrow from "./scroll-arrow";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { ExternalLink, Github, Link, Code } from "lucide-react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { useEffect, useState } from "react";
+import { useState, useRef } from "react"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { Card, CardDescription } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
 
 const projects = [
   {
     title: "Disease Prediction using ML",
-    description:
-      "Disease prediction using machine learning models with Flask framework.",
+    description: "Disease prediction using machine learning models with Flask framework.",
     link: "https://github.com/falakrana/Disease-Prediction-using-ML.git",
     tags: ["Machine Learning", "Flask", "Healthcare"],
-    image: "/projects/diseasePrediction.jpeg", // You'll need to add this image
+    // image: "/placeholder.svg?height=200&width=400",
+    image: "public\\projects\\diseasePrediction.jpeg",
     gradient: "from-[#DAD7CD]/80 to-[#A3B18A]/80",
-    icon: <Code className="w-5 h-5" />
   },
   {
     title: "Data Visualization Analysis",
@@ -32,9 +21,8 @@ const projects = [
       "Comprehensive data analysis and visualization projects using Python and Tableau with real-world datasets and dashboards.",
     link: "https://github.com/falakrana/Data-Analysis-Visualization.git",
     tags: ["Python", "Tableau", "Visualization"],
-    image: "/projects/dataVisualization.png", // You'll need to add this image
+    image: "public\\projects\\dataVisualization.png",
     gradient: "from-[#A3B18A]/80 to-[#588157]/80",
-    icon: <Code className="w-5 h-5" />
   },
   {
     title: "Virtual Mouse Using Eyes",
@@ -42,136 +30,91 @@ const projects = [
       "A virtual mouse system that allows users to control their cursor and perform click actions using eye movement and blinking.",
     link: "https://github.com/falakrana/virtualMouseDetectionUsingEyes.git",
     tags: ["OpenCV", "Mediapipe", "pyautogui", "python"],
-    image: "/projects/virtualEyeTracking.png", // You'll need to add this image
+    image: "public\\projects\\virtualEyeTracking.png",
     gradient: "from-[#588157]/80 to-[#3A5A40]/80",
-    icon: <Code className="w-5 h-5" />
   },
-  // {
-  //   title: "Bengaluru House Prediction",
-  //   description:
-  //     "Predicting house prices in Bengaluru using machine learning with Flask backend.",
-  //   link: "https://github.com/falakrana/bengluruHousePrediction.git",
-  //   tags: ["Machine Learning", "Flask", "Real Estate", "Regression"],
-  //   image: "/projects/bengluruHousePrediction.jpeg", // You'll need to add this image
-  //   gradient: "from-[#3A5A40]/80 to-[#344E41]/80",
-  //   icon: <Code className="w-5 h-5" />
-  // },
   {
     title: "Vehicle Sale Price Prediction",
-    description:
-      "ML-based web app that predicts vehicle resale prices using RandomForest with hyperparameter tuning.",
+    description: "ML-based web app that predicts vehicle resale prices using RandomForest with hyperparameter tuning.",
     link: "https://github.com/falakrana/Vehicle-Price-Prediction.git",
     tags: ["RandomForest", "RandomSearchCV", "Flask", "MongoDB"],
-    image: "/projects/vehicleSales.jpeg", // You'll need to add this image
+    image: "public\\projects\\vehicleSales.jpeg",
     gradient: "from-[#344E41]/80 to-[#588157]/80",
-    icon: <Code className="w-5 h-5" />
   },
-  // {
-  //   title: "Car Parking Simulation",
-  //   description:
-  //     "The Car Parking Simulation project, built with Flask, uses DSA concepts to manage parking slots efficiently.",
-  //   link: "https://github.com/falakrana/Car-Parking-Service.git",
-  //   tags: ["DSA", "Flask", "Simulation"],
-  //   image: "/projects/carParking.jpeg", // You'll need to add this image
-  //   gradient: "from-[#588157]/80 to-[#A3B18A]/80",
-  //   icon: <Code className="w-5 h-5" />
-  // },
-];
+]
 
-function Projects() {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false,
-  });
-  
-  const [isClient, setIsClient] = useState(false);
+const Projects = () => {
+  const [currentPage, setCurrentPage] = useState(0)
+  const itemsPerPage = 6 // 2 rows × 3 columns
+  const totalPages = Math.ceil(projects.length / itemsPerPage)
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const getCurrentPageItems = () => {
+    const startIndex = currentPage * itemsPerPage
+    return projects.slice(startIndex, startIndex + itemsPerPage)
+  }
+
+  const nextPage = () => {
+    setCurrentPage((prev) => (prev + 1) % totalPages)
+  }
+
+  const prevPage = () => {
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
       },
     },
-  };
-  
-  // Duplicate projects for infinite carousel effect
-  const extendedProjects = [...projects, ...projects];
-  
-  const sliderSettings = {
-    dots: false,
-    infinite: true,
-    speed: 8000,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 0,
-    cssEase: "linear",
-    pauseOnHover: true,
-    arrows: true,
-    rtl: true, // Right to left direction
-    swipeToSlide: true,
-    draggable: true,
-    centerMode: true,
-    centerPadding: '60px',
-    responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 2,
-          centerPadding: '40px',
-        }
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          centerPadding: '40px',
-        }
-      }
-    ]
-  };
+  }
 
   const cardVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
-      }
+        ease: "easeInOut",
+      },
     },
     hover: {
-      y: -12,
+      scale: 1.03,
       transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 15
-      }
+        duration: 0.3,
+        ease: "easeInOut",
+      },
     },
-  };
+  }
 
   const imageVariants = {
-    hidden: { scale: 1.2, opacity: 0.3 },
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
+      opacity: 0.9,
       scale: 1,
-      opacity: 1,
-      transition: { duration: 0.6 }
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
     },
     hover: {
       scale: 1.1,
       transition: {
         duration: 0.3,
-        ease: "easeOut"
-      }
-    }
-  };
+        ease: "easeInOut",
+      },
+    },
+  }
+
+  const ref = useRef(null)
+  const { inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  })
 
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
@@ -185,65 +128,13 @@ function Projects() {
         }}
         transition={{
           duration: 15,
-          repeat: Infinity,
+          repeat: Number.POSITIVE_INFINITY,
           repeatType: "reverse",
         }}
       />
-
-      {/* Add more animated background elements */}
-      <motion.div
-        className="absolute bottom-40 right-10 w-80 h-96 rounded-full bg-[#3A5A40]/10 blur-3xl -z-10"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
-          y: [0, -30, 0],
-          rotateZ: [0, -10, 0],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          repeatType: "reverse",
-          infinite: true,
-        }}
-      />
-
-      {/* Floating particles */}
-      {[...Array(10)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: Math.random() * 8 + 3,
-            height: Math.random() * 8 + 3,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            background: i % 2 === 0
-              ? 'radial-gradient(circle, rgba(218,215,205,0.15) 0%, rgba(218,215,205,0) 70%)'
-              : 'radial-gradient(circle, rgba(88,129,87,0.15) 0%, rgba(88,129,87,0) 70%)',
-          }}
-          animate={{
-            y: [Math.random() * 20 * (Math.random() > 0.5 ? 1 : -1), Math.random() * 20 * (Math.random() > 0.5 ? 1 : -1)],
-            x: [Math.random() * 20 * (Math.random() > 0.5 ? 1 : -1), Math.random() * 20 * (Math.random() > 0.5 ? 1 : -1)],
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, Math.random() * 0.5 + 1, 1],
-          }}
-          transition={{
-            duration: Math.random() * 8 + 10,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
-        />
-      ))}
 
       <div className="container mx-auto">
         <motion.div className="relative mb-16">
-          <motion.div
-            className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-[#A3B18A]/50 to-transparent"
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          />
           <motion.h2
             className="text-5xl font-bold text-center text-white"
             initial={{ opacity: 0, y: -20 }}
@@ -263,122 +154,138 @@ function Projects() {
           >
             A selection of my recent data engineering projects
           </motion.p>
+        </motion.div>
+
+        <div className="relative">
           <motion.div
-            className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-transparent via-[#A3B18A]/30 to-transparent"
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          />
-        </motion.div>
+            ref={ref}
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "visible"}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4"
+          >
+            {getCurrentPageItems().map((project, index) => (
+              <motion.div key={`${currentPage}-${index}`} variants={cardVariants} whileHover="hover" className="h-full">
+                <Card className="relative h-full overflow-hidden rounded-xl border-0 bg-black/5 backdrop-blur-sm flex flex-col hover:shadow-2xl transition-shadow duration-500">
+                  {/* Project image with overlay gradient */}
+                  <div className="relative w-full h-52 overflow-hidden">
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 z-10"
+                      initial={{ opacity: 0.7 }}
+                      whileHover={{ opacity: 0.9 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <motion.img
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover object-center"
+                      variants={imageVariants}
+                      initial="hidden"
+                      animate="visible"
+                      whileHover="hover"
+                    />
+                    <div
+                      className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-overlay z-10`}
+                    />
 
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "visible"}
-          className="carousel-container equal-height-cards"
-        >
-          {isClient && (
-            <Slider {...sliderSettings} className="projects-carousel">
-              {extendedProjects.map((project, index) => (
-                <motion.div
-                  key={index}
-                  variants={cardVariants}
-                  whileHover="hover"
-                  className="h-full w-full"
-                >
-                  <Card className="relative h-full overflow-hidden rounded-xl border-0 bg-black/5 backdrop-blur-sm flex flex-col hover:shadow-2xl transition-shadow duration-500">
-                    {/* Project image with overlay gradient */}
-                    <div className="relative w-full h-52 overflow-hidden">
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 z-10"
-                        initial={{ opacity: 0.7 }}
-                        whileHover={{ opacity: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                      <motion.img
-                        src={project.image}
-                        alt={project.title}
-                        className="absolute inset-0 w-full h-full object-cover object-center"
-                        variants={imageVariants}
-                        initial="hidden"
-                        animate="visible"
-                        whileHover="hover"
-                      />
-                      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-overlay z-10" />
+                    {/* Animated overlay indicator */}
+                    <motion.div
+                      className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-sm p-2 rounded-full"
+                      whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Github className="w-5 h-5 text-white" />
+                    </motion.div>
 
-                      {/* Animated overlay indicator */}
-                      <motion.div
-                        className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-sm p-2 rounded-full"
-                        whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-                        transition={{ type: "spring", stiffness: 300 }}
+                    {/* Project title on the image */}
+                    <div className="absolute bottom-0 left-0 w-full p-4 z-20">
+                      <motion.h3
+                        className="text-xl font-bold text-white mb-1 drop-shadow-md"
+                        initial={{ y: 10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
                       >
-                        <Github className="w-5 h-5 text-white" />
-                      </motion.div>
+                        {project.title}
+                      </motion.h3>
+                    </div>
+                  </div>
 
-                      {/* Project title on the image */}
-                      <div className="absolute bottom-0 left-0 w-full p-4 z-20">
-                        <motion.h3
-                          className="text-xl font-bold text-white mb-1 drop-shadow-md"
-                          initial={{ y: 10, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ delay: 0.2 }}
+                  <div className="flex-1 p-6 flex flex-col">
+                    <CardDescription className="text-white/90 font-medium text-base mb-4 flex-grow">
+                      {project.description}
+                    </CardDescription>
+
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {project.tags.map((tag, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.3 + i * 0.1 }}
                         >
-                          {project.title}
-                        </motion.h3>
-                      </div>
+                          <Badge className="bg-[#588157]/20 hover:bg-[#588157]/30 text-white/90 border border-[#588157]/20 font-medium backdrop-blur-sm">
+                            {tag}
+                          </Badge>
+                        </motion.div>
+                      ))}
                     </div>
 
-                    <div className="flex-1 p-5 flex flex-col">
-                      <CardDescription className="text-white/90 font-medium text-base mb-4">
-                        {project.description}
-                      </CardDescription>
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 text-white bg-gradient-to-r from-[#588157]/80 to-[#3A5A40]/80 py-3 px-4 rounded-lg hover:shadow-lg transition-shadow group w-full"
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span>View Project</span>
+                      <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </motion.a>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
 
-                      <div className="flex flex-wrap gap-2 mb-5 mt-auto">
-                        {project.tags.map((tag, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.3 + (i * 0.1) }}
-                          >
-                            <Badge className="bg-[#588157]/20 hover:bg-[#588157]/30 text-white/90 border border-[#588157]/20 font-medium backdrop-blur-sm">
-                              {tag}
-                            </Badge>
-                          </motion.div>
-                        ))}
-                      </div>
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center mt-12 gap-4">
+              <motion.button
+                onClick={prevPage}
+                className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronLeft className="w-5 h-5 text-white" />
+              </motion.button>
 
-                      <motion.a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 text-white bg-gradient-to-r from-[#588157]/80 to-[#3A5A40]/80 py-2 px-4 rounded-lg mt-2 hover:shadow-lg transition-shadow group w-full"
-                        whileHover={{ y: -3 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <span>View Project</span>
-                        <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </motion.a>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </Slider>
+              <div className="flex gap-2">
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <motion.button
+                    key={i}
+                    onClick={() => setCurrentPage(i)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      currentPage === i ? "bg-[#A3B18A]" : "bg-white/30"
+                    }`}
+                    whileHover={{ scale: 1.2 }}
+                  />
+                ))}
+              </div>
+
+              <motion.button
+                onClick={nextPage}
+                className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronRight className="w-5 h-5 text-white" />
+              </motion.button>
+            </div>
           )}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="mt-16 mb-8 relative"
-        >
-          <ScrollArrow targetId="certifications" className="relative z-10" />
-        </motion.div>
+        </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default Projects;
+export default Projects

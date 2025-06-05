@@ -1,21 +1,11 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-};
 
 const Card = React.forwardRef(({ className, ...props }, ref) => (
-  <motion.div
+  <div
     ref={ref}
-    initial="hidden"
-    animate="visible"
-    whileHover={{ scale: 1.05, boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)" }}
-    variants={cardVariants}
     className={cn(
-      "rounded-2xl border bg-card text-card-foreground shadow-sm transition-all duration-300",
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
       className
     )}
     {...props}
