@@ -12,7 +12,7 @@ const projects = [
     link: "https://github.com/falakrana/Disease-Prediction-using-ML.git",
     tags: ["Machine Learning", "Flask", "Healthcare"],
     // image: "/placeholder.svg?height=200&width=400",
-    image: "public\\projects\\diseasePrediction.jpeg",
+    image: "projects/diseasePrediction.jpeg",
     gradient: "from-[#DAD7CD]/80 to-[#A3B18A]/80",
   },
   {
@@ -21,7 +21,7 @@ const projects = [
       "Comprehensive data analysis and visualization projects using Python and Tableau with real-world datasets and dashboards.",
     link: "https://github.com/falakrana/Data-Analysis-Visualization.git",
     tags: ["Python", "Tableau", "Visualization"],
-    image: "public\\projects\\dataVisualization.png",
+    image: "/projects/dataVisualization.png",
     gradient: "from-[#A3B18A]/80 to-[#588157]/80",
   },
   {
@@ -30,7 +30,7 @@ const projects = [
       "A virtual mouse system that allows users to control their cursor and perform click actions using eye movement and blinking.",
     link: "https://github.com/falakrana/virtualMouseDetectionUsingEyes.git",
     tags: ["OpenCV", "Mediapipe", "pyautogui", "python"],
-    image: "public\\projects\\virtualEyeTracking.png",
+    image: "/projects/virtualEyeTracking.png",
     gradient: "from-[#588157]/80 to-[#3A5A40]/80",
   },
   {
@@ -38,7 +38,7 @@ const projects = [
     description: "ML-based web app that predicts vehicle resale prices using RandomForest with hyperparameter tuning.",
     link: "https://github.com/falakrana/Vehicle-Price-Prediction.git",
     tags: ["RandomForest", "RandomSearchCV", "Flask", "MongoDB"],
-    image: "public\\projects\\vehicleSales.jpeg",
+    image: "/projects/vehicleSales.jpeg",
     gradient: "from-[#344E41]/80 to-[#588157]/80",
   },
 ]
