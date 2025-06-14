@@ -17,10 +17,11 @@ const skillsData = [
     icon: Brain,
     title: "Generative AI",
     skills: [
-      "Large Language Models (LLMs)",
       "LangChain",
-      "Vector Database(FAISS, ChromaDB)",
+      "RAG (Retrieval-Augmented Generation)",
       "Embeddings",
+      "Agent Development Kit()", 
+      "Crew-AI"
     ],
     gradient: "from-[#dad7cd]/80 to-[#a3b18a]/80",
   },
@@ -33,7 +34,7 @@ const skillsData = [
   {
     icon: Database,
     title: "Database Management",
-    skills: ["MySQL", "MongoDB", "Data Cleaning"],
+    skills: ["MySQL", "MongoDB", "Data Cleaning", "Vector Database(FAISS, ChromaDB)"],
     gradient: "from-[#588157]/80 to-[#3a5a40]/80",
   },
   {
@@ -45,7 +46,7 @@ const skillsData = [
   {
     icon: Code,
     title: "Programming",
-    skills: ["Python", "SQL", "JavaScript", "Java"],
+    skills: ["Python", "SQL", "Javascript", "Git", "Github"],
     gradient: "from-[#588157]/80 to-[#a3b18a]/80",
   },
 ];

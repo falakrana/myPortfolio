@@ -1,19 +1,47 @@
-import { useState, useRef } from "react"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { Card, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Card, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 
 const projects = [
   {
     title: "Disease Prediction using ML",
-    description: "Disease prediction using machine learning models with Flask framework.",
+    description:
+      "Disease prediction using machine learning models with Flask framework.",
     link: "https://github.com/falakrana/Disease-Prediction-using-ML.git",
     tags: ["Machine Learning", "Flask", "Healthcare"],
     // image: "/placeholder.svg?height=200&width=400",
     image: "projects/diseasePrediction.jpeg",
     gradient: "from-[#DAD7CD]/80 to-[#A3B18A]/80",
+  },
+  {
+    title: "Coursera-QA-App",
+    description:
+      "A Flask application that extracts and summarizes key information from Coursera course pages using Playwright for web scraping and Groq/Llama3 for analysis.",
+    link: "https://github.com/falakrana/coursera-qa-app.git",
+    tags: ["Groq", "playwright-python", "Flask", "llama3"],
+    image: "/projects/CourseraSum.jpeg",
+    gradient: "from-[#344E41]/80 to-[#588157]/80",
+  },
+  {
+    title: "Langchain Translator via GROQ",
+    description:
+      "A high-performance translation API leveraging Gemma 2B via Groq's LPUs for sub-second translations, managed with LangChain and served via FastAPI.",
+    link: "https://github.com/falakrana/LangChainGROQTranslator.git",
+      tags: ["fastapi", "groq-lpu", "llm", "langchain"],
+    image: "/projects/languageTranslator.jpeg",
+    gradient: "from-[#588157]/80 to-[#3A5A40]/80",
+  },
+  {
+    title: "Crew-AI-Content-Writer-Agent",
+    description:
+      "This project utilizes CrewAI to build a research and writing agent duo. It automates content generation for trending topics using Google Gemini and Serper.dev search tools.",
+    link: "https://github.com/falakrana/Crew-AI-ContentWriter-Agent.git",
+    tags: ["crew-ai", "ai-agent", "python"],
+    image: "/projects/crewaiImage.jpeg",
+    gradient: "from-[#588157]/80 to-[#3A5A40]/80",
   },
   {
     title: "Data Visualization Analysis",
@@ -24,42 +52,25 @@ const projects = [
     image: "/projects/dataVisualization.png",
     gradient: "from-[#A3B18A]/80 to-[#588157]/80",
   },
-  {
-    title: "Virtual Mouse Using Eyes",
-    description:
-      "A virtual mouse system that allows users to control their cursor and perform click actions using eye movement and blinking.",
-    link: "https://github.com/falakrana/virtualMouseDetectionUsingEyes.git",
-    tags: ["OpenCV", "Mediapipe", "pyautogui", "python"],
-    image: "/projects/virtualEyeTracking.png",
-    gradient: "from-[#588157]/80 to-[#3A5A40]/80",
-  },
-  {
-    title: "Vehicle Sale Price Prediction",
-    description: "ML-based web app that predicts vehicle resale prices using RandomForest with hyperparameter tuning.",
-    link: "https://github.com/falakrana/Vehicle-Price-Prediction.git",
-    tags: ["RandomForest", "RandomSearchCV", "Flask", "MongoDB"],
-    image: "/projects/vehicleSales.jpeg",
-    gradient: "from-[#344E41]/80 to-[#588157]/80",
-  },
-]
+];
 
 const Projects = () => {
-  const [currentPage, setCurrentPage] = useState(0)
-  const itemsPerPage = 6 // 2 rows × 3 columns
-  const totalPages = Math.ceil(projects.length / itemsPerPage)
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 6; // 2 rows × 3 columns
+  const totalPages = Math.ceil(projects.length / itemsPerPage);
 
   const getCurrentPageItems = () => {
-    const startIndex = currentPage * itemsPerPage
-    return projects.slice(startIndex, startIndex + itemsPerPage)
-  }
+    const startIndex = currentPage * itemsPerPage;
+    return projects.slice(startIndex, startIndex + itemsPerPage);
+  };
 
   const nextPage = () => {
-    setCurrentPage((prev) => (prev + 1) % totalPages)
-  }
+    setCurrentPage((prev) => (prev + 1) % totalPages);
+  };
 
   const prevPage = () => {
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
-  }
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,7 +81,7 @@ const Projects = () => {
         staggerChildren: 0.2,
       },
     },
-  }
+  };
 
   const cardVariants = {
     hidden: { y: 50, opacity: 0 },
@@ -89,7 +100,7 @@ const Projects = () => {
         ease: "easeInOut",
       },
     },
-  }
+  };
 
   const imageVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -108,13 +119,13 @@ const Projects = () => {
         ease: "easeInOut",
       },
     },
-  }
+  };
 
-  const ref = useRef(null)
+  const ref = useRef(null);
   const { inView } = useInView({
     triggerOnce: true,
     threshold: 0.2,
-  })
+  });
 
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
@@ -165,7 +176,12 @@ const Projects = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4"
           >
             {getCurrentPageItems().map((project, index) => (
-              <motion.div key={`${currentPage}-${index}`} variants={cardVariants} whileHover="hover" className="h-full">
+              <motion.div
+                key={`${currentPage}-${index}`}
+                variants={cardVariants}
+                whileHover="hover"
+                className="h-full"
+              >
                 <Card className="relative h-full overflow-hidden rounded-xl border-0 bg-black/5 backdrop-blur-sm flex flex-col hover:shadow-2xl transition-shadow duration-500">
                   {/* Project image with overlay gradient */}
                   <div className="relative w-full h-52 overflow-hidden">
@@ -191,7 +207,10 @@ const Projects = () => {
                     {/* Animated overlay indicator */}
                     <motion.div
                       className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-sm p-2 rounded-full"
-                      whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+                      whileHover={{
+                        scale: 1.1,
+                        backgroundColor: "rgba(255, 255, 255, 0.2)",
+                      }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
                       <Github className="w-5 h-5 text-white" />
@@ -285,7 +304,7 @@ const Projects = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;

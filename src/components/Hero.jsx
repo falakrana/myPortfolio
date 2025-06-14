@@ -94,7 +94,7 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          {['Python', 'PyTorch', 'SQL', 'Spark', 'Java'].map((skill, i) => (
+          {['Python', 'PyTorch', 'TensorFlow', 'SQL', 'GenAI'].map((skill, i) => (
             <motion.span 
               key={i} 
               className="bg-white/10 px-4 py-2 rounded-full text-sm font-poppins"

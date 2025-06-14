@@ -307,7 +307,7 @@ function Contact() {
 
               <motion.div variants={itemVariants}>
                 <h4 className="text-white font-medium mb-2">Location</h4>
-                <p className="text-white/70">Bengaluru, India</p>
+                <p className="text-white/70">Vadodara, India</p>
               </motion.div>
             </div>
 
