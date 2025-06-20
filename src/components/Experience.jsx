@@ -34,22 +34,26 @@ function Experience() {
       gradient: "from-[#dad7cd]/80 to-[#a3b18a]/80",
     },
     {
-      title: "Working with LangChain (AI)",
-      company: "", // No company
-      period: "Ongoing",
-      description:
-        "Building intelligent, context-aware apps using LangChain with hands-on experience in prompt chaining, memory, embeddings, vector databases, and agents for real-world LLM workflows.",
-      icon: GraduationCap,
-      skills: [
-        "LangChain",
-        "LLMs",
-        "Embeddings",
-        "Vector Databases",
-        "Prompt Engineering",
-        "AI Workflows",
-      ],
-      gradient: "from-[#588157]/80 to-[#3a5a40]/80",
-    },
+  title: "Agentic AI Development Course",
+  company: "Self paced",
+  period: "Currently",
+  description:
+    "Learning and building AI agents using LangChain and other LLM tools like crew-ai, langgraph and google's agent development kit(adk). Hands-on experience with prompt chaining, agent architecture, memory management, tool usage.",
+  icon: GraduationCap,
+  skills: [
+    "LangChain",
+    "Embeddings",
+    "Vector Databases",
+    "Prompt Engineering",
+    "AI Agents",
+    "AI Tool",
+    "ADK",
+    "LangGraph",
+    "Memory Handling",
+  ],
+  gradient: "from-[#588157]/80 to-[#3a5a40]/80",
+}
+
   ];
 
   const containerVariants = {

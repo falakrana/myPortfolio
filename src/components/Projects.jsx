@@ -44,6 +44,15 @@ const projects = [
     gradient: "from-[#588157]/80 to-[#3A5A40]/80",
   },
   {
+    title: "Speech to Text Chatbot Using Groq Llama3",
+    description:
+      "This project is a real-time voice assistant built using Flask, Groq's LLaMA 3 (70B) via langchain_groq, and speech recognition. It assistant listens to your speech, transcribes it, sends it to the Groq LLM for a response.",
+    link: "https://github.com/falakrana/Crew-AI-ContentWriter-Agent.git",
+    tags: ["speech-recognition", "groq-api", "langchain"],
+    image: "/projects/speechToText.png",
+    gradient: "from-[#588157]/80 to-[#3A5A40]/80",
+  },
+  {
     title: "Data Visualization Analysis",
     description:
       "Comprehensive data analysis and visualization projects using Python and Tableau with real-world datasets and dashboards.",
