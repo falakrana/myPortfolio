@@ -19,9 +19,9 @@ const projects = [
   {
     title: "Coursera-QA-App",
     description:
-      "A Flask application that extracts and summarizes key information from Coursera course pages using Playwright for web scraping and Groq/Llama3 for analysis.",
+      "The Coursera QA Assistant is a browser extension that helps learners get answers to their questions about Coursera course content directly from the course page they're viewing.",
     link: "https://github.com/falakrana/coursera-qa-app.git",
-    tags: ["Groq", "playwright-python", "Flask", "llama3"],
+    tags: ["playwright-python", "gemini-1.5-flash", "RAG"],
     image: "/projects/CourseraSum.jpeg",
     gradient: "from-[#344E41]/80 to-[#588157]/80",
   },
@@ -30,7 +30,7 @@ const projects = [
     description:
       "A high-performance translation API leveraging Gemma 2B via Groq's LPUs for sub-second translations, managed with LangChain and served via FastAPI.",
     link: "https://github.com/falakrana/LangChainGROQTranslator.git",
-      tags: ["fastapi", "groq-lpu", "llm", "langchain"],
+    tags: ["fastapi", "groq-lpu", "llm", "langchain"],
     image: "/projects/languageTranslator.jpeg",
     gradient: "from-[#588157]/80 to-[#3A5A40]/80",
   },
@@ -59,6 +59,24 @@ const projects = [
     link: "https://github.com/falakrana/Data-Analysis-Visualization.git",
     tags: ["Python", "Tableau", "Visualization"],
     image: "/projects/dataVisualization.png",
+    gradient: "from-[#A3B18A]/80 to-[#588157]/80",
+  },
+  {
+    title: "Youtube RAG chrome extension application",
+    description:
+      "YouTube Q&A Chatbot extracts video transcripts, uses AI to answer questions, available as Chrome extension and web app with Gemini AI integration.",
+    link: "https://github.com/falakrana/youtube-video-qa-chrome-extension.git",
+    tags: ["FAISS DB", "gemini-1.5", "youtube-chatbot"],
+    image: "/projects/youtube.jpeg",
+    gradient: "from-[#A3B18A]/80 to-[#588157]/80",
+  },
+  {
+    title: "Email composition using Google ADK",
+    description:
+      "Demonstration where I built ai agent, where it will provide me basic structure of an email. Using google agent development kit(ADK).",
+    link: "https://github.com/falakrana/Email-composition-Google_ADK.git",
+    tags: ["agent Development kit", "ai agent"],
+    image: "/projects/email_adk.jpeg",
     gradient: "from-[#A3B18A]/80 to-[#588157]/80",
   },
 ];
