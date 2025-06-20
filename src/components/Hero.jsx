@@ -1,40 +1,46 @@
-import React from 'react'
-import { TypeAnimation } from "react-type-animation"
-import { motion } from "framer-motion"
-import ScrollArrow from "./scroll-arrow"
-import { ChevronRight, Sparkles } from "lucide-react"
+import React from "react";
+import { TypeAnimation } from "react-type-animation";
+import { motion } from "framer-motion";
+import ScrollArrow from "./scroll-arrow";
+import { ChevronRight, Sparkles } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center text-white relative overflow-hidden"
+    >
       {/* Background gradient animation */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-[#3a5a40]/20 to-[#588157]/20 z-0"
         initial={{ opacity: 0 }}
-        animate={{ 
+        animate={{
           opacity: [0.1, 0.3, 0.1],
         }}
-        transition={{ 
-          duration: 8, 
+        transition={{
+          duration: 8,
           repeat: Infinity,
-          repeatType: "reverse" 
+          repeatType: "reverse",
         }}
       />
-      
+
       {/* Animated grid lines */}
       <div className="absolute inset-0 z-0 opacity-20">
-        <div className="h-full w-full" style={{
-          backgroundImage: `
+        <div
+          className="h-full w-full"
+          style={{
+            backgroundImage: `
             linear-gradient(to right, rgba(218, 215, 205, 0.1) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(218, 215, 205, 0.1) 1px, transparent 1px)
           `,
-          backgroundSize: '40px 40px'
-        }}></div>
+            backgroundSize: "40px 40px",
+          }}
+        ></div>
       </div>
 
       <div className="text-center max-w-3xl mx-auto px-4 z-10 relative">
         {/* Sparkle effect on name */}
-        <motion.div 
+        <motion.div
           className="relative inline-block"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,14 +60,14 @@ const Hero = () => {
           >
             <Sparkles size={20} />
           </motion.span>
-          
+
           <h1 className="text-6xl font-poppins font-bold mb-4 shine">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#dad7cd] to-[#a3b18a]">
               Falak Rana
             </span>
           </h1>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -69,7 +75,8 @@ const Hero = () => {
           className="relative z-10"
         >
           <p className="text-xl font-poppins text-gray-300 mb-6">
-            Transforming complex data challenges into elegant, scalable solutions
+            Transforming complex data challenges into elegant, scalable
+            solutions
           </p>
           <TypeAnimation
             sequence={[
@@ -94,9 +101,9 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          {['Python', 'PyTorch', 'TensorFlow', 'SQL', 'GenAI'].map((skill, i) => (
-            <motion.span 
-              key={i} 
+          {["Python", "TensorFlow", "SQL", "GenAI"].map((skill, i) => (
+            <motion.span
+              key={i}
               className="bg-white/10 px-4 py-2 rounded-full text-sm font-poppins"
               whileHover={{ scale: 1.05 }}
             >
@@ -116,22 +123,22 @@ const Hero = () => {
             href="/resume/myResume.pdf"
             download
             className="bg-gradient-to-r from-[#588157] to-[#3a5a40] text-white py-3 px-6 rounded-lg flex items-center gap-2 font-poppins font-medium glow"
-            whileHover={{ 
+            whileHover={{
               y: -5,
-              boxShadow: "0 10px 25px -5px rgba(88, 129, 87, 0.5)"
+              boxShadow: "0 10px 25px -5px rgba(88, 129, 87, 0.5)",
             }}
             transition={{ type: "spring", stiffness: 400 }}
           >
             Download Resume
             <ChevronRight size={18} />
           </motion.a>
-          
+
           <motion.a
             href="#contact"
             className="bg-white/10 backdrop-blur-sm text-white py-3 px-6 rounded-lg flex items-center gap-2 border border-white/20 font-poppins font-medium"
-            whileHover={{ 
+            whileHover={{
               y: -5,
-              backgroundColor: "rgba(255, 255, 255, 0.15)"
+              backgroundColor: "rgba(255, 255, 255, 0.15)",
             }}
             transition={{ type: "spring", stiffness: 400 }}
           >
@@ -148,7 +155,7 @@ const Hero = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
