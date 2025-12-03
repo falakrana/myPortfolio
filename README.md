@@ -1,16 +1,60 @@
-# React + Vite
+# 👋 Hey, I'm **Falak Rana**  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🎓 **Computer Science Engineering Student @ Parul University**  
+💡 Passionate about crafting intelligent systems with **Machine Learning**, **Generative AI**, and **Full-Stack Development**  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 About Me  
+- 🤖 ML Enthusiast | Full-Stack Developer | Problem Solver  
+- 🧠 Skilled in **Neural Networks, Computer Vision & Generative AI (LangChain, Ollama, Gemini)**  
+- 📊 Experienced in **Data Analysis & Visualization** with Python, Tableau & Excel  
+- 💻 Strong foundation in **Data Structures & Algorithms (DSA)**  
+- 🌱 Currently exploring **AI Agents, MLOps & Advanced Deep Learning**  
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack  
 
-## Expanding the ESLint configuration
+**Languages:** Python | SQL | Java | JavaScript | HTML | CSS  
+**Frameworks/Libraries:** Flask | FastAPI | Django | React | Node.js | Express.js | Bootstrap | Tailwind  
+**AI & ML:** TensorFlow | PyTorch | Scikit-learn | LangChain | Hugging Face | Ollama  
+**Databases:** MongoDB | MySQL  
+**Visualization:** Tableau | Power BI | Matplotlib | Seaborn  
+**Others:** Git | GitHub | API Integration | DSA  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📜 Certifications  
+- 📊 **Data Science Bootcamp** – Udemy  
+- 📊 **Data Visualization with Tableau** – Udemy  
+- 🗄️ **MySQL** – Cursa  
+- 📈 **Excel** – Coursera  
+
+---
+
+## 📬 Let’s Connect  
+🌐 [Portfolio](https://falakrana.vercel.app/)  
+📧 [ranafalak18@gmail.com](mailto:ranafalak18@gmail.com)  
+💼 [LinkedIn](https://www.linkedin.com/in/falak-rana-125520221/)  
+🐙 [GitHub](https://github.com/falakrana)  
+💻 [LeetCode](https://leetcode.com/falakrana_30/)  
+
+---
+
+## 📊 My Stats  
+
+### 💻 LeetCode Progress  
+![LeetCode Stats](https://leetcard.jacoblin.cool/falakrana_30?theme=dark&font=Montserrat&ext=heatmap)  
+
+### 📈 GitHub Overview  
+![Falak's GitHub Stats](https://github-readme-stats.vercel.app/api?username=falakrana&show_icons=true&theme=radical)  
+
+---
+
+## 💡 Fun Fact  
+⚡ I love experimenting with **AI technologies**, building cool projects, and exploring how intelligent systems can transform the future. 🚀  
+
+---
+
+✨ *“Code. Learn. Innovate. Repeat.”*  
