@@ -8,28 +8,34 @@ import { Award, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 const Certifications = () => {
   const certifications = [
     {
+      title: "AWS Cloud Practitioner",
+      issuer: "AWS skill builder",
+      date: "2025",
+      link: "../../Certifications/AWS-Simulearn_Cloud-Practitioner.pdf",
+    },
+    {
       title: "Data Science Certification",
       issuer: "Udemy",
       date: "2024",
-      link: "https://www.udemy.com/certificate/UC-84202d8d-a010-44d8-917e-5cfd596a6314/",
+      link: "../../Certifications/DataScienceBootcamp.pdf",
     },
     {
       title: "Tableau Visualization",
       issuer: "Udemy",
       date: "2024",
-      link: "https://www.udemy.com/certificate/UC-84202d8d-a010-44d8-917e-5cfd596a6314/",
+      link: "../../Certifications/Tableau.pdf",
     },
     {
       title: "MySQL Competency",
       issuer: "Cursa",
       date: "2023",
-      link: "https://cursa.app/en/my-certificate/certf36808b31d88195365aeccdb9dced6cc/ok",
+      link: "../../Certifications/SQL.pdf",
     },
     {
       title: "Excel Proficiency",
       issuer: "Coursera",
       date: "2023",
-      link: "https://www.coursera.org/account/accomplishments/verify/RYRYUT3L8EYB",
+      link: "../../Certifications/ExcelIBM.pdf",
     },
   ];
 
