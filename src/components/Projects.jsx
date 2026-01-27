@@ -14,6 +14,14 @@ export default function Projects() {
       github: "https://github.com/falakrana/Disease-Prediction-using-ML.git",
     },
     {
+      title: "Encryption suite built with rust",
+      description:
+        "A powerful, high-performance, and secure encryption/decryption suite built with Rust, WebAssembly, and React. ",
+      tech: ["Rust", "reactjs", "wasm", "encryption", "webassembly"],
+      image: "/Projects/encryption-image.png",
+      github: "https://github.com/falakrana/file-encryption-rust.git",
+    },
+    {
       title: "Coursera-QA-App",
       description:
         "The Coursera QA Assistant is a browser extension that helps learners get answers to their questions about Coursera course content directly from the course page they're viewing.",
@@ -68,6 +76,7 @@ export default function Projects() {
       image: "/Projects/email_adk.jpeg",
       github: "https://github.com/falakrana/Email-composition-Google_ADK.git",
     },
+    
   ]
 
   const projectsPerSlide = 6
