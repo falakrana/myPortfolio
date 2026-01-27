@@ -5,44 +5,54 @@ import { motion } from "framer-motion";
 export default function Skills() {
   const skillCategories = [
     {
-      title: "Generative AI",
+      title: "Backend & Application Development",
       skills: [
-        "LangChain",
-        "RAG (Retrieval-Augmented Generation)",
-        "Embeddings",
-        "Agent Development Kit()",
-        "Crew-AI",
+        "Flask",
+        "FastAPI",
+        "REST API Development",
+        "Authentication & Authorization",
+        "API Integration",
       ],
     },
     {
-      title: "Machine Learning",
+      title: "Databases & Data Management",
       skills: [
-        "Scikit-learn",
-        "TensorFlow",
-        "Deep Learning",
-        "Neural Networks",
-      ],
-    },
-    {
-      title: "Database Management",
-      skills: [
-        "MySQL",
         "MongoDB",
-        "Data Cleaning",
-        "Vector Database(FAISS, ChromaDB)",
+        "MySQL",
+        "SQLite",
+        "Schema Design",
+        "Data Cleaning & Preprocessing",
       ],
     },
     {
-      title: "Data Analysis & Visualization",
-      skills: ["Tableau", "Excel", "Power BI"],
+      title: "Full-Stack & Web Technologies",
+      skills: [
+        "Next.js",
+        "React",
+        "Node.js",
+        "Express.js",
+        "Typescript",
+        "JavaScript",
+      ],
     },
     {
-      title: "Cloud & DevOps",
-      skills: ["AWS", "Docker", "Kubernetes", "Git", "Github"],
+      title: "Programming Languages",
+      skills: ["Python", "JavaScript", "SQL", "Java", "Rust"],
     },
     {
-      title: "Programming",
-      skills: ["Python", "SQL", "Javascript", "Java"],
+      title: "Cloud, DevOps & Tools",
+      skills: ["Git", "GitHub", "Docker", "AWS", "Linux"],
+    },
+    {
+      title: "AI & Data (Supporting Skills)",
+      skills: [
+        "Machine Learning Fundamentals",
+        "Neural Networks",
+        "TensorFlow, PyTorch",
+        "Scikit-learn",
+        "Vector Databases (FAISS, ChromaDB)",
+        "RAG (Retrieval-Augmented Generation)",
+      ],
     },
   ];
 

@@ -12,29 +12,38 @@ export default function Experience() {
 
   const experiences = [
     {
-      title: "Machine Learning Internship",
+      title: "Machine Learning Intern",
       company: "Unified Mentor",
-      period: "Jan 2025 - Apr 2025",
+      period: "Jan 2025 – Apr 2025",
       description:
-        "Completed 6 ML projects focused on data preprocessing and model development using TensorFlow, Scikit-learn, and Flask. Hands-on experience with neural networks and deep learning.",
+        "Worked on 6 real-world machine learning projects involving data cleaning, feature engineering, model training, and evaluation. Built and optimized supervised and unsupervised models using Scikit-learn and TensorFlow, and deployed selected models using Flask APIs.",
       icon: Briefcase,
       skills: [
         "Python",
         "SQL",
-        "Tableau",
-        "ML",
+        "Machine Learning",
         "Supervised Learning",
         "Unsupervised Learning",
+        "TensorFlow",
+        "Scikit-learn",
+        "Flask",
       ],
     },
+
     {
       title: "Associate Software Developer Intern",
       company: "Infodesk India Pvt Ltd",
-      period: "Jan 2026 - currently",
+      period: "Jan 2026 – Present",
       description:
-        "Currently working on live projects with experts, exploring fully fleded full stack development.",
-      icon: Briefcase,
-      skills: ["Nextjs", "MongoDB", "RUST"],
+        "Currently working on live production-grade applications under senior developer mentorship. Contributing to full-stack development tasks including API development, database integration, and performance-focused backend logic using modern web technologies.",
+      icon: Award,
+      skills: [
+        "Next.js",
+        "MongoDB",
+        "Rust",
+        "Full-Stack Development",
+        "API Development",
+      ],
     },
   ];
 
@@ -149,10 +158,7 @@ export default function Experience() {
                         key={i}
                         className="bg-slate-800/70 px-2 py-0.5 rounded-md text-slate-200 text-xs flex items-center border border-slate-600/60"
                       >
-                        <ArrowRight
-                          className="mr-1 text-cyan-400"
-                          size={10}
-                        />
+                        <ArrowRight className="mr-1 text-cyan-400" size={10} />
                         {skill}
                       </span>
                     ))}

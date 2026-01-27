@@ -47,24 +47,25 @@ export default function About() {
             className="space-y-6"
           >
             <p className="text-lg text-slate-300 leading-relaxed">
-              I'm a passionate Machine Learning engineer and Full-Stack
-              developer with expertise in building intelligent applications that
-              solve real-world problems. With a strong foundation in computer
-              science and hands-on experience across multiple domains, I
-              transform ideas into scalable solutions.
+              I'm a passionate software developer with experience in building
+              reliable, scalable, and user-focused applications. I enjoy working
+              across the stack, from designing backend APIs and database models
+              to integrating modern front-end frameworks that bring ideas to
+              life.
             </p>
 
             <p className="text-lg text-slate-300 leading-relaxed">
-              My journey in tech has been driven by curiosity and a desire to
-              push the boundaries of what's possible. I love working at the
-              intersection of machine learning, web development, and cloud
-              infrastructure to create products that make a difference.
+              My journey in tech is driven by curiosity and continuous learning.
+              I have hands-on experience with full-stack development, databases,
+              and modern development tools, and I enjoy applying my
+              problem-solving mindset to build practical solutions that address
+              real-world needs.
             </p>
 
             <div className="grid grid-cols-2 gap-4 pt-4">
               {[
                 { label: "Projects. For more visit github", value: "10+" },
-                { label: "Experience", value: "Fresher" },
+                { label: "Currently working as INTERN.", value: "Fresher" },
               ].map((stat) => (
                 <div
                   key={stat.label}
