@@ -28,13 +28,13 @@ export default function Experience() {
       ],
     },
     {
-      title: "Cloud learner",
-      company: "Self paced",
-      period: "currently",
+      title: "Associate Software Developer Intern",
+      company: "Infodesk India Pvt Ltd",
+      period: "Jan 2026 - currently",
       description:
-        "Learning cloud infrastructure and how specifically AWS is working with our environment.",
-      icon: Award,
-      skills: ["AWS", "Containerization"],
+        "Currently working on live projects with experts, exploring fully fleded full stack development.",
+      icon: Briefcase,
+      skills: ["Nextjs", "MongoDB", "RUST"],
     },
   ];
 
