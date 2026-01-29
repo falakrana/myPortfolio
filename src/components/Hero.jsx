@@ -52,7 +52,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <p className="text-2xl md:text-3xl font-semibold text-slate-200 mb-4">
-            Machine Learning & Software Developer
+            Full Stack AI Developer 
           </p>
           <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
             Building intelligent solutions with cutting-edge technology.
