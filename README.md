@@ -2,7 +2,6 @@
 
 A stunning dark-theme developer portfolio website built with React and TailwindCSS, featuring a cyberpunk/neon minimal aesthetic.
 
-![Portfolio Preview](https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=600&fit=crop)
 
 ## ✨ Features
 
