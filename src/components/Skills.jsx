@@ -11,23 +11,23 @@ const Skills = () => {
     },
     {
       category: "Databases & Data Management",
-      skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "FAISS", "Database Design", "Query Optimization"]
+      skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "FAISS"]
     },
     {
       category: "Full-Stack & Web Technologies",
-      skills: ["React.js", "Next.js", "HTML5", "CSS3", "JavaScript", "TypeScript", "Tailwind CSS", "Responsive Design"]
+      skills: ["React.js", "Next.js", "JavaScript", "TypeScript", "MERN stack", "Tailwind CSS", "Responsive Design"]
     },
     {
       category: "Programming Languages",
-      skills: ["Python", "JavaScript", "Rust", "SQL", "C++", "Java"]
+      skills: ["Python", "JavaScript", "Rust", "SQL", "Java"]
     },
     {
       category: "Cloud, DevOps & Tools",
-      skills: ["AWS", "Docker", "Git", "GitHub", "CI/CD", "Linux", "Nginx", "Vercel"]
+      skills: ["AWS", "Docker", "Git", "GitHub", "Jenkins", "Linux", "Nginx"]
     },
     {
       category: "AI & Data (Supporting Skills)",
-      skills: ["Machine Learning", "LangChain", "Crew AI", "RAG", "LLMs", "Gemini API", "Groq API", "Data Analysis", "Scikit-learn", "TensorFlow"]
+      skills: ["Machine Learning", "LangChain", "Crew AI", "RAG", "LLMs", "Data Analysis", "Scikit-learn", "TensorFlow", "PyTorch"]
     }
   ];
 
