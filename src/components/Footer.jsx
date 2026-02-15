@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <div className="flex items-center gap-2 mb-2">
               <span className="text-white font-bold text-lg">
-                <span className="text-neon-purple">⌘</span> Elias
+                <span className="text-neon-purple">⌘</span> Falak
               </span>
               <a href="mailto:ranafalak@gmail.com" className="text-gray-400 text-sm hover:text-neon-purple transition-colors">
                 ranafalak@gmail.com
