@@ -93,12 +93,12 @@ const Hero = () => {
       <div className="relative mb-20 fade-in w-full max-w-4xl flex justify-center h-[400px]">
         {/* DRAGGABLE STICKERS (Initial positions around the image) */}
         <DraggableSticker 
-          src="../public/dumbbell_sticker_1774554588725.png" 
+          src="../dumbbell_sticker_1774554588725.png" 
           initialPos={{ x: 100, y: 50 }} 
           rotation={-15}
         />
         <DraggableSticker 
-          src="../public/ps5_controller_sticker_1774554539204.png" 
+          src="../ps5_controller_sticker_1774554539204.png" 
           initialPos={{ x: 650, y: 150 }} 
           rotation={12}
         />
@@ -106,7 +106,7 @@ const Hero = () => {
         {/* Central Profile Image */}
         <div className="w-72 h-80 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl relative z-20 group">
           <img 
-            src="../public/myImage/myNewImage.jpg"
+            src="../myImage/myNewImage.jpg"
             alt="Falak Rana"
             className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-110"
           />
