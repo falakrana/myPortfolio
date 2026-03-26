@@ -4,109 +4,103 @@ const Certifications = () => {
   const certifications = [
     {
       title: "AWS Cloud Practitioner",
-      issuer: "AWS skill builder",
+      issuer: "AWS Skill Builder",
       date: "2025",
-      link: "../../Certifications/AWS-Simulearn_Cloud-Practitioner.pdf"
+      description: "Demonstrated foundational knowledge of AWS Cloud, covering core services, pricing, architecture, and security best practices. Focused on serverless infrastructure and IAM.",
+      link: "/Certifications/AWS-Simulearn_Cloud-Practitioner.pdf",
+      headerColor: "bg-[#D1F1F9]", // Pastel Blue
+      rotation: "-rotate-1"
     },
     {
-      title: "Data Science Certification",
-      issuer: "Udemy",
+      title: "Data Science Specialization",
+      issuer: "Udemy Bootcamp",
       date: "2024",
-      link: "../../Certifications/DataScienceBootcamp.pdf"
+      description: "Comprehensive data science bootcamp covering Python, statistics, machine learning, deep learning, and data visualization. Built and deployed multiple predictive models.",
+      link: "/Certifications/DataScienceBootcamp.pdf",
+      headerColor: "bg-[#FADCF5]", // Pastel Pink
+      rotation: "rotate-2"
     },
     {
       title: "Tableau Visualization",
-      issuer: "Udemy",
+      issuer: "Udemy Mastery",
       date: "2024",
-      link: "../../Certifications/Tableau.pdf"
+      description: "Advanced data visualization skills using Tableau. Mastered dashboard creation, data storytelling, and complex calculated fields for business analytics.",
+      link: "/Certifications/Tableau.pdf",
+      headerColor: "bg-[#E2F7E1]", // Pastel Green
+      rotation: "rotate-0"
     },
     {
       title: "MySQL Competency",
-      issuer: "Cursa",
+      issuer: "Cursa Platform",
       date: "2023",
-      link: "../../Certifications/SQL.pdf"
+      description: "Proficiency in MySQL database management, query optimization, and relational database design. Covered subqueries, joins, and indexing strategies.",
+      link: "/Certifications/SQL.pdf",
+      headerColor: "bg-[#FFF4D1]", // Pastel Yellow
+      rotation: "-rotate-2"
     }
   ];
 
   return (
-    <section id="certifications" className="py-20 px-6 bg-dark-secondary relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto max-w-7xl relative z-10">
+    <section id="certifications" className="py-24 px-6 relative bg-white overflow-visible">
+      <div className="container mx-auto max-w-3xl relative z-10 text-center">
         {/* Section Header */}
-        <div className="mb-12 fade-in">
-          <div className="flex items-center gap-4">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              <span className="text-neon-purple">#</span>
-              <span className="text-white">certifications</span>
-            </h2>
-            <div className="h-px flex-1 max-w-md bg-neon-purple"></div>
+        <div className="mb-20 fade-in">
+          <h2 className="section-title italic font-serif italic mb-6">Certification</h2>
+          <div className="inline-block px-5 py-2 bg-pastel-blue/20 rounded-full mb-8">
+            <p className="text-accent-blue font-bold text-[10px] tracking-widest uppercase">Technical Milestones</p>
           </div>
         </div>
 
-        {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+        {/* Stacking Cards Scroll Effect */}
+        <div className="relative space-y-32 md:space-y-48 pb-32">
           {certifications.map((cert, index) => (
             <div 
-              key={index} 
-              className="relative group"
+              key={index}
+              className={`sticky transition-all duration-500 transform-gpu hover:scale-[1.02] ${cert.rotation}`}
+              style={{ 
+                top: `${index * 40 + 100}px`, // Stacking offset
+                zIndex: index + 10,
+              }}
             >
-              {/* Glowing background effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/10 to-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-              
-              {/* Card */}
-              <div className="relative bg-dark-bg border border-gray-800 p-6 transition-all duration-300 group-hover:border-neon-purple group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-neon-purple/20 overflow-hidden">
-                {/* Animated corner accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-neon-purple/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-neon-purple/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Paper Clip Decoration */}
+              <div className="absolute top-[-15px] right-8 z-20 pointer-events-none drop-shadow-md">
+                 <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M72.2 26.5L34.2 64.5C31.4 67.3 31.4 71.8 34.2 74.6C37 77.4 41.5 77.4 44.3 74.6L82.3 36.6C86.5 32.4 86.5 25.6 82.3 21.4C78.1 17.2 71.3 17.2 67.1 21.4L23.4 65.1C17.8 70.7 17.8 80.3 23.4 85.9C29 91.5 38.6 91.5 44.2 85.9L80.3 49.8" stroke="#4A4A4A" strokeWidth="2.5" strokeLinecap="round"/>
+                 </svg>
+              </div>
 
-                {/* Certificate Icon with glow */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-neon-purple/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <svg className="w-12 h-12 text-neon-purple relative z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                  </div>
+              {/* Card Container */}
+              <div className="bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col min-h-[220px]">
+                {/* Top Colored Header Section */}
+                <div className={`${cert.headerColor} px-8 py-8 rounded-t-[2rem]`}>
+                  <h3 className="text-2xl md:text-4xl font-bold font-serif text-gray-800 text-left italic">
+                    {cert.title}
+                  </h3>
+                  <p className="text-gray-600 text-left font-bold mt-2 uppercase text-[10px] tracking-widest opacity-80">
+                    {cert.issuer}
+                  </p>
+                </div>
+
+                {/* Body Content Area */}
+                <div className="px-8 py-6 text-left flex flex-col justify-between flex-grow">
+                  <p className="text-gray-500 italic text-base leading-relaxed mb-6 font-medium">
+                    "{cert.description}"
+                  </p>
                   
-                  {/* Date badge */}
-                  <div className="px-3 py-1 bg-neon-purple/10 border border-neon-purple/30 group-hover:bg-neon-purple/20 group-hover:border-neon-purple transition-all duration-300">
-                    <span className="text-neon-purple font-mono text-xs">{cert.date}</span>
+                  <div className="flex justify-between items-center border-t border-gray-100 pt-4">
+                    <div className="flex items-center gap-2">
+                       <div className="w-1.5 h-1.5 bg-accent-blue rounded-full"></div>
+                       <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{cert.date}</span>
+                    </div>
+                    <a 
+                      href={cert.link} 
+                      target="_blank" 
+                      className="text-accent-blue font-bold text-xs underline underline-offset-4 hover:text-blue-700 transition-colors"
+                    >
+                      View Certificate
+                    </a>
                   </div>
                 </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neon-purple transition-colors duration-300">
-                  {cert.title}
-                </h3>
-
-                {/* Issuer */}
-                <div className="flex items-center gap-2 mb-4">
-                  <svg className="w-4 h-4 text-gray-500 group-hover:text-neon-purple transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                  <p className="text-gray-400 font-medium text-sm group-hover:text-gray-300 transition-colors duration-300">{cert.issuer}</p>
-                </div>
-
-                {/* Divider */}
-                <div className="h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-4 group-hover:via-neon-purple/50 transition-colors duration-500"></div>
-
-                {/* View Certificate Link */}
-                <a 
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-neon-purple hover:text-purple-400 transition-all duration-300 text-sm font-medium group/link"
-                >
-                  <span className="relative">
-                    View Certificate
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-neon-purple group-hover/link:w-full transition-all duration-300"></span>
-                  </span>
-                  <svg className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
               </div>
             </div>
           ))}

@@ -3,78 +3,90 @@ import React from 'react';
 const Education = () => {
   const education = [
     {
-      degree: "Bachelor of Technology in Computer Science",
-      institution: "Parul University ",
+      degree: "B.Tech in Computer Science",
+      institution: "Parul University",
       duration: "2022 - 2026",
-      description: "Major in Computer Science with focus on Software Engineering, Data Structures, Algorithms, Database Management, and Web Development. Achieved distinction in final year project."
+      shortDesc: "Focusing on Software Engineering and AI.",
+      bgColor: "bg-gradient-to-br from-yellow-300 to-orange-400",
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
     },
     {
-      degree: "Higher Secondary Education (12th)",
+      degree: "Higher Secondary (12th)",
       institution: "Green Valley High School",
       duration: "2020 - 2022",
-      description: "Science stream with Mathematics, Physics, and Chemistry. Secured 90%+ aggregate with excellence in Mathematics and Computer Science."
+      shortDesc: "Science stream with Math and CS.",
+      bgColor: "bg-gradient-to-br from-blue-400 to-cyan-500",
+      image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2072&auto=format&fit=crop",
     }
   ];
 
   return (
-    <section id="education" className="py-20 px-6 bg-dark-secondary relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-20 right-0 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Section Header */}
-        <div className="mb-12 fade-in">
-          <div className="flex items-center gap-4">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              <span className="text-neon-purple">#</span>
-              <span className="text-white">education</span>
-            </h2>
-            <div className="h-px flex-1 max-w-md bg-neon-purple"></div>
-          </div>
+    <section id="education" className="py-24 px-6 relative bg-light-bg overflow-hidden">
+      <div className="container mx-auto max-w-5xl relative z-10">
+        <div className="text-center mb-16 fade-in">
+          <h2 className="section-title italic font-serif italic mb-4">Education</h2>
+          <p className="text-text-secondary font-medium uppercase tracking-[0.2em] text-xs">A journey through knowledge</p>
         </div>
 
-        {/* Education Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 fade-in">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 mt-12 fade-in">
           {education.map((edu, index) => (
-            <div 
-              key={index} 
-              className="border border-gray-800 p-6 hover:border-neon-purple transition-all duration-300 group relative overflow-hidden"
-            >
-              {/* Decorative corner elements */}
-              <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-neon-purple/20 group-hover:border-neon-purple/50 transition-colors"></div>
-              <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-neon-purple/20 group-hover:border-neon-purple/50 transition-colors"></div>
+            <div key={index} className="flex flex-col group relative">
+              {/* TOP CARD: Image / Color Background */}
+              <div className={`h-[240px] md:h-[280px] ${edu.bgColor} rounded-[2rem] relative overflow-hidden shadow-sm transition-transform duration-500 group-hover:-translate-y-1 z-10`}>
+                <div className="absolute inset-x-8 top-10 bottom-0">
+                  <div className="w-full h-full bg-white/10 backdrop-blur-sm rounded-t-2xl overflow-hidden border-t border-x border-white/20 shadow-2xl">
+                    <img 
+                      src={edu.image}
+                      alt={edu.degree}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
 
-              {/* Duration Badge */}
-              <div className="mb-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-neon-purple/10 border border-neon-purple/30">
-                  <svg className="w-4 h-4 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span className="text-neon-purple font-mono text-xs">{edu.duration}</span>
+                {/* Date Badge */}
+                <div className="absolute top-4 left-6 z-10">
+                  <div className="bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm">
+                    <span className="text-[10px] font-bold text-text-primary tracking-widest">{edu.duration}</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Degree */}
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-purple transition-colors">
-                {edu.degree}
-              </h3>
+              {/* HANGING THREADS */}
+              <div className="absolute top-[240px] md:top-[280px] left-10 w-[2px] h-6 bg-gray-300 z-0 opacity-50"></div>
+              <div className="absolute top-[240px] md:top-[280px] right-10 w-[2px] h-6 bg-gray-300 z-0 opacity-50"></div>
 
-              {/* Institution */}
-              <p className="text-neon-purple font-medium mb-4 flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                {edu.institution}
-              </p>
+              {/* HANGING CONTENT ELEMENT */}
+              <div className="mt-4 bg-white rounded-[1.5rem] p-4 shadow-sm border border-gray-100/50 flex flex-col justify-between hover:shadow-lg transition-all transform-gpu origin-top swing-on-hover">
+                <div>
+                  <p className="text-text-primary text-[13px] font-medium leading-relaxed mb-3">
+                    Studied <span className="font-bold">{edu.degree}</span> at {edu.institution}. {edu.shortDesc}
+                  </p>
+                </div>
 
-              {/* Description */}
-              <p className="text-gray-400 leading-relaxed text-sm">
-                {edu.description}
-              </p>
+                <div className="flex">
+                  <button className="bg-accent-black text-white px-5 py-1.5 rounded-xl text-[10px] font-bold transition-all hover:bg-gray-800 active:scale-95">
+                    Visit Site
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        .swing-on-hover {
+          transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .group:hover .swing-on-hover {
+          animation: swingAnimation 2s ease-in-out infinite;
+        }
+        @keyframes swingAnimation {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(2deg); }
+          75% { transform: rotate(-2deg); }
+        }
+      `}</style>
     </section>
   );
 };

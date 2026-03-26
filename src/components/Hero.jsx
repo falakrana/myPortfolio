@@ -1,111 +1,168 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+
+const DraggableSticker = ({ src, initialPos, rotation }) => {
+  const [pos, setPos] = useState(initialPos);
+  const [isDragging, setIsDragging] = useState(false);
+  const ref = useRef(null);
+  const offset = useRef({ x: 0, y: 0 });
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    const rect = ref.current.getBoundingClientRect();
+    offset.current = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+      // Calculate new position relative to the nearest positioned parent
+      const parentRect = ref.current.offsetParent.getBoundingClientRect();
+      setPos({
+        x: e.clientX - parentRect.left - offset.current.x,
+        y: e.clientY - parentRect.top - offset.current.y
+      });
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging]);
+
+  return (
+    <div
+      ref={ref}
+      onMouseDown={handleMouseDown}
+      className={`absolute cursor-grab active:cursor-grabbing transition-shadow duration-300 z-40 select-none ${isDragging ? 'shadow-2xl scale-105 z-50' : 'hover:scale-105 shadow-lg'}`}
+      style={{
+        left: `${pos.x}px`,
+        top: `${pos.y}px`,
+        transform: `rotate(${rotation}deg)`,
+      }}
+    >
+      <img src={src} alt="sticker" className="w-24 md:w-32 h-auto drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" draggable="false" />
+    </div>
+  );
+};
 
 const Hero = () => {
+  const interests = [
+    "Full-Stack Development", "AI", "Machine Learning", "System Design",
+    "Backend Engineering", "REST APIs", "Cloud Computing", "DevOps",
+    "LLMs", "RAG", "Microservices", "Database Design",
+    "Full-Stack Development", "AI", "Machine Learning", "System Design",
+    "Backend Engineering", "REST APIs", "Cloud Computing", "DevOps",
+  ];
+
   return (
-    <>
-      {/* Main Hero Section */}
-      <section className="min-h-screen flex items-center relative overflow-hidden">
-        {/* Decorative dots - left side */}
-        <div className="absolute left-4 top-1/4 grid grid-cols-5 gap-2 opacity-30">
-          {[...Array(25)].map((_, i) => (
-            <div key={i} className="w-1 h-1 bg-gray-600 rounded-full"></div>
-          ))}
+    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-24 pb-8 bg-light-bg">
+      {/* Decorative Blur Elements */}
+      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-blue-200/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-[20%] left-[-10%] w-[400px] h-[400px] bg-pink-200/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+      {/* Status Badge */}
+      <div className="flex items-center gap-3 px-4 py-1.5 bg-white backdrop-blur border border-green-200/50 rounded-full shadow-sm mb-12 fade-in z-10 transition-transform hover:scale-105">
+        <div className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
+        <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-500">Currently working in Infodesk India.</span>
+      </div>
+
+      {/* Main Name Heading */}
+      <h1 className="text-7xl md:text-9xl font-serif font-medium text-text-primary text-center mb-6 fade-in px-4 tracking-tight leading-[0.9]">
+        Falak Rana
+      </h1>
+
+      {/* Subheading */}
+      <p className="text-text-secondary text-base md:text-lg text-center max-w-xl mb-12 fade-in px-6 font-medium leading-relaxed">
+        I build products that feel simple, scalable, and effortless to use.
+      </p>
+
+      {/* Centered Image Area with Interactive Stickers */}
+      <div className="relative mb-20 fade-in w-full max-w-4xl flex justify-center h-[400px]">
+        {/* DRAGGABLE STICKERS (Initial positions around the image) */}
+        <DraggableSticker 
+          src="../public/dumbbell_sticker_1774554588725.png" 
+          initialPos={{ x: 100, y: 50 }} 
+          rotation={-15}
+        />
+        <DraggableSticker 
+          src="../public/ps5_controller_sticker_1774554539204.png" 
+          initialPos={{ x: 650, y: 150 }} 
+          rotation={12}
+        />
+
+        {/* Central Profile Image */}
+        <div className="w-72 h-80 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl relative z-20 group">
+          <img 
+            src="../public/myImage/myNewImage.jpg"
+            alt="Falak Rana"
+            className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-110"
+          />
         </div>
+      </div>
 
-        {/* Decorative dots - right side */}
-        <div className="absolute right-4 top-1/3 grid grid-cols-5 gap-2 opacity-30">
-          {[...Array(25)].map((_, i) => (
-            <div key={i} className="w-1 h-1 bg-gray-600 rounded-full"></div>
-          ))}
-        </div>
-
-        {/* Decorative squares - right side */}
-        <div className="absolute right-20 top-1/4 grid grid-cols-3 gap-3 opacity-20">
-          {[...Array(9)].map((_, i) => (
-            <div key={i} className="w-4 h-4 border border-gray-700"></div>
-          ))}
-        </div>
-
-        <div className="container mx-auto px-6 lg:px-12 z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="fade-in">
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-white">Falak is a </span>
-                <span className="text-neon-purple">Full Stack AI developer</span>
-                {/* <span className="text-white"> and </span> */}
-                {/* <span className="text-neon-purple">front-end developer</span> */}
-              </h1>
-              
-              <p className="text-gray-400 mb-8 max-w-md">
-                Crafting responsive websites where technologies meet creativity
-              </p>
-
-              <a 
-                href="/Resume-AI-ML.pdf" 
-                download="Falak_Rana_Resume.pdf"
-                className="btn-primary inline-flex items-center gap-2"
+      {/* Scrolling Text Marquee */}
+      <div className="w-full overflow-hidden mt-auto py-10 fade-in">
+        <div className="marquee-container">
+          <div className="marquee-track">
+            {interests.map((interest, index) => (
+              <span
+                key={index}
+                className="text-text-primary text-sm font-bold whitespace-nowrap px-10 uppercase tracking-widest opacity-70 hover:opacity-100 transition-all cursor-default"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download Resume
-              </a>
-            </div>
-
-            {/* Right Image */}
-            <div className="relative fade-in group">
-              {/* Main image container */}
-              <div className="relative">
-                <img 
-                  src="../myImage/myImage2.png"
-                  alt="Developer"
-                  className="w-full max-w-sm mx-auto rounded-lg transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-neon-purple/30"
-                />
-                
-                {/* Status badge */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-dark-secondary border border-neon-purple px-6 py-3 flex items-center gap-3 transition-all duration-300 group-hover:border-neon-purple group-hover:shadow-lg group-hover:shadow-neon-purple/50">
-                  <div className="w-4 h-4 bg-neon-purple animate-pulse"></div>
-                  <span className="text-gray-300 font-medium">Currently working in <span className="text-white font-semibold">Infodesk India</span> as Software Developer</span>
-                </div>
-              </div>
-
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 w-16 h-16 border border-gray-700 transition-all duration-500 group-hover:border-neon-purple group-hover:-translate-x-1 group-hover:-translate-y-1"></div>
-              <div className="absolute -bottom-4 -right-4 grid grid-cols-3 gap-2 transition-all duration-500 group-hover:translate-x-1 group-hover:translate-y-1">
-                {[...Array(9)].map((_, i) => (
-                  <div key={i} className="w-2 h-2 bg-gray-700 transition-colors duration-500 group-hover:bg-neon-purple/50"></div>
-                ))}
-              </div>
-            </div>
+                {interest}
+              </span>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Quote Section */}
-      <section className="py-20 px-6 relative">
-        <div className="container mx-auto max-w-4xl">
-          <div className="border border-gray-800 p-8 relative">
-            {/* Quote icon */}
-            <div className="absolute -top-4 left-8 bg-dark-bg px-4">
-              <svg className="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
-              </svg>
-            </div>
-
-            <p className="text-white text-xl md:text-2xl font-medium text-center mb-4">
-              With great power comes great electricity bill
-            </p>
-
-            <div className="flex justify-end">
-              <div className="border border-gray-800 px-6 py-2">
-                <p className="text-gray-400 font-mono">- Dr. Who</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      <style>{`
+        .marquee-container {
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+        }
+        .marquee-container::before, .marquee-container::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 200px;
+          height: 100%;
+          z-index: 2;
+          pointer-events: none;
+        }
+        .marquee-container::before {
+          left: 0;
+          background: linear-gradient(to right, #E8EDF6, transparent);
+        }
+        .marquee-container::after {
+          right: 0;
+          background: linear-gradient(to left, #E8EDF6, transparent);
+        }
+        .marquee-track {
+          display: flex;
+          animation: marquee 40s linear infinite;
+          width: max-content;
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+    </section>
   );
 };
 
