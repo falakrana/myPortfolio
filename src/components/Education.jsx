@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring } from 'motion/react';
+import { motion as Motion, useMotionValue, useSpring } from 'motion/react';
 
 const ElasticHangingCard = ({ edu }) => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -24,7 +24,6 @@ const ElasticHangingCard = ({ edu }) => {
     // Tooltip logic
     if (!isDragging) {
       const rect = e.currentTarget.getBoundingClientRect();
-      const offsetX = e.clientX - rect.left - rect.width / 2;
       const offsetY = e.clientY - rect.top - rect.height / 2;
 
       x.set(e.clientX - rect.left);
@@ -142,7 +141,7 @@ const ElasticHangingCard = ({ edu }) => {
         </div>
 
         {/* Hover Tooltip implementation from TiltedCard */}
-        <motion.figcaption
+        <Motion.figcaption
           className="pointer-events-none absolute left-0 top-0 rounded-lg bg-white/95 backdrop-blur px-3 py-1.5 text-xs text-[#2d2d2d] z-[50] hidden sm:block shadow-lg border border-gray-100 font-bold tracking-tight whitespace-nowrap"
           style={{
             x,
@@ -151,8 +150,8 @@ const ElasticHangingCard = ({ edu }) => {
             rotate: rotateFigcaption
           }}
         >
-          {edu.degree} - Score: {edu.score}
-        </motion.figcaption>
+          Stretch it and play with it
+        </Motion.figcaption>
       </div>
     </div>
   );
