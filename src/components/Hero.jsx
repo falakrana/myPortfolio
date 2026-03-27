@@ -46,7 +46,7 @@ const DraggableSticker = ({ src, initialPos, rotation }) => {
     <div
       ref={ref}
       onMouseDown={handleMouseDown}
-      className={`absolute cursor-grab active:cursor-grabbing transition-shadow duration-300 z-40 select-none ${isDragging ? 'shadow-2xl scale-105 z-50' : 'hover:scale-105 shadow-lg'}`}
+      className={`absolute cursor-grab active:cursor-grabbing transition-shadow duration-300 z-10 select-none ${isDragging ? 'shadow-2xl scale-105 z-50' : 'hover:scale-105 shadow-lg'}`}
       style={{
         left: `${pos.x}px`,
         top: `${pos.y}px`,
@@ -92,19 +92,36 @@ const Hero = () => {
       {/* Centered Image Area with Interactive Stickers */}
       <div className="relative mb-20 fade-in w-full max-w-4xl flex justify-center h-[400px]">
         {/* DRAGGABLE STICKERS (Initial positions around the image) */}
-        <DraggableSticker 
-          src="/dumbbell_sticker_1774554588725.png" 
-          initialPos={{ x: 100, y: 50 }} 
-          rotation={-15}
-        />
-        <DraggableSticker 
-          src="/ps5_controller_sticker_1774554539204.png" 
-          initialPos={{ x: 650, y: 150 }} 
-          rotation={12}
-        />
+        {/* Moved further out and lower z-index than image */}
+        <div className="hidden md:block">
+          <DraggableSticker 
+            src="/dumbbell_sticker_1774554588725.png" 
+            initialPos={{ x: 50, y: 100 }} 
+            rotation={-15}
+          />
+          <DraggableSticker 
+            src="/ps5_controller_sticker_1774554539204.png" 
+            initialPos={{ x: 700, y: 200 }} 
+            rotation={12}
+          />
+        </div>
+
+        {/* Mobile Stickers (closer but smaller/different) */}
+        <div className="md:hidden">
+          <DraggableSticker 
+            src="/dumbbell_sticker_1774554588725.png" 
+            initialPos={{ x: 20, y: 300 }} 
+            rotation={-15}
+          />
+          <DraggableSticker 
+            src="/ps5_controller_sticker_1774554539204.png" 
+            initialPos={{ x: 250, y: 320 }} 
+            rotation={12}
+          />
+        </div>
 
         {/* Central Profile Image */}
-        <div className="w-72 h-80 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl relative z-20 group">
+        <div className="w-64 h-72 md:w-72 md:h-80 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl relative z-20 group">
           <img 
             src="/myImage/myNewImage.jpg"
             alt="Falak Rana"
