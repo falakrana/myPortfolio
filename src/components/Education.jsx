@@ -172,7 +172,7 @@ const Education = () => {
     {
       degree: "Higher Secondary (12th)",
       institution: "Green Valley High School",
-      duration: "2020 - 2022",
+      duration: "2022",
       shortDesc: "Science stream with Math and CS.",
       bgColor: "bg-gradient-to-br from-blue-400 to-cyan-500",
       image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2072&auto=format&fit=crop",
