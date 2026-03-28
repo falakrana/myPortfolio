@@ -75,8 +75,8 @@ const Hero = () => {
 
       {/* Status Badge */}
       <div className="flex items-center gap-3 px-4 py-1.5 bg-white backdrop-blur border border-green-200/50 rounded-full shadow-sm mb-12 fade-in z-10 transition-transform hover:scale-105">
-        <div className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
-        <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-500">Currently working in Infodesk India.</span>
+        <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
+        <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-500">Open to work</span>
       </div>
 
       {/* Main Name Heading */}
