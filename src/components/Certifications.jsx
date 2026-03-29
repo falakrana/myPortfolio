@@ -54,7 +54,7 @@ const Certifications = () => {
     },
     {
       title: "Fundamental of ML and AI",
-      issuer: "AWS",
+      issuer: "AWS Skill BuilderS",
       date: "2026",
       description:
         "Core concepts of machine learning and artificial intelligence on AWS platform, including foundational ML services and AI implementation.",
