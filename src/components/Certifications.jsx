@@ -37,6 +37,15 @@ const Certifications = () => {
       link: "/Certifications/SQL.pdf",
       headerColor: "bg-[#FFF4D1]", // Pastel Yellow
       rotation: "-rotate-2"
+    },
+    {
+      title: "AWS S3 Storage Service",
+      issuer: "AWS Skill Builder",
+      date: "2026",
+      description: "Knowledge of AWS S3 storage service, including object storage, storage optimization, and data transfer options.",
+      link: "/Certifications/intro-aws-s3.pdf",
+      headerColor: "bg-orange-100",
+      rotation: "rotate-0 hover:rotate-1"
     }
   ];
 
