@@ -13,6 +13,16 @@ const Certifications = () => {
       rotation: "-rotate-1",
     },
     {
+      title: "Linux Fundamentals",
+      issuer: "Cisco",
+      date: "2026",
+      description:
+        "Fundamental Linux operating system concepts, command line operations, system administration, and network configuration for enterprise environments.",
+      link: "/Certifications/Linux-unhatched-CISCO.pdf",
+      headerColor: "bg-[#E6E6FA]", // Pastel Lavender
+      rotation: "rotate-1 hover:rotate-2",
+    },
+    {
       title: "Data Science Specialization",
       issuer: "Udemy Bootcamp",
       date: "2024",
@@ -21,6 +31,16 @@ const Certifications = () => {
       link: "/Certifications/DataScienceBootcamp.pdf",
       headerColor: "bg-[#FADCF5]", // Pastel Pink
       rotation: "rotate-2",
+    },
+    {
+      title: "Fundamental of ML and AI",
+      issuer: "AWS Skill BuilderS",
+      date: "2026",
+      description:
+        "Core concepts of machine learning and artificial intelligence on AWS platform, including foundational ML services and AI implementation.",
+      link: "/Certifications/fundamental-of-ml-and-ai-aws.pdf",
+      headerColor: "bg-purple-100",
+      rotation: "rotate-0 hover:rotate-1",
     },
     {
       title: "Tableau Visualization",
@@ -50,16 +70,6 @@ const Certifications = () => {
         "Knowledge of AWS S3 storage service, including object storage, storage optimization, and data transfer options.",
       link: "/Certifications/intro-aws-s3.pdf",
       headerColor: "bg-[#FFE4E1]",
-      rotation: "rotate-0 hover:rotate-1",
-    },
-    {
-      title: "Fundamental of ML and AI",
-      issuer: "AWS Skill BuilderS",
-      date: "2026",
-      description:
-        "Core concepts of machine learning and artificial intelligence on AWS platform, including foundational ML services and AI implementation.",
-      link: "/Certifications/fundamental-of-ml-and-ai-aws.pdf",
-      headerColor: "bg-purple-100",
       rotation: "rotate-0 hover:rotate-1",
     },
   ];
