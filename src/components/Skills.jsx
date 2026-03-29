@@ -16,6 +16,7 @@ const Skills = () => {
         { name: "Flask", icon: "https://cdn.simpleicons.org/flask/000000" },
         { name: "FastAPI", icon: "https://cdn.simpleicons.org/fastapi/009688" },
         { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED" },
+        { name: ".NET", icon: "https://cdn.simpleicons.org/dotnet/512BD4" },
       ]
     },
     {
@@ -25,9 +26,9 @@ const Skills = () => {
       color: "bg-[#6ee7b7]", // emerald-300
       rotation: "rotate-2",
       skills: [
-        { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
         { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
         { name: "MySQL", icon: "https://cdn.simpleicons.org/mysql/4479A1" },
+        { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
         { name: "Redis", icon: "https://cdn.simpleicons.org/redis/DC382D" },
         { name: "FAISS", icon: "https://cdn.simpleicons.org/meta/0467DF" },
       ]
@@ -55,8 +56,8 @@ const Skills = () => {
       skills: [
         { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB" },
         { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+        { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
         { name: "Rust", icon: "https://cdn.simpleicons.org/rust/000000" },
-        { name: "SQL", icon: "https://cdn.simpleicons.org/sqlite/003B57" },
         { name: "Java", icon: "https://cdn.simpleicons.org/openjdk/437291" },
       ]
     },
@@ -67,7 +68,7 @@ const Skills = () => {
       color: "bg-[#fcd34d]", // amber-300
       rotation: "-rotate-2",
       skills: [
-        { name: "AWS", icon: "https://cdn.simpleicons.org/amazonaws/232F3E" },
+        { name: "AWS", icon: "./icons/aws-icon.png" },
         { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED" },
         { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032" },
         { name: "GitHub", icon: "https://cdn.simpleicons.org/github/181717" },
@@ -84,8 +85,19 @@ const Skills = () => {
         { name: "TensorFlow", icon: "https://cdn.simpleicons.org/tensorflow/FF6F00" },
         { name: "PyTorch", icon: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
         { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain/1C3C3C" },
-        { name: "OpenAI", icon: "https://cdn.simpleicons.org/openai/412991" },
         { name: "Scikit-Learn", icon: "https://cdn.simpleicons.org/scikitlearn/F7931E" },
+      ]
+    },
+    {
+      id: "dataviz",
+      category: "Data Visualization",
+      icon: "📊",
+      color: "bg-[#fdba74]", // orange-300
+      rotation: "-rotate-2",
+      skills: [
+        { name: "Tableau", icon: "./icons/tableau-icon.png" },
+        { name: "Excel", icon: "./icons/excel-icon.png" },
+        { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB" },
       ]
     }
   ];
