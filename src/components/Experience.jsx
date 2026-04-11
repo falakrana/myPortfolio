@@ -128,7 +128,7 @@ const Experience = () => {
         {/* Download Resume Link Refined */}
         <div className="text-center mt-24">
           <a
-            href="/Resume-AI-ML.pdf"
+            href="/Main-Resume-SDE.pdf"
             download="Falak_Rana_Resume.pdf"
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent-black text-white font-bold rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
