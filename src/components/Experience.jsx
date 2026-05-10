@@ -3,15 +3,15 @@ import React from "react";
 const Experience = () => {
   const experiences = [
     {
-      role: "Associate Software Developer Intern",
+      role: "Software Developer Intern",
       company: "Infodesk India Pvt. Ltd.",
       period: "Jan' 26 - May' 26",
       achievements: [
-        "Developing live production-grade full-stack applications",
-        "Building scalable REST APIs with Next.js and Rust",
-        "Optimizing MongoDB database schemas for performance",
-        "Implementing modern backend logic and microservices",
-        "Collaborating under senior developer mentorship for best practices",
+        "Developing scalable microservices and REST APIs using .NET (C#) and Spring Boot (Java) for enterprise systems",
+        "Building responsive UIs with React, Next.js, TypeScript and managing async workflows using Redux Saga",
+        "Managing cloud infrastructure on AWS (EC2, S3, CloudWatch) for automation, logging, and deployment",
+        "Designing and optimizing databases using SQL and MongoDB",
+        "Developing high-performance Rust CLI tools for legal document analysis",
       ],
       stickyColor: "bg-[#FEF08A]",
       barColor: "bg-[#7C3AED]", // Violet
@@ -140,8 +140,8 @@ const Experience = () => {
         {/* Download Resume Link Refined */}
         <div className="text-center mt-24">
           <a
-            href="/Main-Resume-SDE.pdf"
-            download="Falak_Rana_Resume.pdf"
+            href="/MainResumeSDE.pdf"
+            download="FalakRanaResume.pdf"
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent-black text-white font-bold rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
