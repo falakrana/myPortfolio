@@ -481,15 +481,54 @@ const Skills = () => {
         /* ─── Responsive ──────────────────────────────────── */
         @media (max-width: 640px) {
           .orbit-stage {
-            height: ${Math.round(ORBIT_RADIUS * 1.4) * 2 + 160}px;
-          }
-          .orbit-item {
-            width: ${Math.round(ORBIT_RADIUS * 1.4)}px;
-            height: ${Math.round(ORBIT_RADIUS * 1.4)}px;
+            height: 420px;
           }
           .orbit-ring {
-            width: ${Math.round(ORBIT_RADIUS * 1.4)}px;
-            height: ${Math.round(ORBIT_RADIUS * 1.4)}px;
+            width: 220px;
+            height: 220px;
+          }
+          .orbit-item {
+            width: 220px;
+            height: 220px;
+            margin-left: -110px;
+            margin-top: -110px;
+          }
+          .orbit-item-inner {
+            margin-top: -32px;
+          }
+          .folder-card {
+            width: 84px;
+            height: 64px;
+          }
+          .folder-tab {
+            top: -8px;
+            width: 32px;
+            height: 10px;
+          }
+          .folder-front span {
+            font-size: 1.25rem !important;
+            margin-bottom: 1px !important;
+          }
+          .folder-label {
+            font-size: 6px;
+          }
+          .folder-icons-tray {
+            width: 84px;
+          }
+          .folder-icons-tray.icons-open {
+            transform: translateX(-50%) translateY(-60px);
+          }
+          .skill-icon-chip {
+            width: 26px;
+            height: 26px;
+            padding: 4px;
+            border-radius: 6px;
+            margin-left: -12px;
+          }
+          .skill-tooltip {
+            font-size: 7px;
+            padding: 2px 4px;
+            top: -20px;
           }
         }
       `}</style>
