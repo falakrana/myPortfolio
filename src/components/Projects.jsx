@@ -26,6 +26,22 @@ const Projects = () => {
       githubUrl: "https://github.com/falakrana/CacheFlux.git",
     },
     {
+      title: "ChronoNote",
+      description:
+        "A RESTful API built with Spring Boot for note management with automatic version tracking.",
+      techStack: ["Java", "Spring-Boot", "Version-Control", "PostgreSQL"],
+      image: "/Projects/chronoNoteImage.jpeg",
+      githubUrl: "https://github.com/falakrana/ChronoNote.git",
+    },
+    {
+      title: "AIReviewBot",
+      description:
+        "An AI based code review system that provides feedback and suggestions for code improvements.",
+      techStack: ["python", "tree-sitter", "Redis", "Celery"],
+      image: "/Projects/aiReviewBot.jpeg",
+      githubUrl: "https://github.com/falakrana/AIReviewBot.git",
+    },
+    {
       title: "Coursera-QA-App",
       description:
         "Browser extension that helps learners get answers directly from the course page.",
