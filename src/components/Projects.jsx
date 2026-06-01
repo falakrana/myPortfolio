@@ -18,6 +18,22 @@ const Projects = () => {
       githubUrl: "https://menova.vercel.app",
     },
     {
+      title: "DevCollab",
+      description:
+        "A modern developer collaboration platform combining task management and real-time communication, built with ASP.NET Core and Next.js.",
+      techStack: ["DotNet", "Next.js", 'SignalR', "PostgreSQL"],
+      image: "/Projects/DevCollab.jpeg",
+      githubUrl: "https://github.com/falakrana/DevCollab.git",
+    },
+    {
+      title: "ResumeIQ",
+      description:
+        "AI-powered resume optimization platform with ATS scoring, skill gap analysis, job matching, and actionable recommendations.",
+      techStack: ["angular", "mongodb", "fastapi"],
+      image: "/Projects/resumeiq.png",
+      githubUrl: "https://github.com/falakrana/ResumeIQ.git",
+    },
+    {
       title: "CacheFlux",
       description:
         "A Redis-based distributed cache in front of PostgreSQL for high-traffic systems.",
