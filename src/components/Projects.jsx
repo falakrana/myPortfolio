@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -7,6 +7,15 @@ gsap.registerPlugin(ScrollTrigger);
 const Projects = () => {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
+
+  const toggleDescription = (event, index) => {
+    event.stopPropagation();
+    setExpandedDescriptions((current) => ({
+      ...current,
+      [index]: !current[index],
+    }));
+  };
 
   const allProjects = [
     {
@@ -266,9 +275,32 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <p className="text-text-secondary text-sm md:text-base leading-relaxed opacity-80 mt-1 max-w-[95%]">
-                  {project.description}
-                </p>
+                <div className="relative mt-1 max-w-[95%]">
+                  <p
+                    className={`project-description text-text-secondary text-sm md:text-base leading-relaxed opacity-80 transition-[max-height] duration-500 ease-in-out ${
+                      expandedDescriptions[index]
+                        ? "max-h-40"
+                        : "max-h-[2.85rem] md:max-h-[3.25rem]"
+                    }`}
+                  >
+                    {project.description}
+                  </p>
+
+                  {project.description.length > 120 && (
+                    <button
+                      type="button"
+                      aria-expanded={!!expandedDescriptions[index]}
+                      onClick={(event) => toggleDescription(event, index)}
+                      className={
+                        expandedDescriptions[index]
+                          ? "mt-1 rounded-md bg-transparent p-0 text-xs font-bold uppercase tracking-widest text-accent-blue transition-colors duration-300 hover:text-blue-700"
+                          : "absolute bottom-0 right-0 rounded-md bg-light-bg pl-2 text-sm md:text-base font-bold text-accent-blue transition-colors duration-300 hover:text-blue-700"
+                      }
+                    >
+                      {expandedDescriptions[index] ? "Show less" : "..."}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
