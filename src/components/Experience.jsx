@@ -30,6 +30,17 @@ const Experience = () => {
       stickyColor: "bg-[#FEF08A]",
       barColor: "bg-[#EC4899]", // Pink
     },
+    {
+      role: "AI Research Intern",
+      company: "Parul University",
+      period: "Jun' 24 - Jan' 25",
+      achievements: [
+        "Worked in a team where we have to do research on certain ML models.",
+        "Typically I had brief research on architecture like transformers and BERT",
+      ],
+      stickyColor: "bg-[#FEF08A]",
+      barColor: "bg-[#b3f176]", // Pink
+    },
   ];
 
   const [expanded, setExpanded] = React.useState({});
@@ -60,12 +71,11 @@ const Experience = () => {
         <div className="space-y-16">
           {experiences.map((exp, index) => {
             const isExpanded = expanded[index];
-            const achievementText = exp.achievements.join(" , ");
-            const shouldTruncate = isMobile && achievementText.length > 150;
-            const displayContent =
+            const shouldTruncate = isMobile && exp.achievements.length > 2;
+            const displayAchievements =
               !isExpanded && shouldTruncate
-                ? achievementText.substring(0, 150)
-                : achievementText;
+                ? exp.achievements.slice(0, 2)
+                : exp.achievements;
 
             return (
               <div key={index} className="relative group/card fade-in">
@@ -85,17 +95,19 @@ const Experience = () => {
 
                   {/* ACHIEVEMENTS */}
                   <div className="relative">
-                    <p className="text-gray-500 text-sm md:text-base leading-relaxed font-medium tracking-tight">
-                      {displayContent}
-                      {shouldTruncate && (
-                        <button
-                          onClick={() => toggleExpand(index)}
-                          className="text-blue-500 hover:text-blue-700 font-bold ml-1 transition-colors"
-                        >
-                          {isExpanded ? " (Show Less)" : "..."}
-                        </button>
-                      )}
-                    </p>
+                    <ul className="list-disc pl-5 space-y-2 text-gray-500 text-sm md:text-base leading-relaxed font-medium tracking-tight">
+                      {displayAchievements.map((ach, i) => (
+                        <li key={i}>{ach}</li>
+                      ))}
+                    </ul>
+                    {shouldTruncate && (
+                      <button
+                        onClick={() => toggleExpand(index)}
+                        className="text-blue-500 hover:text-blue-700 font-bold mt-2 transition-colors inline-block text-xs"
+                      >
+                        {isExpanded ? "Show Less" : "Show More"}
+                      </button>
+                    )}
                   </div>
 
                   {/* BOTTOM COLOR BAR */}
@@ -140,7 +152,7 @@ const Experience = () => {
         {/* Download Resume Link Refined */}
         <div className="text-center mt-24">
           <a
-            href="/MainResumeSDE.pdf"
+            href="/NewResumeSDE.pdf"
             download="FalakRanaResume.pdf"
             className="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent-black text-white font-bold rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
