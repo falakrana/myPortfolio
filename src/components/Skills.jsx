@@ -63,7 +63,6 @@ const Skills = () => {
         { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB" },
         { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
         { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
-        { name: "Rust", icon: "https://cdn.simpleicons.org/rust/000000" },
         { name: "Java", icon: "https://cdn.simpleicons.org/openjdk/437291" },
       ]
     },
@@ -94,6 +93,11 @@ const Skills = () => {
         { name: "PyTorch", icon: "https://cdn.simpleicons.org/pytorch/EE4C2C" },
         { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain/1C3C3C" },
         { name: "Scikit-Learn", icon: "https://cdn.simpleicons.org/scikitlearn/F7931E" },
+        { name: "Crew-ai", icon: "./icons/crewai-icon.png" },
+        { name: "Gemini", icon: "./icons/gemini-icon.png" },
+        { name: "Ollama", icon: "./icons/ollama-icon.png" },
+        { name: "hugging-face", icon: "./icons/huggingface-icon.png" },
+        { name: "RAG", icon: "./icons/rag-icon.jpg" },
       ]
     },
     {

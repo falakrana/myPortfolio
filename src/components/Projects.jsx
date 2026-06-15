@@ -102,7 +102,7 @@ const Projects = () => {
     {
       title: "Disease Prediction",
       description: "Disease prediction using ML models with Flask framework.",
-      techStack: ["ML", "Flask", "Healthcare"],
+      techStack: ["Python", "Reactjs", "Decision-Tree", "Randome Forest", "Healthcare"],
       image: "/Projects/diseasePrediction.jpeg",
       githubUrl: "https://github.com/falakrana/Disease-Prediction-using-ML.git",
     },
@@ -140,7 +140,7 @@ const Projects = () => {
     {
       title: "YouTube Insights",
       description:
-        "Analytical tool for YouTube content creators to monitor performance and trends.",
+        "Chrome extension for youtube, where user can chat with the video. A RAG based pipeline is implemented.",
       techStack: ["React", "YouTube API", "Firebase"],
       image: "/Projects/youtube.jpeg",
       githubUrl: "https://github.com/falakrana",
@@ -277,11 +277,10 @@ const Projects = () => {
 
                 <div className="relative mt-1 max-w-[95%]">
                   <p
-                    className={`project-description text-text-secondary text-sm md:text-base leading-relaxed opacity-80 transition-[max-height] duration-500 ease-in-out ${
-                      expandedDescriptions[index]
-                        ? "max-h-40"
-                        : "max-h-[2.85rem] md:max-h-[3.25rem]"
-                    }`}
+                    className={`project-description text-text-secondary text-sm md:text-base leading-relaxed opacity-80 transition-[max-height] duration-500 ease-in-out ${expandedDescriptions[index]
+                      ? "max-h-40"
+                      : "max-h-[2.85rem] md:max-h-[3.25rem]"
+                      }`}
                   >
                     {project.description}
                   </p>
