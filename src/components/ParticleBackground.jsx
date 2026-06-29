@@ -40,10 +40,11 @@ const ParticleCanvas = () => {
     const ctx = canvas.getContext('2d');
     const s = stateRef.current;
 
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      // Rebuild particles relative to new viewport size
       s.particles = createParticles(canvas.width, canvas.height);
     };
     resize();
@@ -57,8 +58,11 @@ const ParticleCanvas = () => {
       s.mouse.x = -9999;
       s.mouse.y = -9999;
     };
-    window.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseleave', onMouseLeave);
+
+    if (!isTouchDevice) {
+      window.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseleave', onMouseLeave);
+    }
 
     const tick = () => {
       s.t += 0.016;
@@ -69,28 +73,30 @@ const ParticleCanvas = () => {
       const my = s.mouse.y;
 
       for (const p of s.particles) {
-        // ── float: home position drifts up/down ──
         const floatY = Math.sin(s.t * p.floatSpeed + p.floatOffset) * p.floatAmp;
         const homeX = p.ox;
         const homeY = p.oy + floatY;
 
-        // ── magnet attraction ──
-        const dx = mx - p.x;
-        const dy = my - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (!isTouchDevice) {
+          // ── magnet attraction (desktop only) ──
+          const dx = mx - p.x;
+          const dy = my - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < MAGNET_RADIUS && dist > 0) {
-          // Attraction force — stronger when closer
-          const force = (1 - dist / MAGNET_RADIUS) * MAGNET_STRENGTH;
-          p.x += dx * force;
-          p.y += dy * force;
+          if (dist < MAGNET_RADIUS && dist > 0) {
+            const force = (1 - dist / MAGNET_RADIUS) * MAGNET_STRENGTH;
+            p.x += dx * force;
+            p.y += dy * force;
+          } else {
+            p.x += (homeX - p.x) * RETURN_SPEED;
+            p.y += (homeY - p.y) * RETURN_SPEED;
+          }
         } else {
-          // Return to home
-          p.x += (homeX - p.x) * RETURN_SPEED;
-          p.y += (homeY - p.y) * RETURN_SPEED;
+          // ── mobile: just float at home position ──
+          p.x = homeX;
+          p.y = homeY;
         }
 
-        // ── draw the tick/dash ──
         ctx.save();
         ctx.globalAlpha = p.opacity;
         ctx.translate(p.x, p.y);
@@ -109,8 +115,10 @@ const ParticleCanvas = () => {
     return () => {
       cancelAnimationFrame(s.raf);
       window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseleave', onMouseLeave);
+      if (!isTouchDevice) {
+        window.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseleave', onMouseLeave);
+      }
     };
   }, []);
 
@@ -138,6 +146,10 @@ const CursorDot = () => {
   useEffect(() => {
     const dot = dotRef.current;
     if (!dot) return;
+
+    // Don't show cursor dot on touch devices
+    if (window.matchMedia('(hover: none)').matches) return;
+
     const onMove = (e) => {
       dot.style.transform = `translate(${e.clientX - 5}px, ${e.clientY - 5}px)`;
       dot.style.opacity = '1';
