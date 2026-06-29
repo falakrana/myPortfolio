@@ -81,21 +81,21 @@ const Experience = () => {
               <div key={index} className="relative group/card fade-in">
                 {/* CLEAN WHITE CARD */}
                 <div
-                  className={`relative bg-white border border-gray-100 p-6 md:p-10 transition-all duration-700 overflow-visible group-hover/card:translate-y-[-2px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.07)] ${isExpanded ? "pr-6 md:pr-10" : "pr-6 md:pr-48"}`}
+                  className={`relative bg-[#1e2235] border border-[#2e3450] p-6 md:p-10 transition-all duration-700 overflow-visible group-hover/card:translate-y-[-2px] shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.3)] ${isExpanded ? "pr-6 md:pr-10" : "pr-6 md:pr-48"}`}
                 >
                   {/* Header: Company and Date */}
                   <div className="mb-6 flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 relative z-10">
-                    <h3 className="text-2xl md:text-[28px] font-sans font-bold text-[#1a1a1a] tracking-tight pr-10 md:pr-0">
+                    <h3 className="text-2xl md:text-[28px] font-sans font-bold text-white tracking-tight pr-10 md:pr-0">
                       {exp.company}
                     </h3>
-                    <span className="text-gray-400 text-sm md:text-base font-medium">
+                    <span className="text-slate-400 text-sm md:text-base font-medium">
                       ({exp.period})
                     </span>
                   </div>
 
                   {/* ACHIEVEMENTS */}
                   <div className="relative">
-                    <ul className="list-disc pl-5 space-y-2 text-gray-500 text-sm md:text-base leading-relaxed font-medium tracking-tight">
+                    <ul className="list-disc pl-5 space-y-2 text-slate-300 text-sm md:text-base leading-relaxed font-medium tracking-tight">
                       {displayAchievements.map((ach, i) => (
                         <li key={i}>{ach}</li>
                       ))}
@@ -112,7 +112,7 @@ const Experience = () => {
 
                   {/* BOTTOM COLOR BAR */}
                   <div
-                    className={`absolute bottom-0 left-0 right-0 h-1.5 ${exp.barColor} opacity-20 group-hover:opacity-100 transition-opacity`}
+                    className={`absolute bottom-0 left-0 right-0 h-1.5 ${exp.barColor} opacity-40 group-hover/card:opacity-100 transition-opacity`}
                   ></div>
 
                   {/* THE REALISTIC STICKY NOTE */}

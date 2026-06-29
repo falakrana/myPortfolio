@@ -16,7 +16,7 @@ const Hero = () => {
         {/* Pill badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-gray-200 bg-white/80 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_6px_rgba(34,197,94,0.5)]" />
-          <span className="text-xs text-gray-500 font-medium tracking-wide">Full Stack AI Developer</span>
+          <span className="text-xs text-gray-500 font-medium tracking-wide">Open To Work</span>
         </div>
 
         {/* Headline */}

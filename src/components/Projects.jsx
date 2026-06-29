@@ -83,15 +83,6 @@ const Projects = () => {
       githubUrl: "https://github.com/falakrana/EchoDesk.git",
     },
     {
-      title: "Encryption Suite",
-      description:
-        "Powerful high-performance secure encryption/decryption suite with Rust and WebAssembly.",
-      techStack: ["Rust", "React.js", "WASM"],
-      image: "/Projects/encryption-image.png",
-      githubUrl: "https://github.com/falakrana/file-encryption-rust.git",
-    },
-
-    {
       title: "CrewAI Writer",
       description:
         "Research and writing agent duo that automates content generation.",
@@ -185,13 +176,13 @@ const Projects = () => {
             onClick={() => window.open(project.githubUrl, "_blank")}
           >
             {/* Project Card Mockup */}
-            <div className="relative aspect-[4/3] md:aspect-video rounded-2xl overflow-hidden shadow-sm group-hover:shadow-2xl transition-all duration-700 ease-out group-hover:-translate-y-3 border border-gray-200 bg-white/50 backdrop-blur-sm flex flex-col">
+            <div className="relative aspect-[4/3] md:aspect-video rounded-2xl overflow-hidden shadow-sm group-hover:shadow-2xl transition-all duration-700 ease-out group-hover:-translate-y-3 border border-white/10 bg-black/40 backdrop-blur-md flex flex-col">
               {/* Browser / App Header */}
-              <div className="h-8 bg-gray-100/80 backdrop-blur flex items-center px-4 border-b border-gray-200 gap-1.5 shrink-0 transition-colors duration-500 group-hover:bg-gray-100">
+              <div className="h-8 bg-white/5 backdrop-blur flex items-center px-4 border-b border-white/10 gap-1.5 shrink-0 transition-colors duration-500 group-hover:bg-white/10">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
-                <div className="flex-1 text-center text-[10px] text-gray-500 font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex-1 text-center text-[10px] text-white/50 font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {project.githubUrl.split("/").pop().replace(".git", "")}
                 </div>
               </div>
