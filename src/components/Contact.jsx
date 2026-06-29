@@ -4,9 +4,8 @@ const Contact = () => {
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-light-secondary/30"></div>
-      <div className="absolute top-20 left-10 w-72 h-72 bg-pastel-blue/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-pastel-pink/20 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-pink-100/20 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="container mx-auto max-w-4xl relative z-10">
         {/* Section Header */}

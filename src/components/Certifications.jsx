@@ -77,7 +77,7 @@ const Certifications = () => {
   return (
     <section
       id="certifications"
-      className="py-24 px-6 relative bg-white overflow-visible"
+      className="py-24 px-6 relative bg-transparent overflow-visible"
     >
       <div className="container mx-auto max-w-3xl relative z-10 text-center">
         {/* Section Header */}

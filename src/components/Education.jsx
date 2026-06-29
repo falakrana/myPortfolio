@@ -180,7 +180,7 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-24 px-6 relative bg-light-bg overflow-hidden">
+    <section id="education" className="py-24 px-6 relative bg-transparent overflow-hidden">
       <div className="container mx-auto max-w-5xl relative z-10">
         <div className="text-center mb-16 fade-in">
           <h2 className="section-title italic font-serif italic mb-4">Education</h2>

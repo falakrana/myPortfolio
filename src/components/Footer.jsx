@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="py-12 px-6 bg-white border-t border-gray-100">
+    <footer className="py-12 px-6 bg-transparent border-t border-gray-100">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Left: Name and Role */}

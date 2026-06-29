@@ -60,7 +60,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-24 px-4 md:px-6 relative overflow-visible bg-light-bg"
+      className="py-24 px-4 md:px-6 relative overflow-visible bg-transparent"
     >
       <div className="container mx-auto max-w-5xl relative z-10">
         {/* Section Header */}

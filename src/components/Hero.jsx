@@ -1,184 +1,59 @@
-import React, { useState, useRef, useEffect } from 'react';
-
-const DraggableSticker = ({ src, initialPos, rotation }) => {
-  const [pos, setPos] = useState(initialPos);
-  const [isDragging, setIsDragging] = useState(false);
-  const ref = useRef(null);
-  const offset = useRef({ x: 0, y: 0 });
-
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    const rect = ref.current.getBoundingClientRect();
-    offset.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    };
-    e.preventDefault();
-  };
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!isDragging) return;
-      // Calculate new position relative to the nearest positioned parent
-      const parentRect = ref.current.offsetParent.getBoundingClientRect();
-      setPos({
-        x: e.clientX - parentRect.left - offset.current.x,
-        y: e.clientY - parentRect.top - offset.current.y
-      });
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-
-    if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-    }
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isDragging]);
-
-  return (
-    <div
-      ref={ref}
-      onMouseDown={handleMouseDown}
-      className={`absolute cursor-grab active:cursor-grabbing transition-shadow duration-300 z-10 select-none ${isDragging ? 'shadow-2xl scale-105 z-50' : 'hover:scale-105 shadow-lg'}`}
-      style={{
-        left: `${pos.x}px`,
-        top: `${pos.y}px`,
-        transform: `rotate(${rotation}deg)`,
-      }}
-    >
-      <img src={src} alt="sticker" className="w-24 md:w-32 h-auto drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" draggable="false" />
-    </div>
-  );
-};
+import React from 'react';
 
 const Hero = () => {
-  const interests = [
-    "Full-Stack Development", "AI", "Machine Learning", "System Design",
-    "Backend Engineering", "REST APIs", "Cloud Computing", "DevOps",
-    "LLMs", "RAG", "Microservices", "Database Design",
-    "Full-Stack Development", "AI", "Machine Learning", "System Design",
-    "Backend Engineering", "REST APIs", "Cloud Computing", "DevOps",
-  ];
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-24 pb-8 bg-light-bg">
-      {/* Decorative Blur Elements */}
-      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-blue-200/20 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[20%] left-[-10%] w-[400px] h-[400px] bg-pink-200/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <section
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-28 pb-16"
+      style={{ backgroundColor: 'transparent' }}
+    >
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-3xl mx-auto">
 
-      {/* Status Badge */}
-      <div className="flex items-center gap-3 px-4 py-1.5 bg-white backdrop-blur border border-green-200/50 rounded-full shadow-sm mb-12 fade-in z-10 transition-transform hover:scale-105">
-        <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
-        <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-gray-500">Open to work</span>
-      </div>
-
-      {/* Main Name Heading */}
-      <h1 className="text-7xl md:text-9xl font-serif font-medium text-text-primary text-center mb-6 fade-in px-4 tracking-tight leading-[0.9]">
-        Falak Rana
-      </h1>
-
-      {/* Subheading */}
-      <p className="text-text-secondary text-base md:text-lg text-center max-w-xl mb-12 fade-in px-6 font-medium leading-relaxed">
-        I build products that feel simple, scalable, and effortless to use.
-      </p>
-
-      {/* Centered Image Area with Interactive Stickers */}
-      <div className="relative mb-20 fade-in w-full max-w-4xl flex justify-center h-[400px]">
-        {/* DRAGGABLE STICKERS (Initial positions around the image) */}
-        {/* Moved further out and lower z-index than image */}
-        <div className="hidden md:block">
-          <DraggableSticker 
-            src="/dumbbell_sticker_1774554588725.png" 
-            initialPos={{ x: 50, y: 100 }} 
-            rotation={-15}
-          />
-          <DraggableSticker 
-            src="/ps5_controller_sticker_1774554539204.png" 
-            initialPos={{ x: 700, y: 200 }} 
-            rotation={12}
-          />
+        {/* Pill badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-gray-200 bg-white/80 shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_6px_rgba(34,197,94,0.5)]" />
+          <span className="text-xs text-gray-500 font-medium tracking-wide">Full Stack AI Developer</span>
         </div>
 
-        {/* Mobile Stickers (closer but smaller/different) */}
-        <div className="md:hidden">
-          <DraggableSticker 
-            src="/dumbbell_sticker_1774554588725.png" 
-            initialPos={{ x: 20, y: 300 }} 
-            rotation={-15}
-          />
-          <DraggableSticker 
-            src="/ps5_controller_sticker_1774554539204.png" 
-            initialPos={{ x: 250, y: 320 }} 
-            rotation={12}
-          />
-        </div>
+        {/* Headline */}
+        <h1
+          className="text-5xl md:text-7xl font-serif font-bold leading-[1.1] tracking-tight mb-5"
+          style={{ color: '#0f172a' }}
+        >
+          Building products that are<br />
+          <span style={{ color: '#3b82f6' }}>fast, intelligent,</span><br />
+          and simple to use.
+        </h1>
 
-        {/* Central Profile Image */}
-        <div className="w-64 h-72 md:w-72 md:h-80 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl relative z-20 group">
-          <img 
-            src="/myImage/myNewImage.jpg"
-            alt="Falak Rana"
-            className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-110"
-          />
+        {/* Subtext */}
+        <p className="text-base md:text-lg text-gray-400 font-medium max-w-xl mb-10 leading-relaxed">
+          Full-stack engineer focused on AI-powered systems, clean APIs, and experiences that just work.
+        </p>
+
+        {/* CTA row */}
+        <div className="flex items-center gap-6">
+          <a
+            href="/NewResumeSDE.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 shadow-md"
+            style={{ backgroundColor: '#3b82f6' }}
+          >
+            View Resume
+          </a>
+          <button
+            onClick={() => scrollToSection('projects')}
+            className="text-sm font-semibold flex items-center gap-1.5 transition-all duration-200 hover:gap-2.5"
+            style={{ color: '#0f172a' }}
+          >
+            See my work <span aria-hidden="true">→</span>
+          </button>
         </div>
       </div>
-
-      {/* Scrolling Text Marquee */}
-      <div className="w-full overflow-hidden mt-auto py-10 fade-in">
-        <div className="marquee-container">
-          <div className="marquee-track">
-            {interests.map((interest, index) => (
-              <span
-                key={index}
-                className="text-text-primary text-sm font-bold whitespace-nowrap px-10 uppercase tracking-widest opacity-70 hover:opacity-100 transition-all cursor-default"
-              >
-                {interest}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <style>{`
-        .marquee-container {
-          width: 100%;
-          overflow: hidden;
-          position: relative;
-        }
-        .marquee-container::before, .marquee-container::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          width: 200px;
-          height: 100%;
-          z-index: 2;
-          pointer-events: none;
-        }
-        .marquee-container::before {
-          left: 0;
-          background: linear-gradient(to right, #E8EDF6, transparent);
-        }
-        .marquee-container::after {
-          right: 0;
-          background: linear-gradient(to left, #E8EDF6, transparent);
-        }
-        .marquee-track {
-          display: flex;
-          animation: marquee 40s linear infinite;
-          width: max-content;
-        }
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </section>
   );
 };

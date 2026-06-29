@@ -10,14 +10,20 @@
   }
 
   body {
-    background-color: #E8EDF6;
+    background-color: #ffffff;
     color: #1a1a1a;
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     overflow-x: hidden;
+    cursor: none; /* hide default cursor — canvas cursor takes over on desktop */
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Restore pointer cursor on interactive elements */
+  a, button, [role="button"], label, input, select, textarea {
+    cursor: none;
   }
 }
 
@@ -155,7 +161,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #E8EDF6;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {

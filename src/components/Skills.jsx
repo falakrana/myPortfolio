@@ -122,7 +122,7 @@ const Skills = () => {
   const DURATION = 22; // seconds for one full orbit
 
   return (
-    <section id="skills" className="py-24 px-6 relative bg-light-bg overflow-hidden">
+    <section id="skills" className="py-24 px-6 relative bg-transparent overflow-hidden">
       <div className="container mx-auto max-w-6xl relative z-10 text-center">
         {/* Heading */}
         <div className="mb-12 fade-in">

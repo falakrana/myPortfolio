@@ -115,29 +115,6 @@ const Projects = () => {
       githubUrl: "https://github.com/falakrana",
     },
     {
-      title: "Langchain Translator",
-      description:
-        "A high-performance translation API leveraging Gemma 2B via Groq's LPUs.",
-      techStack: ["FastAPI", "Groq-LPU", "LangChain"],
-      image: "/Projects/languageTranslator.jpeg",
-      githubUrl: "https://github.com/falakrana/LangChainGROQTranslator.git",
-    },
-    {
-      title: "Speech to Text",
-      description:
-        "Advanced speech-to-text conversion tool using state-of-the-art ASR models.",
-      techStack: ["Whisper-AI", "Python", "Speech"],
-      image: "/Projects/speechToText.png",
-      githubUrl: "https://github.com/falakrana",
-    },
-    {
-      title: "Email Automation",
-      description: "Smart email automation and workflow management system.",
-      techStack: ["Node.js", "Mailgun", "Automation"],
-      image: "/Projects/email_adk.jpeg",
-      githubUrl: "https://github.com/falakrana",
-    },
-    {
       title: "YouTube Insights",
       description:
         "Chrome extension for youtube, where user can chat with the video. A RAG based pipeline is implemented.",
@@ -182,7 +159,7 @@ const Projects = () => {
     <section
       ref={sectionRef}
       id="projects"
-      className="min-h-screen bg-light-bg overflow-hidden relative border-t border-gray-100"
+      className="min-h-screen bg-transparent overflow-hidden relative border-t border-gray-100"
     >
       {/* BACKGROUND DECORATIONS */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent-blue/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2"></div>
@@ -293,7 +270,7 @@ const Projects = () => {
                       className={
                         expandedDescriptions[index]
                           ? "mt-1 rounded-md bg-transparent p-0 text-xs font-bold uppercase tracking-widest text-accent-blue transition-colors duration-300 hover:text-blue-700"
-                          : "absolute bottom-0 right-0 rounded-md bg-light-bg pl-2 text-sm md:text-base font-bold text-accent-blue transition-colors duration-300 hover:text-blue-700"
+                          : "absolute bottom-0 right-0 rounded-md bg-white pl-2 text-sm md:text-base font-bold text-accent-blue transition-colors duration-300 hover:text-blue-700"
                       }
                     >
                       {expandedDescriptions[index] ? "Show less" : "..."}
