@@ -29,7 +29,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="pt-20 md:pt-28 pb-0 relative bg-bg overflow-hidden"
+      className="pt-20 md:pt-28 pb-0 relative overflow-hidden"
       style={{ borderTop: '1px solid hsl(var(--stroke))' }}
     >
       {/* Ambient glow */}

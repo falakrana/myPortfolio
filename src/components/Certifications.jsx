@@ -204,7 +204,7 @@ const Certifications = () => {
     <section
       ref={containerRef}
       id="certifications"
-      className="relative bg-bg overflow-visible py-24 px-6 border-t"
+      className="relative overflow-visible py-24 px-6 border-t"
       style={{ borderColor: 'hsl(var(--stroke))' }}
     >
       {/* Background decorations */}

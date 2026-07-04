@@ -117,7 +117,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 md:py-28 px-6 bg-bg overflow-hidden relative"
+      className="py-20 md:py-28 px-6 overflow-hidden relative"
       style={{ borderTop: '1px solid hsl(var(--stroke))' }}
     >
       {/* Ambient background decoration */}

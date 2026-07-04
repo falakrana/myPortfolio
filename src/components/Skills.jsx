@@ -103,7 +103,7 @@ const Skills = () => {
   const total = skillCategories.length;
 
   return (
-    <section id="skills" className="py-20 md:py-28 px-6 relative bg-bg overflow-hidden">
+    <section id="skills" className="py-20 md:py-28 px-6 relative overflow-hidden">
       {/* Ambient */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"

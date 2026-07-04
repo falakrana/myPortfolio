@@ -4,7 +4,7 @@ const Footer = () => (
   <footer
     className="py-8 px-6 border-t"
     style={{
-      backgroundColor: 'hsl(var(--bg))',
+      backgroundColor: 'transparent',
       borderColor: 'hsl(var(--stroke))',
     }}
   >

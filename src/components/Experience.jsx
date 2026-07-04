@@ -226,7 +226,7 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 md:py-28 px-6 relative bg-bg overflow-hidden">
+    <section id="experience" className="py-20 md:py-28 px-6 relative overflow-hidden">
       {/* Ambient glow */}
       <div
         className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"

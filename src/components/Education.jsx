@@ -184,7 +184,7 @@ const DraggableCard = ({ edu, index }) => {
 };
 
 const Education = () => (
-  <section id="education" className="py-20 md:py-28 px-6 relative bg-bg overflow-hidden">
+  <section id="education" className="py-20 md:py-28 px-6 relative overflow-hidden">
     <div
       className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none"
       style={{
