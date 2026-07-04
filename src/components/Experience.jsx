@@ -1,191 +1,217 @@
-import React from "react";
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+
+const experiences = [
+  {
+    role: 'Software Developer Intern',
+    company: 'Infodesk India Pvt. Ltd.',
+    period: "Jan '26 – May '26",
+    accentColor: '#89AACC',
+    achievements: [
+      'Developing scalable microservices and REST APIs using .NET (C#) and Spring Boot (Java) for enterprise systems',
+      'Building responsive UIs with React, Next.js, TypeScript and managing async workflows using Redux Saga',
+      'Managing cloud infrastructure on AWS (EC2, S3, CloudWatch) for automation, logging, and deployment',
+      'Designing and optimizing databases using SQL and MongoDB',
+      'Developing high-performance Rust CLI tools for legal document analysis',
+    ],
+  },
+  {
+    role: 'Machine Learning Intern',
+    company: 'Unified Mentor',
+    period: "Jan '25 – Apr '25",
+    accentColor: '#7B9FBF',
+    achievements: [
+      'Delivered 6 real-world end-to-end Machine Learning projects',
+      'Performed data cleaning and feature engineering at scale',
+      'Optimized models using Scikit-learn and TensorFlow',
+      'Built predictive systems for complex datasets',
+      'Integrated ML models with Flask-based web backends',
+    ],
+  },
+  {
+    role: 'AI Research Intern',
+    company: 'Parul University',
+    period: "Jun '24 – Jan '25",
+    accentColor: '#6087A6',
+    achievements: [
+      'Worked in a team conducting research on ML models',
+      'Conducted research on transformer architectures and BERT',
+    ],
+  },
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] },
+  }),
+};
 
 const Experience = () => {
-  const experiences = [
-    {
-      role: "Software Developer Intern",
-      company: "Infodesk India Pvt. Ltd.",
-      period: "Jan' 26 - May' 26",
-      achievements: [
-        "Developing scalable microservices and REST APIs using .NET (C#) and Spring Boot (Java) for enterprise systems",
-        "Building responsive UIs with React, Next.js, TypeScript and managing async workflows using Redux Saga",
-        "Managing cloud infrastructure on AWS (EC2, S3, CloudWatch) for automation, logging, and deployment",
-        "Designing and optimizing databases using SQL and MongoDB",
-        "Developing high-performance Rust CLI tools for legal document analysis",
-      ],
-      stickyColor: "bg-[#FEF08A]",
-      barColor: "bg-[#7C3AED]", // Violet
-    },
-    {
-      role: "Machine Learning Intern",
-      company: "Unified Mentor",
-      period: "Jan' 25 - Apr' 25",
-      achievements: [
-        "Delivered 6 real-world end-to-end Machine Learning projects",
-        "Performed data cleaning and feature engineering at scale",
-        "Optimized models using Scikit-learn and TensorFlow",
-        "Built predictive systems for complex datasets",
-        "Integrated ML models with Flask-based web backends",
-      ],
-      stickyColor: "bg-[#FEF08A]",
-      barColor: "bg-[#EC4899]", // Pink
-    },
-    {
-      role: "AI Research Intern",
-      company: "Parul University",
-      period: "Jun' 24 - Jan' 25",
-      achievements: [
-        "Worked in a team where we have to do research on certain ML models.",
-        "Typically I had brief research on architecture like transformers and BERT",
-      ],
-      stickyColor: "bg-[#FEF08A]",
-      barColor: "bg-[#b3f176]", // Pink
-    },
-  ];
+  const [expanded, setExpanded] = useState({});
 
-  const [expanded, setExpanded] = React.useState({});
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const toggleExpand = (index) => {
-    setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
-  };
+  const toggle = (i) => setExpanded((prev) => ({ ...prev, [i]: !prev[i] }));
 
   return (
-    <section
-      id="experience"
-      className="py-24 px-4 md:px-6 relative overflow-visible bg-transparent"
-    >
-      <div className="container mx-auto max-w-5xl relative z-10">
-        {/* Section Header */}
-        <div className="mb-16 fade-in px-4">
-          <h2 className="section-title italic mb-4">Work Experience</h2>
-        </div>
+    <section id="experience" className="py-20 md:py-28 px-6 relative bg-bg overflow-hidden">
+      {/* Ambient glow */}
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at top right, rgba(137,170,204,0.05) 0%, transparent 60%)',
+        }}
+      />
 
-        <div className="space-y-16">
-          {experiences.map((exp, index) => {
-            const isExpanded = expanded[index];
-            const shouldTruncate = isMobile && exp.achievements.length > 2;
-            const displayAchievements =
-              !isExpanded && shouldTruncate
-                ? exp.achievements.slice(0, 2)
-                : exp.achievements;
+      <div className="max-w-5xl mx-auto relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mb-16"
+        >
+          <div className="section-eyebrow">Work Experience</div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
+            Where I've{' '}
+            <span className="font-display italic" style={{ color: 'hsl(var(--muted))' }}>
+              worked
+            </span>
+          </h2>
+        </motion.div>
 
-            return (
-              <div key={index} className="relative group/card fade-in">
-                {/* CLEAN WHITE CARD */}
-                <div
-                  className={`relative bg-[#1e2235] border border-[#2e3450] p-6 md:p-10 transition-all duration-700 overflow-visible group-hover/card:translate-y-[-2px] shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.3)] ${isExpanded ? "pr-6 md:pr-10" : "pr-6 md:pr-48"}`}
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-px hidden md:block"
+            style={{ backgroundColor: 'hsl(var(--stroke))' }}
+          />
+
+          <div className="space-y-6 md:pl-10">
+            {experiences.map((exp, i) => {
+              const isExpanded = expanded[i];
+              const shouldTrunc = exp.achievements.length > 3;
+              const shown = !isExpanded && shouldTrunc ? exp.achievements.slice(0, 3) : exp.achievements;
+
+              return (
+                <motion.div
+                  key={i}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-60px' }}
+                  variants={cardVariants}
+                  className="relative group"
                 >
-                  {/* Header: Company and Date */}
-                  <div className="mb-6 flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3 relative z-10">
-                    <h3 className="text-2xl md:text-[28px] font-sans font-bold text-white tracking-tight pr-10 md:pr-0">
-                      {exp.company}
-                    </h3>
-                    <span className="text-slate-400 text-sm md:text-base font-medium">
-                      ({exp.period})
-                    </span>
-                  </div>
+                  {/* Timeline dot */}
+                  <div
+                    className="absolute left-[-14px] top-6 w-3 h-3 rounded-full border-2 border-bg hidden md:block transition-transform duration-300 group-hover:scale-125"
+                    style={{ backgroundColor: exp.accentColor, borderColor: 'hsl(var(--bg))' }}
+                  />
 
-                  {/* ACHIEVEMENTS */}
-                  <div className="relative">
-                    <ul className="list-disc pl-5 space-y-2 text-slate-300 text-sm md:text-base leading-relaxed font-medium tracking-tight">
-                      {displayAchievements.map((ach, i) => (
-                        <li key={i}>{ach}</li>
+                  {/* Card */}
+                  <div
+                    className="rounded-2xl p-6 md:p-8 border transition-all duration-500 group-hover:border-white/10"
+                    style={{
+                      backgroundColor: 'hsl(var(--surface))',
+                      borderColor: 'hsl(var(--stroke))',
+                      borderTop: `2px solid ${exp.accentColor}33`,
+                    }}
+                  >
+                    {/* Card header */}
+                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-5">
+                      <div>
+                        <h3
+                          className="text-xl md:text-2xl font-semibold text-text-primary mb-1 group-hover:text-white transition-colors"
+                        >
+                          {exp.company}
+                        </h3>
+                        <p
+                          className="text-sm font-medium"
+                          style={{ color: exp.accentColor }}
+                        >
+                          {exp.role}
+                        </p>
+                      </div>
+                      <span
+                        className="text-xs font-medium px-3 py-1 rounded-full self-start sm:self-auto"
+                        style={{
+                          backgroundColor: `${exp.accentColor}15`,
+                          color: exp.accentColor,
+                          border: `1px solid ${exp.accentColor}30`,
+                        }}
+                      >
+                        {exp.period}
+                      </span>
+                    </div>
+
+                    {/* Achievements */}
+                    <ul className="space-y-2.5">
+                      {shown.map((ach, j) => (
+                        <li key={j} className="flex items-start gap-3">
+                          <span
+                            className="mt-[7px] w-1 h-1 rounded-full flex-shrink-0"
+                            style={{ backgroundColor: exp.accentColor }}
+                          />
+                          <span
+                            className="text-sm leading-relaxed"
+                            style={{ color: 'hsl(var(--muted))' }}
+                          >
+                            {ach}
+                          </span>
+                        </li>
                       ))}
                     </ul>
-                    {shouldTruncate && (
+
+                    {shouldTrunc && (
                       <button
-                        onClick={() => toggleExpand(index)}
-                        className="text-blue-500 hover:text-blue-700 font-bold mt-2 transition-colors inline-block text-xs"
+                        onClick={() => toggle(i)}
+                        className="mt-4 text-xs font-medium uppercase tracking-widest transition-colors"
+                        style={{ color: exp.accentColor }}
                       >
-                        {isExpanded ? "Show Less" : "Show More"}
+                        {isExpanded ? 'Show less ↑' : `+${exp.achievements.length - 3} more ↓`}
                       </button>
                     )}
                   </div>
-
-                  {/* BOTTOM COLOR BAR */}
-                  <div
-                    className={`absolute bottom-0 left-0 right-0 h-1.5 ${exp.barColor} opacity-40 group-hover/card:opacity-100 transition-opacity`}
-                  ></div>
-
-                  {/* THE REALISTIC STICKY NOTE */}
-                  <div
-                    className={`absolute md:top-[-30px] md:right-[-30px] top-[-10px] right-[-10px] w-28 h-28 md:w-44 md:h-44 ${exp.stickyColor} shadow-xl z-30 flex items-center justify-center p-4 md:p-8 transition-all duration-1000 float cursor-default flex ${isExpanded ? "opacity-0 pointer-events-none scale-50" : "opacity-100 scale-100"}`}
-                    style={{
-                      animationDelay: `${index * 0.5}s`,
-                      transform: `rotate(${index % 2 === 0 ? 6 : -6}deg)`,
-                    }}
-                  >
-                    <p className="font-['Caveat'] text-sm md:text-2xl font-bold text-gray-800 leading-tight text-center relative z-10 select-none">
-                      {exp.role}
-                    </p>
-
-                    {/* Corner Curl Effect */}
-                    <div className="absolute bottom-0 right-0 w-6 h-6 md:w-12 md:h-12 overflow-hidden pointer-events-none">
-                      <div
-                        className="absolute bottom-0 right-0 w-full h-full bg-black/10 transition-transform duration-500 group-hover/card:scale-110"
-                        style={{
-                          clipPath: "polygon(100% 0, 0 100%, 100% 100%)",
-                        }}
-                      ></div>
-                      <div
-                        className="absolute bottom-[-1px] right-[-1px] w-[85%] h-[85%] bg-white/40 shadow-[-5px_-5px_10px_rgba(0,0,0,0.05)] origin-bottom-right rotate-[-5deg] transition-all duration-500 group-hover/card:rotate-[-12deg]"
-                        style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
-                      ></div>
-                    </div>
-
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Download Resume Link Refined */}
-        <div className="text-center mt-24">
+        {/* Resume download */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mt-16"
+        >
           <a
             href="/NewResumeSDE.pdf"
             download="FalakRanaResume.pdf"
-            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent-black text-white font-bold rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="relative group inline-flex items-center gap-3 rounded-full text-sm px-7 py-3.5 font-medium transition-all duration-300 hover:scale-105 text-text-primary border"
+            style={{ borderColor: 'hsl(var(--stroke))', backgroundColor: 'hsl(var(--surface))' }}
           >
-            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <svg
-              className="w-5 h-5 transition-transform group-hover:translate-y-[-2px]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-              />
+            <span
+              className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 accent-gradient transition-opacity duration-300"
+              style={{ zIndex: -1 }}
+            />
+            <span
+              className="absolute inset-0 rounded-full"
+              style={{ backgroundColor: 'hsl(var(--surface))', zIndex: -1 }}
+            />
+            <svg className="w-4 h-4 relative" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            <span className="relative z-10 tracking-widest uppercase text-xs">
-              Download Full Resume
-            </span>
+            <span className="relative">Download Full Resume</span>
           </a>
-        </div>
+        </motion.div>
       </div>
-
-      <style>{`
-        .float {
-          animation: stickyFloat 5s ease-in-out infinite;
-        }
-        @keyframes stickyFloat {
-          0%, 100% { transform: translateY(0) rotate(2deg); }
-          50% { transform: translateY(-10px) rotate(4deg); }
-        }
-      `}</style>
     </section>
   );
 };

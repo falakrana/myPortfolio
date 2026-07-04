@@ -1,150 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── CSS Custom Properties ─────────────────────── */
+:root {
+  --bg:      0 0% 4%;
+  --surface: 0 0% 8%;
+  --text:    0 0% 96%;
+  --muted:   0 0% 53%;
+  --stroke:  0 0% 12%;
+  --accent:  0 0% 96%;
+}
+
+/* ─── Base ──────────────────────────────────────── */
 @layer base {
   * {
     box-sizing: border-box;
-  }
-
-  body {
-    background-color: #ffffff;
-    color: #1a1a1a;
-    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    overflow-x: hidden;
-    cursor: none; /* replaced by blue dot on desktop */
   }
 
   html {
     scroll-behavior: smooth;
   }
 
-  a, button, [role="button"], label, input, select, textarea {
-    cursor: none;
-  }
-
-  /* Restore system cursor on touch/mobile devices */
-  @media (hover: none) {
-    body, a, button, [role="button"], label, input, select, textarea {
-      cursor: auto;
-    }
-    a, button, [role="button"] {
-      cursor: pointer;
-    }
+  body {
+    background-color: hsl(var(--bg));
+    color: hsl(var(--text));
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
   }
 }
 
-/* Section title - serif style */
-.section-title {
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 500;
-  color: #1a1a1a;
-  text-align: center;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+/* ─── Accent gradient utility ───────────────────── */
+.accent-gradient {
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
 }
 
-@media (min-width: 768px) {
-  .section-title {
-    font-size: 3.75rem;
-    line-height: 1;
-  }
+/* gradient border helper — wraps inner element */
+.gradient-border-wrap {
+  position: relative;
+  border-radius: inherit;
+}
+.gradient-border-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gradient-border-wrap:hover::before {
+  opacity: 1;
 }
 
-.section-subtitle {
-  color: #6b7280;
-  text-align: center;
-  font-size: 1.125rem;
-  margin-top: 0.75rem;
+/* ─── Custom Keyframes ──────────────────────────── */
+@keyframes scroll-down {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
 }
 
-/* Button styles */
-.btn-primary {
-  padding: 0.625rem 1.5rem;
-  background-color: #2563EB;
-  color: white;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: none;
-  cursor: pointer;
+@keyframes role-fade-in {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-.btn-primary:hover {
-  background-color: #1d4ed8;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
 }
 
-.btn-outline {
-  padding: 0.625rem 1.5rem;
-  border: 2px solid #1a1a1a;
-  color: #1a1a1a;
-  background: transparent;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: all 0.3s;
-  cursor: pointer;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.btn-outline:hover {
-  background-color: #1a1a1a;
-  color: white;
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
 }
 
-.btn-dark {
-  padding: 0.5rem 1.25rem;
-  background-color: #1a1a1a;
-  color: white;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: all 0.3s;
-  border: none;
-  cursor: pointer;
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.btn-dark:hover {
-  background-color: #374151;
+/* ─── Animation helpers ─────────────────────────── */
+.animate-scroll-down {
+  animation: scroll-down 1.5s ease-in-out infinite;
 }
 
-/* Fade in animation */
+.animate-role-fade-in {
+  animation: role-fade-in 0.4s ease-out forwards;
+}
+
 .fade-in {
   animation: fadeIn 0.8s ease-in;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Float animation */
 .float {
   animation: float 6s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+/* ─── Custom scrollbar (dark) ───────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Horizontal scroll container */
+::-webkit-scrollbar-track {
+  background: hsl(var(--bg));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--stroke));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted));
+}
+
+/* ─── Section title utility ─────────────────────── */
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: hsl(var(--muted));
+  margin-bottom: 1.25rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: hsl(var(--stroke));
+  flex-shrink: 0;
+}
+
+/* ─── Horizontal scroll gallery ─────────────────── */
 .scroll-gallery {
   display: flex;
   gap: 1.5rem;
@@ -164,25 +163,7 @@
   flex-shrink: 0;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #94a3b8;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* Line clamp utility */
+/* ─── Line clamp utility ────────────────────────── */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

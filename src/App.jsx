@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Experience from './components/Experience';
@@ -8,14 +8,15 @@ import Skills from './components/Skills';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ParticleBackground from './components/ParticleBackground';
+import LoadingScreen from './components/LoadingScreen';
 import './index.css';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
-      {/* Global floating particles + cursor effect — renders over everything */}
-      <ParticleBackground />
+    <div className="min-h-screen bg-bg text-text-primary">
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <Navbar />
       <Hero />
