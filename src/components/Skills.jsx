@@ -124,7 +124,7 @@ const Skills = () => {
           <div className="section-eyebrow justify-center">Skills & Expertise</div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
             Technical{' '}
-            <span className="font-display italic" style={{ color: 'hsl(var(--muted))' }}>
+            <span className="font-display italic text-text-primary">
               toolbox
             </span>
           </h2>
@@ -208,8 +208,7 @@ const Skills = () => {
         </div>
 
         <p
-          className="mt-6 text-xs uppercase tracking-widest opacity-50"
-          style={{ color: 'hsl(var(--muted))' }}
+          className="mt-6 text-xs uppercase tracking-widest text-slate-300 font-semibold opacity-90"
         >
           Click a folder to explore skills
         </p>

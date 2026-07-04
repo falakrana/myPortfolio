@@ -52,7 +52,7 @@ const Contact = () => {
           <div className="section-eyebrow justify-center">Contact</div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-display italic text-text-primary leading-tight mb-6">
             Let's work{' '}
-            <span className="font-display italic" style={{ color: 'hsl(var(--muted))' }}>
+            <span className="font-display italic text-text-primary">
               together
             </span>
           </h2>

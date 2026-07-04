@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const experiences = [
   {
@@ -7,6 +7,7 @@ const experiences = [
     company: 'Infodesk India Pvt. Ltd.',
     period: "Jan '26 – May '26",
     accentColor: '#89AACC',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=200&auto=format&fit=crop',
     achievements: [
       'Developing scalable microservices and REST APIs using .NET (C#) and Spring Boot (Java) for enterprise systems',
       'Building responsive UIs with React, Next.js, TypeScript and managing async workflows using Redux Saga',
@@ -20,6 +21,7 @@ const experiences = [
     company: 'Unified Mentor',
     period: "Jan '25 – Apr '25",
     accentColor: '#7B9FBF',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=200&auto=format&fit=crop',
     achievements: [
       'Delivered 6 real-world end-to-end Machine Learning projects',
       'Performed data cleaning and feature engineering at scale',
@@ -33,6 +35,7 @@ const experiences = [
     company: 'Parul University',
     period: "Jun '24 – Jan '25",
     accentColor: '#6087A6',
+    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=200&auto=format&fit=crop',
     achievements: [
       'Worked in a team conducting research on ML models',
       'Conducted research on transformer architectures and BERT',
@@ -40,19 +43,12 @@ const experiences = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] },
-  }),
-};
-
 const Experience = () => {
-  const [expanded, setExpanded] = useState({});
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
-  const toggle = (i) => setExpanded((prev) => ({ ...prev, [i]: !prev[i] }));
+  const toggleExpand = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
 
   return (
     <section id="experience" className="py-20 md:py-28 px-6 relative bg-bg overflow-hidden">
@@ -71,115 +67,114 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-16"
+          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
-          <div className="section-eyebrow">Work Experience</div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
-            Where I've{' '}
-            <span className="font-display italic" style={{ color: 'hsl(var(--muted))' }}>
-              worked
-            </span>
-          </h2>
+          <div>
+            <div className="section-eyebrow">Work Experience</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
+              Work{' '}
+              <span className="font-display italic text-text-primary">
+                experience
+              </span>
+            </h2>
+          </div>
+          <button
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+            className="hidden md:inline-flex items-center gap-2 rounded-full border border-stroke px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-text-primary hover:bg-surface/50 transition-colors"
+          >
+            View Projects ↘
+          </button>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div
-            className="absolute left-0 top-0 bottom-0 w-px hidden md:block"
-            style={{ backgroundColor: 'hsl(var(--stroke))' }}
-          />
+        {/* Journal style list */}
+        <div className="space-y-6">
+          {experiences.map((exp, i) => {
+            const isExpanded = expandedIndex === i;
 
-          <div className="space-y-6 md:pl-10">
-            {experiences.map((exp, i) => {
-              const isExpanded = expanded[i];
-              const shouldTrunc = exp.achievements.length > 3;
-              const shown = !isExpanded && shouldTrunc ? exp.achievements.slice(0, 3) : exp.achievements;
-
-              return (
-                <motion.div
-                  key={i}
-                  custom={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-60px' }}
-                  variants={cardVariants}
-                  className="relative group"
-                >
-                  {/* Timeline dot */}
-                  <div
-                    className="absolute left-[-14px] top-6 w-3 h-3 rounded-full border-2 border-bg hidden md:block transition-transform duration-300 group-hover:scale-125"
-                    style={{ backgroundColor: exp.accentColor, borderColor: 'hsl(var(--bg))' }}
-                  />
-
-                  {/* Card */}
-                  <div
-                    className="rounded-2xl p-6 md:p-8 border transition-all duration-500 group-hover:border-white/10"
-                    style={{
-                      backgroundColor: 'hsl(var(--surface))',
-                      borderColor: 'hsl(var(--stroke))',
-                      borderTop: `2px solid ${exp.accentColor}33`,
-                    }}
-                  >
-                    {/* Card header */}
-                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-5">
-                      <div>
-                        <h3
-                          className="text-xl md:text-2xl font-semibold text-text-primary mb-1 group-hover:text-white transition-colors"
-                        >
-                          {exp.company}
-                        </h3>
-                        <p
-                          className="text-sm font-medium"
-                          style={{ color: exp.accentColor }}
-                        >
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                onClick={() => toggleExpand(i)}
+                className={`group block w-full text-left rounded-[32px] md:rounded-[48px] p-4 md:p-6 border border-stroke transition-all duration-300 cursor-pointer overflow-hidden ${
+                  isExpanded ? 'bg-surface border-white/20' : 'bg-surface/30 hover:bg-surface'
+                }`}
+              >
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 md:gap-6">
+                  <div className="flex items-center gap-4 md:gap-6 flex-1">
+                    {/* Circle Image */}
+                    <img
+                      src={exp.image}
+                      alt={exp.company}
+                      className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border border-stroke flex-shrink-0"
+                    />
+                    
+                    {/* Role & Company */}
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h3 className="text-lg md:text-xl font-medium text-white group-hover:text-white transition-colors">
                           {exp.role}
-                        </p>
+                        </h3>
+                        <span
+                          className="w-1.5 h-1.5 rounded-full"
+                          style={{ backgroundColor: exp.accentColor }}
+                        />
+                        <span className="text-xs text-slate-300 font-mono">{exp.period}</span>
                       </div>
-                      <span
-                        className="text-xs font-medium px-3 py-1 rounded-full self-start sm:self-auto"
-                        style={{
-                          backgroundColor: `${exp.accentColor}15`,
-                          color: exp.accentColor,
-                          border: `1px solid ${exp.accentColor}30`,
-                        }}
-                      >
-                        {exp.period}
-                      </span>
+                      <p className="text-sm mt-0.5 font-semibold" style={{ color: exp.accentColor }}>
+                        {exp.company}
+                      </p>
                     </div>
-
-                    {/* Achievements */}
-                    <ul className="space-y-2.5">
-                      {shown.map((ach, j) => (
-                        <li key={j} className="flex items-start gap-3">
-                          <span
-                            className="mt-[7px] w-1 h-1 rounded-full flex-shrink-0"
-                            style={{ backgroundColor: exp.accentColor }}
-                          />
-                          <span
-                            className="text-sm leading-relaxed"
-                            style={{ color: 'hsl(var(--muted))' }}
-                          >
-                            {ach}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {shouldTrunc && (
-                      <button
-                        onClick={() => toggle(i)}
-                        className="mt-4 text-xs font-medium uppercase tracking-widest transition-colors"
-                        style={{ color: exp.accentColor }}
-                      >
-                        {isExpanded ? 'Show less ↑' : `+${exp.achievements.length - 3} more ↓`}
-                      </button>
-                    )}
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
+
+                  {/* Right trigger / read-time styling */}
+                  <div className="flex items-center gap-3 self-end sm:self-auto text-white">
+                    <span className="text-xs uppercase tracking-widest text-slate-300 hidden md:inline-block">
+                      {isExpanded ? 'Collapse' : 'View Achievements'}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                      className="w-8 h-8 rounded-full border border-stroke flex items-center justify-center bg-bg/40 text-white"
+                    >
+                      ↓
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Collapsible achievements */}
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                      animate={{ height: 'auto', opacity: 1, marginTop: 24 }}
+                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="border-t border-stroke pt-5 overflow-hidden"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ul className="space-y-3 pl-2 md:pl-20">
+                        {exp.achievements.map((ach, j) => (
+                          <li key={j} className="flex items-start gap-3">
+                            <span
+                              className="mt-[7px] w-1.5 h-1.5 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: exp.accentColor }}
+                            />
+                            <p className="text-sm md:text-base text-slate-200 leading-relaxed">
+                              {ach}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Resume download */}

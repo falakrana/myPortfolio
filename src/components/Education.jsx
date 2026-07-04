@@ -143,9 +143,9 @@ const DraggableCard = ({ edu, index }) => {
           cursor: dragging ? 'grabbing' : 'grab',
         }}
       >
-        <p className="text-text-primary text-sm font-medium leading-relaxed mb-4 select-none pointer-events-none">
+        <p className="text-slate-100 text-sm font-medium leading-relaxed mb-4 select-none pointer-events-none">
           Studied{' '}
-          <span className="font-semibold">{edu.degree}</span>{' '}
+          <span className="font-semibold text-white">{edu.degree}</span>{' '}
           at {edu.institution}. {edu.shortDesc}
         </p>
 
@@ -157,8 +157,7 @@ const DraggableCard = ({ edu, index }) => {
             Score: {edu.score}
           </span>
           <span
-            className="text-[10px] uppercase tracking-widest select-none"
-            style={{ color: 'hsl(var(--muted))' }}
+            className="text-[10px] uppercase tracking-widest select-none text-slate-300 font-semibold"
           >
             Drag to stretch
           </span>
@@ -205,7 +204,7 @@ const Education = () => (
         <div className="section-eyebrow">Education</div>
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
           Academic{' '}
-          <span className="font-display italic" style={{ color: 'hsl(var(--muted))' }}>
+          <span className="font-display italic text-text-primary">
             journey
           </span>
         </h2>

@@ -8,7 +8,7 @@ const Hero = () => {
   const nameRef = useRef(null);
   const blurRefs = useRef([]);
 
-  // Cycle roles
+  // Cycle roles every 2s
   useEffect(() => {
     const timer = setInterval(() => {
       setRoleIndex((i) => (i + 1) % ROLES.length);
@@ -16,7 +16,7 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // GSAP entrance
+  // GSAP entrance animation
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -26,9 +26,10 @@ const Hero = () => {
       { opacity: 1, y: 0, duration: 1.2, delay: 0.1 }
     );
 
-    if (blurRefs.current.length) {
+    const validBlurRefs = blurRefs.current.filter(Boolean);
+    if (validBlurRefs.length) {
       tl.fromTo(
-        blurRefs.current.filter(Boolean),
+        validBlurRefs,
         { opacity: 0, filter: 'blur(10px)', y: 20 },
         { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1, stagger: 0.1 },
         '-=0.7'
@@ -47,45 +48,55 @@ const Hero = () => {
   };
 
   return (
-    <section
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ backgroundColor: 'hsl(var(--bg))' }}
-    >
-      {/* Subtle background ambient glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(137,170,204,0.06) 0%, transparent 70%)',
-        }}
-      />
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
 
-      {/* Grid lines overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage:
-            'linear-gradient(hsl(var(--text)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--text)) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-        }}
-      />
+      {/* ─── Cosmic background image ─── */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/hero-bg.png"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover object-top"
+        />
+        {/* Dark vignette overlay — makes text pop */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 90% 70% at 50% 0%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 60%, rgba(6,10,16,0.95) 100%)',
+          }}
+        />
+        {/* Bottom fade into bg */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-48"
+          style={{ background: 'linear-gradient(to top, hsl(var(--bg)) 0%, transparent 100%)' }}
+        />
+      </div>
 
-      {/* Content */}
+      {/* ─── Hero content ─── */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto">
 
-        {/* Eyebrow */}
+        {/* Open To Work badge — top pill */}
+        <div
+          ref={addBlurRef}
+          className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-white/15 bg-black/30 backdrop-blur-md shadow-sm"
+        >
+          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.7)]" />
+          <span className="text-xs text-slate-200 font-medium tracking-widest uppercase">Open To Work</span>
+        </div>
+
+        {/* Eyebrow — COLLECTION '26 style */}
         <p
           ref={addBlurRef}
-          className="text-xs uppercase tracking-[0.3em] mb-8"
-          style={{ color: 'hsl(var(--muted))' }}
+          className="text-xs uppercase tracking-[0.35em] mb-6 text-slate-400"
         >
-          FULL STACK AI DEVELOPER
+          COLLECTION &apos;26
         </p>
 
-        {/* Name */}
+        {/* Name — huge, italic, Instrument Serif */}
         <h1
           ref={nameRef}
-          className="text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6"
+          className="text-[clamp(3.5rem,12vw,8rem)] font-display italic leading-[0.9] tracking-tight text-white mb-6 drop-shadow-2xl"
           style={{ opacity: 0 }}
         >
           Falak Rana
@@ -94,13 +105,12 @@ const Hero = () => {
         {/* Role line */}
         <p
           ref={addBlurRef}
-          className="text-base md:text-lg mb-4 font-body"
-          style={{ color: 'hsl(var(--muted))' }}
+          className="text-base md:text-xl mb-5 text-slate-300 font-body"
         >
           A{' '}
           <span
             key={roleIndex}
-            className="font-display italic text-text-primary inline-block animate-role-fade-in"
+            className="font-display italic text-white underline underline-offset-4 decoration-white/40 inline-block animate-role-fade-in"
           >
             {ROLES[roleIndex]}
           </span>{' '}
@@ -110,66 +120,41 @@ const Hero = () => {
         {/* Description */}
         <p
           ref={addBlurRef}
-          className="text-sm md:text-base max-w-md mb-12 leading-relaxed"
-          style={{ color: 'hsl(var(--muted))' }}
+          className="text-sm md:text-base max-w-md mb-12 leading-relaxed text-slate-400"
         >
           Building AI-powered systems, clean APIs, and digital experiences that scale — with a focus on the details that make products feel exceptional.
         </p>
 
         {/* CTA Buttons */}
         <div ref={addBlurRef} className="flex flex-wrap items-center justify-center gap-4">
-          {/* See Works */}
+
+          {/* See Works — solid white */}
           <button
             onClick={() => scrollToSection('projects')}
-            className="relative group rounded-full text-sm px-7 py-3.5 font-medium transition-all duration-300 hover:scale-105"
-            style={{
-              backgroundColor: 'hsl(var(--text))',
-              color: 'hsl(var(--bg))',
-            }}
+            className="group relative rounded-full text-sm px-8 py-3.5 font-semibold transition-all duration-300 hover:scale-105 bg-white text-black hover:bg-white/90"
           >
-            <span
-              className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 accent-gradient transition-opacity duration-300"
-              style={{ zIndex: -1 }}
-            />
-            <span
-              className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ backgroundColor: 'hsl(var(--bg))', zIndex: -1 }}
-            />
-            <span className="relative group-hover:text-text-primary transition-colors duration-300">
-              See Works
-            </span>
+            <span className="relative">See Works</span>
           </button>
 
-          {/* Resume */}
+          {/* Reach out — outlined */}
           <a
-            href="/NewResumeSDE.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group rounded-full text-sm px-7 py-3.5 font-medium border-2 transition-all duration-300 hover:scale-105 hover:border-transparent text-text-primary"
-            style={{ borderColor: 'hsl(var(--stroke))', backgroundColor: 'hsl(var(--bg))' }}
+            href="mailto:ranafalak18@gmail.com"
+            className="group relative rounded-full text-sm px-8 py-3.5 font-semibold border-2 border-white/30 text-white backdrop-blur-sm bg-white/5 transition-all duration-300 hover:scale-105 hover:border-white/60 hover:bg-white/10"
           >
-            <span
-              className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 accent-gradient transition-opacity duration-300"
-              style={{ zIndex: -1 }}
-            />
-            <span
-              className="absolute inset-0 rounded-full"
-              style={{ backgroundColor: 'hsl(var(--bg))', zIndex: -1 }}
-            />
-            <span className="relative">View Resume ↗</span>
+            <span className="relative">Reach out...</span>
           </a>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-        <span
-          className="text-[10px] uppercase tracking-[0.2em]"
-          style={{ color: 'hsl(var(--muted))' }}
-        >
+      {/* ─── Scroll indicator ─── */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10">
+        <span className="text-[10px] uppercase tracking-[0.3em] text-slate-400">
           SCROLL
         </span>
-        <div className="relative w-px h-10 overflow-hidden" style={{ backgroundColor: 'hsl(var(--stroke))' }}>
+        <div
+          className="relative w-px h-10 overflow-hidden"
+          style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}
+        >
           <div
             className="absolute top-0 left-0 w-full animate-scroll-down"
             style={{

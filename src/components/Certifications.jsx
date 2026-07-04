@@ -1,5 +1,9 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion, AnimatePresence } from 'motion/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const certifications = [
   {
@@ -10,7 +14,7 @@ const certifications = [
       'Demonstrated foundational knowledge of AWS Cloud, covering core services, pricing, architecture, and security best practices. Focused on serverless infrastructure and IAM.',
     link: '/Certifications/AWS-Simulearn_Cloud-Practitioner.pdf',
     accent: '#89AACC',
-    rotation: '-1deg',
+    rotation: '-3deg',
   },
   {
     title: 'Linux Fundamentals',
@@ -20,7 +24,7 @@ const certifications = [
       'Fundamental Linux operating system concepts, command line operations, system administration, and network configuration for enterprise environments.',
     link: '/Certifications/Linux-unhatched-CISCO.pdf',
     accent: '#7B9FBF',
-    rotation: '1deg',
+    rotation: '2deg',
   },
   {
     title: 'Data Science Specialization',
@@ -30,7 +34,7 @@ const certifications = [
       'Comprehensive data science bootcamp covering Python, statistics, machine learning, deep learning, and data visualization. Built and deployed multiple predictive models.',
     link: '/Certifications/DataScienceBootcamp.pdf',
     accent: '#6087A6',
-    rotation: '1.5deg',
+    rotation: '-2deg',
   },
   {
     title: 'Fundamentals of ML & AI',
@@ -40,7 +44,7 @@ const certifications = [
       'Core concepts of machine learning and artificial intelligence on AWS platform, including foundational ML services and AI implementation strategies.',
     link: '/Certifications/fundamental-of-ml-and-ai-aws.pdf',
     accent: '#8FAACC',
-    rotation: '0deg',
+    rotation: '4deg',
   },
   {
     title: 'Tableau Visualization',
@@ -50,7 +54,7 @@ const certifications = [
       'Advanced data visualization skills using Tableau. Mastered dashboard creation, data storytelling, and complex calculated fields for business analytics.',
     link: '/Certifications/Tableau.pdf',
     accent: '#7593B8',
-    rotation: '-0.5deg',
+    rotation: '-4deg',
   },
   {
     title: 'MySQL Competency',
@@ -60,7 +64,7 @@ const certifications = [
       'Proficiency in MySQL database management, query optimization, and relational database design. Covered subqueries, joins, and indexing strategies.',
     link: '/Certifications/SQL.pdf',
     accent: '#89AACC',
-    rotation: '-1.5deg',
+    rotation: '3deg',
   },
   {
     title: 'AWS S3 Storage Service',
@@ -70,98 +74,125 @@ const certifications = [
       'Knowledge of AWS S3 storage service, including object storage, storage optimization, and data transfer options for scalable cloud architecture.',
     link: '/Certifications/intro-aws-s3.pdf',
     accent: '#6B8EAD',
-    rotation: '0.5deg',
+    rotation: '-1deg',
   },
 ];
 
-const Certifications = () => (
-  <section
-    id="certifications"
-    className="py-20 md:py-28 px-6 relative bg-bg overflow-visible"
-  >
-    <div
-      className="absolute top-0 right-0 w-[400px] h-[400px] pointer-events-none"
-      style={{
-        background: 'radial-gradient(circle at top right, rgba(137,170,204,0.04) 0%, transparent 60%)',
-      }}
-    />
+const Certifications = () => {
+  const containerRef = useRef(null);
+  const leftColRef = useRef(null);
+  const rightColRef = useRef(null);
+  const [selectedCert, setSelectedCert] = useState(null);
 
-    <div className="max-w-3xl mx-auto relative z-10">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-        className="text-center mb-20"
-      >
+  useEffect(() => {
+    // Only apply GSAP scroll parallax on desktop/medium screens
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      // Parallax columns effect
+      gsap.fromTo(
+        leftColRef.current,
+        { y: 80 },
+        {
+          y: -150,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        rightColRef.current,
+        { y: -80 },
+        {
+          y: 150,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  const leftCerts = certifications.filter((_, i) => i % 2 === 0);
+  const rightCerts = certifications.filter((_, i) => i % 2 !== 0);
+
+  return (
+    <section
+      ref={containerRef}
+      id="certifications"
+      className="relative bg-bg overflow-visible py-24 px-6 border-t"
+      style={{ borderColor: 'hsl(var(--stroke))' }}
+    >
+      {/* Background decorations */}
+      <div
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-900/5 rounded-full blur-3xl pointer-events-none"
+      />
+      <div
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-900/5 rounded-full blur-3xl pointer-events-none"
+      />
+
+      {/* Mobile Header (visible on mobile only) */}
+      <div className="md:hidden text-center mb-16">
         <div className="section-eyebrow justify-center">Certifications</div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
+        <h2 className="text-4xl font-display italic text-white leading-tight mb-4">
           Technical{' '}
-          <span className="font-display italic" style={{ color: 'hsl(var(--muted))' }}>
+          <span className="font-display italic text-white">
             milestones
           </span>
         </h2>
-      </motion.div>
+        <p className="text-sm text-slate-300">
+          A gallery showcasing my certified expertise and platform qualifications.
+        </p>
+      </div>
 
-      {/* Stacking cards */}
-      <div className="relative space-y-28 md:space-y-40 pb-28">
-        {certifications.map((cert, index) => (
-          <div
-            key={index}
-            className="sticky transition-all duration-500 hover:scale-[1.01]"
-            style={{
-              top: `${index * 36 + 90}px`,
-              zIndex: index + 10,
-              transform: `rotate(${cert.rotation})`,
-            }}
-          >
-            {/* Paperclip decoration */}
-            <div className="absolute top-[-15px] right-8 z-20 pointer-events-none opacity-30">
-              <svg width="60" height="60" viewBox="0 0 100 100" fill="none">
-                <path
-                  d="M72.2 26.5L34.2 64.5C31.4 67.3 31.4 71.8 34.2 74.6C37 77.4 41.5 77.4 44.3 74.6L82.3 36.6C86.5 32.4 86.5 25.6 82.3 21.4C78.1 17.2 71.3 17.2 67.1 21.4L23.4 65.1C17.8 70.7 17.8 80.3 23.4 85.9C29 91.5 38.6 91.5 44.2 85.9L80.3 49.8"
-                  stroke={cert.accent}
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-
-            {/* Card */}
-            <div
-              className="rounded-3xl border overflow-hidden flex flex-col shadow-2xl"
-              style={{
-                backgroundColor: 'hsl(var(--surface))',
-                borderColor: 'hsl(var(--stroke))',
-                boxShadow: `0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px ${cert.accent}20`,
-              }}
-            >
-              {/* Colored header */}
+      {/* 3-Column Layout: Left Cards | Center Sticky Text | Right Cards */}
+      <div className="relative max-w-6xl mx-auto z-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 items-start">
+          
+          {/* Left Column */}
+          <div ref={leftColRef} className="space-y-10 md:space-y-12">
+            {leftCerts.map((cert, index) => (
               <div
-                className="px-8 py-7 rounded-t-3xl"
+                key={index}
+                onClick={() => setSelectedCert(cert)}
+                className="aspect-square bg-surface border border-stroke rounded-3xl p-6 flex flex-col justify-between group cursor-pointer relative transition-transform duration-300 hover:scale-[1.03] shadow-2xl overflow-hidden"
                 style={{
-                  backgroundColor: `${cert.accent}12`,
-                  borderBottom: `1px solid ${cert.accent}25`,
+                  transform: `rotate(${cert.rotation})`,
+                  borderColor: 'rgba(255, 255, 255, 0.1)',
                 }}
               >
-                <div className="flex items-start justify-between gap-4">
+                {/* Halftone overlay */}
+                <div
+                  className="absolute inset-0 opacity-15 pointer-events-none"
+                  style={{
+                    backgroundImage: 'radial-gradient(circle, #89AACC 1.2px, transparent 1.2px)',
+                    backgroundSize: '10px 10px',
+                  }}
+                />
+
+                {/* Top Info */}
+                <div className="relative z-10 flex justify-between items-start">
                   <div>
-                    <h3
-                      className="text-2xl md:text-3xl font-display italic leading-tight mb-1"
-                      style={{ color: 'hsl(var(--text))' }}
-                    >
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      {cert.issuer}
+                    </span>
+                    <h3 className="text-lg md:text-xl font-display italic text-white mt-1">
                       {cert.title}
                     </h3>
-                    <p
-                      className="text-xs font-bold uppercase tracking-widest"
-                      style={{ color: cert.accent }}
-                    >
-                      {cert.issuer}
-                    </p>
                   </div>
                   <span
-                    className="text-[10px] font-bold px-3 py-1 rounded-full border flex-shrink-0 mt-1"
+                    className="text-[9px] font-bold px-2 py-0.5 rounded-md border"
                     style={{
                       backgroundColor: `${cert.accent}15`,
                       color: cert.accent,
@@ -171,50 +202,195 @@ const Certifications = () => (
                     {cert.date}
                   </span>
                 </div>
-              </div>
 
-              {/* Body */}
-              <div className="px-8 py-6 flex flex-col justify-between flex-grow">
-                <p
-                  className="text-sm md:text-base leading-relaxed mb-6 italic"
-                  style={{ color: 'hsl(var(--muted))' }}
-                >
+                {/* Body Text (high contrast) */}
+                <p className="relative z-10 text-xs md:text-sm text-slate-200 leading-relaxed italic my-4 font-medium">
                   "{cert.description}"
                 </p>
 
+                {/* Bottom Trigger Label */}
+                <div className="relative z-10 flex justify-between items-center border-t border-stroke pt-4">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Click to View
+                  </span>
+                  <span className="text-xs" style={{ color: cert.accent }}>
+                    ↗
+                  </span>
+                </div>
+
+                {/* Hover overlay */}
                 <div
-                  className="flex justify-between items-center pt-4 border-t"
-                  style={{ borderColor: 'hsl(var(--stroke))' }}
+                  className="absolute inset-0 bg-bg/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center backdrop-blur-md"
                 >
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="w-1.5 h-1.5 rounded-full"
-                      style={{ backgroundColor: cert.accent }}
-                    />
-                    <span
-                      className="text-[10px] font-bold uppercase tracking-widest"
-                      style={{ color: 'hsl(var(--muted))' }}
-                    >
-                      Verified
-                    </span>
-                  </div>
-                  <a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-bold underline underline-offset-4 transition-opacity hover:opacity-70"
-                    style={{ color: cert.accent }}
+                  <div
+                    className="rounded-full px-4 py-2 text-xs font-semibold flex items-center gap-2"
+                    style={{
+                      background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
+                      color: 'hsl(var(--bg))',
+                    }}
                   >
-                    View Certificate ↗
-                  </a>
+                    View Milestones — <span className="italic font-display">{cert.title}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
+
+          {/* Center Column (Sticky Desktop text) */}
+          <div className="hidden md:block sticky top-[30vh] py-8 text-center max-w-xs mx-auto z-10">
+            <div className="section-eyebrow justify-center">Certifications</div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display italic text-white leading-tight mb-4">
+              Technical{' '}
+              <span className="font-display italic text-white">
+                milestones
+              </span>
+            </h2>
+            <p className="text-xs md:text-sm text-slate-300 leading-relaxed">
+              A scroll-driven gallery showcasing my certified expertise, technical milestones, and platform qualifications.
+            </p>
+          </div>
+
+          {/* Right Column */}
+          <div ref={rightColRef} className="space-y-10 md:space-y-12 md:mt-24">
+            {rightCerts.map((cert, index) => (
+              <div
+                key={index}
+                onClick={() => setSelectedCert(cert)}
+                className="aspect-square bg-surface border border-stroke rounded-3xl p-6 flex flex-col justify-between group cursor-pointer relative transition-transform duration-300 hover:scale-[1.03] shadow-2xl overflow-hidden"
+                style={{
+                  transform: `rotate(${cert.rotation})`,
+                  borderColor: 'rgba(255, 255, 255, 0.1)',
+                }}
+              >
+                {/* Halftone overlay */}
+                <div
+                  className="absolute inset-0 opacity-15 pointer-events-none"
+                  style={{
+                    backgroundImage: 'radial-gradient(circle, #89AACC 1.2px, transparent 1.2px)',
+                    backgroundSize: '10px 10px',
+                  }}
+                />
+
+                {/* Top Info */}
+                <div className="relative z-10 flex justify-between items-start">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      {cert.issuer}
+                    </span>
+                    <h3 className="text-lg md:text-xl font-display italic text-white mt-1">
+                      {cert.title}
+                    </h3>
+                  </div>
+                  <span
+                    className="text-[9px] font-bold px-2 py-0.5 rounded-md border"
+                    style={{
+                      backgroundColor: `${cert.accent}15`,
+                      color: cert.accent,
+                      borderColor: `${cert.accent}30`,
+                    }}
+                  >
+                    {cert.date}
+                  </span>
+                </div>
+
+                {/* Body Text (high contrast) */}
+                <p className="relative z-10 text-xs md:text-sm text-slate-200 leading-relaxed italic my-4 font-medium">
+                  "{cert.description}"
+                </p>
+
+                {/* Bottom Trigger Label */}
+                <div className="relative z-10 flex justify-between items-center border-t border-stroke pt-4">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Click to View
+                  </span>
+                  <span className="text-xs" style={{ color: cert.accent }}>
+                    ↗
+                  </span>
+                </div>
+
+                {/* Hover overlay */}
+                <div
+                  className="absolute inset-0 bg-bg/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center backdrop-blur-md"
+                >
+                  <div
+                    className="rounded-full px-4 py-2 text-xs font-semibold flex items-center gap-2"
+                    style={{
+                      background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
+                      color: 'hsl(var(--bg))',
+                    }}
+                  >
+                    View Milestones — <span className="italic font-display">{cert.title}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
       </div>
-    </div>
-  </section>
-);
+
+      {/* Lightbox / Modal View */}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-10"
+            onClick={() => setSelectedCert(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="bg-surface border border-stroke rounded-3xl w-full max-w-4xl h-[85vh] overflow-hidden flex flex-col relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCert(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full border border-stroke bg-bg/50 backdrop-blur text-white flex items-center justify-center hover:bg-white/10 transition-colors"
+              >
+                ✕
+              </button>
+
+              {/* Title Header */}
+              <div className="p-6 border-b border-stroke flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface">
+                <div>
+                  <span className="text-xs uppercase tracking-widest text-slate-400">{selectedCert.issuer}</span>
+                  <h3 className="text-2xl md:text-3xl font-display italic text-white">
+                    {selectedCert.title}
+                  </h3>
+                </div>
+                <a
+                  href={selectedCert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-full text-xs font-semibold flex items-center gap-2"
+                  style={{
+                    background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
+                    color: 'hsl(var(--bg))',
+                  }}
+                >
+                  Download PDF ↗
+                </a>
+              </div>
+
+              {/* PDF Viewer frame */}
+              <div className="flex-1 bg-bg relative">
+                <iframe
+                  src={selectedCert.link + '#toolbar=0'}
+                  title={selectedCert.title}
+                  className="w-full h-full border-0"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+};
 
 export default Certifications;
