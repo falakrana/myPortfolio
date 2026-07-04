@@ -152,11 +152,21 @@ const CertCard = ({ cert, onClick }) => {
   );
 };
 
+const MOBILE_PER_PAGE = 4;
+
 const Certifications = () => {
   const containerRef = useRef(null);
   const leftColRef = useRef(null);
   const rightColRef = useRef(null);
   const [selectedCert, setSelectedCert] = useState(null);
+  const [mobilePage, setMobilePage] = useState(0);
+
+  const totalMobilePages = Math.ceil(certifications.length / MOBILE_PER_PAGE);
+
+  const mobileCerts = certifications.slice(
+    mobilePage * MOBILE_PER_PAGE,
+    (mobilePage + 1) * MOBILE_PER_PAGE
+  );
 
   useEffect(() => {
     // Only apply GSAP scroll parallax on desktop/medium screens
@@ -217,7 +227,7 @@ const Certifications = () => {
       />
 
       {/* Mobile Header (visible on mobile only) */}
-      <div className="md:hidden text-center mb-16">
+      <div className="md:hidden text-center mb-10">
         <div className="section-eyebrow justify-center">Certifications</div>
         <h2 className="text-4xl font-display italic text-white leading-tight mb-4">
           Technical{' '}
@@ -230,12 +240,81 @@ const Certifications = () => {
         </p>
       </div>
 
-      {/* 3-Column Layout: Left Cards | Center Sticky Text | Right Cards */}
-      <div className="relative max-w-6xl mx-auto z-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 items-start">
+      {/* ── MOBILE: Paginated single-column layout ─────────────────── */}
+      <div className="md:hidden relative max-w-lg mx-auto z-20">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={mobilePage}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="space-y-5"
+          >
+            {mobileCerts.map((cert, index) => (
+              <CertCard
+                key={mobilePage * MOBILE_PER_PAGE + index}
+                cert={cert}
+                onClick={() => setSelectedCert(cert)}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Pagination controls */}
+        <div className="flex items-center justify-between mt-8">
+          {/* Page counter */}
+          <span className="text-xs font-mono text-slate-400 font-semibold">
+            {String(mobilePage + 1).padStart(2, '0')} / {String(totalMobilePages).padStart(2, '0')}
+          </span>
+
+          {/* Dot indicators */}
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalMobilePages }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setMobilePage(i)}
+                className="transition-all duration-300 rounded-full"
+                style={{
+                  width: i === mobilePage ? '20px' : '6px',
+                  height: '6px',
+                  backgroundColor: i === mobilePage ? '#89AACC' : 'rgba(255,255,255,0.2)',
+                }}
+                aria-label={`Go to page ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Arrow buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setMobilePage((p) => Math.max(0, p - 1))}
+              disabled={mobilePage === 0}
+              className="w-10 h-10 rounded-full border flex items-center justify-center text-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+              style={{ borderColor: 'hsl(var(--stroke))', backgroundColor: 'hsl(var(--surface))' }}
+              aria-label="Previous page"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => setMobilePage((p) => Math.min(totalMobilePages - 1, p + 1))}
+              disabled={mobilePage === totalMobilePages - 1}
+              className="w-10 h-10 rounded-full border flex items-center justify-center text-white transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+              style={{ borderColor: 'hsl(var(--stroke))', backgroundColor: 'hsl(var(--surface))' }}
+              aria-label="Next page"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── DESKTOP: 3-Column parallax layout (md+) ───────────────── */}
+      <div className="hidden md:block relative max-w-6xl mx-auto z-20">
+        <div className="grid grid-cols-3 gap-12 items-start">
           
           {/* Left Column */}
-          <div ref={leftColRef} className="space-y-10 md:space-y-12">
+          <div ref={leftColRef} className="space-y-12">
             {leftCerts.map((cert, index) => (
               <CertCard
                 key={index}
@@ -246,7 +325,7 @@ const Certifications = () => {
           </div>
 
           {/* Center Column (Sticky Desktop text) */}
-          <div className="hidden md:block sticky top-[30vh] py-8 text-center max-w-xs mx-auto z-10">
+          <div className="sticky top-[30vh] py-8 text-center max-w-xs mx-auto z-10">
             <div className="section-eyebrow justify-center">Certifications</div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display italic text-white leading-tight mb-4">
               Technical{' '}
@@ -260,7 +339,7 @@ const Certifications = () => {
           </div>
 
           {/* Right Column */}
-          <div ref={rightColRef} className="space-y-10 md:space-y-12 md:mt-24">
+          <div ref={rightColRef} className="space-y-12 mt-24">
             {rightCerts.map((cert, index) => (
               <CertCard
                 key={index}
