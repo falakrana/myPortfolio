@@ -122,9 +122,9 @@ const Skills = () => {
           className="mb-12"
         >
           <div className="section-eyebrow justify-center">Skills & Expertise</div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-white leading-tight">
             Technical{' '}
-            <span className="font-display italic text-text-primary">
+            <span className="font-display italic text-white">
               toolbox
             </span>
           </h2>

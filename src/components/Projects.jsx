@@ -133,9 +133,9 @@ const Projects = () => {
         <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <div className="section-eyebrow">Selected Works</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-white leading-tight">
               Featured{' '}
-              <span className="font-display italic text-text-primary">
+              <span className="font-display italic text-white">
                 projects
               </span>
             </h2>
@@ -149,14 +149,14 @@ const Projects = () => {
             <div className="flex items-center gap-2">
               <button
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-full border border-stroke flex items-center justify-center text-text-primary hover:bg-surface transition-colors"
+                className="w-10 h-10 rounded-full border border-stroke flex items-center justify-center text-white hover:bg-surface transition-colors"
                 aria-label="Previous Page"
               >
                 ←
               </button>
               <button
                 onClick={handleNext}
-                className="w-10 h-10 rounded-full border border-stroke flex items-center justify-center text-text-primary hover:bg-surface transition-colors"
+                className="w-10 h-10 rounded-full border border-stroke flex items-center justify-center text-white hover:bg-surface transition-colors"
                 aria-label="Next Page"
               >
                 →
@@ -225,7 +225,8 @@ const Projects = () => {
 
                     {/* Hover screen */}
                     <div
-                      className="absolute inset-0 bg-bg/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-lg flex flex-col justify-center items-center p-6 text-center"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center"
+                      style={{ background: 'rgba(8, 8, 8, 0.88)', backdropFilter: 'blur(12px)' }}
                     >
                       {/* Hover label pill with animated border */}
                       <div
@@ -234,17 +235,17 @@ const Projects = () => {
                           background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
                         }}
                       >
-                        <div className="bg-surface px-5 py-2.5 rounded-full text-xs font-semibold text-text-primary">
+                        <div className="px-5 py-2.5 rounded-full text-xs font-semibold text-white" style={{ background: 'hsl(0 0% 10%)' }}>
                           View — <span className="font-display italic font-medium">{project.title}</span>
                         </div>
                       </div>
 
                       {/* Hover description details */}
-                      <p className="text-sm text-slate-200 max-w-sm leading-relaxed mb-4">
+                      <p className="text-sm text-slate-100 max-w-sm leading-relaxed mb-4">
                         {project.description}
                       </p>
 
-                      <span className="text-xs uppercase tracking-widest text-[#89AACC] font-semibold border-b border-[#89AACC]/30 pb-0.5">
+                      <span className="text-xs uppercase tracking-widest text-[#89AACC] font-semibold border-b border-[#89AACC]/50 pb-0.5">
                         Open GitHub ↗
                       </span>
                     </div>
@@ -262,7 +263,7 @@ const Projects = () => {
             href="https://github.com/falakrana"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-stroke px-6 py-3 text-xs font-semibold uppercase tracking-widest text-text-primary hover:bg-surface/50 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full border border-stroke px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white hover:bg-surface/50 transition-colors"
           >
             Explore All Repositories ↗
           </a>

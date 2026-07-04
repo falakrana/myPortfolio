@@ -202,9 +202,9 @@ const Education = () => (
         className="mb-16"
       >
         <div className="section-eyebrow">Education</div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-white leading-tight">
           Academic{' '}
-          <span className="font-display italic text-text-primary">
+          <span className="font-display italic text-white">
             journey
           </span>
         </h2>

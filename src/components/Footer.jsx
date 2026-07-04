@@ -13,7 +13,7 @@ const Footer = () => (
         {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="font-display italic text-xl text-text-primary hover:opacity-70 transition-opacity"
+          className="font-display italic text-xl text-white hover:opacity-70 transition-opacity"
         >
           Falak<span style={{ color: '#89AACC' }}>.</span>
         </button>
@@ -24,7 +24,7 @@ const Footer = () => (
             <button
               key={id}
               onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-xs uppercase tracking-widest capitalize transition-colors hover:text-text-primary"
+              className="text-xs uppercase tracking-widest capitalize transition-colors hover:text-white"
               style={{ color: 'hsl(var(--muted))' }}
             >
               {id}
@@ -35,9 +35,7 @@ const Footer = () => (
         {/* Socials */}
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_6px_rgba(74,222,128,0.5)] animate-pulse" />
-          <span className="text-xs uppercase tracking-widest" style={{ color: 'hsl(var(--muted))' }}>
-            Open to work
-          </span>
+          
         </div>
       </div>
 

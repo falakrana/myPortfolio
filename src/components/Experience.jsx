@@ -246,16 +246,16 @@ const Experience = () => {
         >
           <div>
             <div className="section-eyebrow">Work Experience</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-text-primary leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-white leading-tight">
               Work{' '}
-              <span className="font-display italic text-text-primary">
+              <span className="font-display italic text-white">
                 experience
               </span>
             </h2>
           </div>
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="hidden md:inline-flex items-center gap-2 rounded-full border border-stroke px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-text-primary hover:bg-surface/50 transition-colors"
+            className="hidden md:inline-flex items-center gap-2 rounded-full border border-stroke px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-surface/50 transition-colors"
           >
             View Projects ↘
           </button>
@@ -287,7 +287,7 @@ const Experience = () => {
           <a
             href="/NewResumeSDE.pdf"
             download="FalakRanaResume.pdf"
-            className="relative group inline-flex items-center gap-3 rounded-full text-sm px-7 py-3.5 font-medium transition-all duration-300 hover:scale-105 text-text-primary border"
+            className="relative group inline-flex items-center gap-3 rounded-full text-sm px-7 py-3.5 font-medium transition-all duration-300 hover:scale-105 text-white border"
             style={{ borderColor: 'hsl(var(--stroke))', backgroundColor: 'hsl(var(--surface))' }}
           >
             <span

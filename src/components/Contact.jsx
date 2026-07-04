@@ -50,9 +50,9 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <div className="section-eyebrow justify-center">Contact</div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-display italic text-text-primary leading-tight mb-6">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-display italic text-white leading-tight mb-6">
             Let's work{' '}
-            <span className="font-display italic text-text-primary">
+            <span className="font-display italic text-white">
               together
             </span>
           </h2>
@@ -80,7 +80,7 @@ const Contact = () => {
             }}
           >
             <span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_6px_rgba(74,222,128,0.6)] animate-pulse" />
-            <span className="text-xs font-medium text-text-primary uppercase tracking-widest">
+            <span className="text-xs font-medium text-white uppercase tracking-widest">
               Available for projects
             </span>
           </div>
@@ -124,7 +124,7 @@ const Contact = () => {
                 <p className="text-xs font-medium uppercase tracking-widest mb-0.5" style={{ color: 'hsl(var(--muted))' }}>
                   Email me at
                 </p>
-                <p className="text-text-primary font-semibold text-base group-hover:text-white transition-colors">
+                <p className="text-white font-semibold text-base group-hover:text-white transition-colors">
                   ranafalak18@gmail.com
                 </p>
               </div>
@@ -176,7 +176,7 @@ const Contact = () => {
                 <p className="text-xs font-medium uppercase tracking-widest mb-0.5" style={{ color: 'hsl(var(--muted))' }}>
                   Connect on
                 </p>
-                <p className="text-text-primary font-semibold text-base group-hover:text-white transition-colors">
+                <p className="text-white font-semibold text-base group-hover:text-white transition-colors">
                   LinkedIn
                 </p>
               </div>
