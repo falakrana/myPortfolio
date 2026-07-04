@@ -78,6 +78,79 @@ const certifications = [
   },
 ];
 
+// ── CertCard: glow border only on hover, no overlay ──────────────
+const CertCard = ({ cert, onClick }) => {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="aspect-square bg-surface rounded-3xl p-6 flex flex-col justify-between cursor-pointer relative overflow-hidden shadow-2xl transition-all duration-300"
+      style={{
+        transform: `rotate(${cert.rotation})`,
+        border: `1px solid ${hovered ? cert.accent : 'rgba(255,255,255,0.1)'}`,
+        boxShadow: hovered
+          ? `0 0 0 1px ${cert.accent}40, 0 0 18px 4px ${cert.accent}30, 0 8px 32px rgba(0,0,0,0.4)`
+          : '0 8px 32px rgba(0,0,0,0.4)',
+      }}
+    >
+      {/* Halftone dot texture */}
+      <div
+        className="absolute inset-0 opacity-[0.12] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #89AACC 1.2px, transparent 1.2px)',
+          backgroundSize: '10px 10px',
+        }}
+      />
+
+      {/* Top: issuer + title + date badge */}
+      <div className="relative z-10 flex justify-between items-start">
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            {cert.issuer}
+          </span>
+          <h3 className="text-lg md:text-xl font-display italic text-white mt-1">
+            {cert.title}
+          </h3>
+        </div>
+        <span
+          className="text-[9px] font-bold px-2 py-0.5 rounded-md border flex-shrink-0 ml-2"
+          style={{
+            backgroundColor: `${cert.accent}15`,
+            color: cert.accent,
+            borderColor: `${cert.accent}40`,
+          }}
+        >
+          {cert.date}
+        </span>
+      </div>
+
+      {/* Description */}
+      <p className="relative z-10 text-xs md:text-sm text-slate-300 leading-relaxed italic my-4">
+        &ldquo;{cert.description}&rdquo;
+      </p>
+
+      {/* Bottom CTA */}
+      <div
+        className="relative z-10 flex justify-between items-center pt-4"
+        style={{ borderTop: `1px solid rgba(255,255,255,0.08)` }}
+      >
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+          Click to View
+        </span>
+        <span
+          className="text-xs transition-colors duration-300"
+          style={{ color: hovered ? cert.accent : 'rgba(255,255,255,0.3)' }}
+        >
+          ↗
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const Certifications = () => {
   const containerRef = useRef(null);
   const leftColRef = useRef(null);
@@ -163,76 +236,11 @@ const Certifications = () => {
           {/* Left Column */}
           <div ref={leftColRef} className="space-y-10 md:space-y-12">
             {leftCerts.map((cert, index) => (
-              <div
+              <CertCard
                 key={index}
+                cert={cert}
                 onClick={() => setSelectedCert(cert)}
-                className="aspect-square bg-surface border border-stroke rounded-3xl p-6 flex flex-col justify-between group cursor-pointer relative transition-transform duration-300 hover:scale-[1.03] shadow-2xl overflow-hidden"
-                style={{
-                  transform: `rotate(${cert.rotation})`,
-                  borderColor: 'rgba(255, 255, 255, 0.1)',
-                }}
-              >
-                {/* Halftone overlay */}
-                <div
-                  className="absolute inset-0 opacity-15 pointer-events-none"
-                  style={{
-                    backgroundImage: 'radial-gradient(circle, #89AACC 1.2px, transparent 1.2px)',
-                    backgroundSize: '10px 10px',
-                  }}
-                />
-
-                {/* Top Info */}
-                <div className="relative z-10 flex justify-between items-start">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                      {cert.issuer}
-                    </span>
-                    <h3 className="text-lg md:text-xl font-display italic text-white mt-1">
-                      {cert.title}
-                    </h3>
-                  </div>
-                  <span
-                    className="text-[9px] font-bold px-2 py-0.5 rounded-md border"
-                    style={{
-                      backgroundColor: `${cert.accent}15`,
-                      color: cert.accent,
-                      borderColor: `${cert.accent}30`,
-                    }}
-                  >
-                    {cert.date}
-                  </span>
-                </div>
-
-                {/* Body Text (high contrast) */}
-                <p className="relative z-10 text-xs md:text-sm text-slate-200 leading-relaxed italic my-4 font-medium">
-                  "{cert.description}"
-                </p>
-
-                {/* Bottom Trigger Label */}
-                <div className="relative z-10 flex justify-between items-center border-t border-stroke pt-4">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    Click to View
-                  </span>
-                  <span className="text-xs" style={{ color: cert.accent }}>
-                    ↗
-                  </span>
-                </div>
-
-                {/* Hover overlay */}
-                <div
-                  className="absolute inset-0 bg-bg/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center backdrop-blur-md"
-                >
-                  <div
-                    className="rounded-full px-4 py-2 text-xs font-semibold flex items-center gap-2"
-                    style={{
-                      background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
-                      color: 'hsl(var(--bg))',
-                    }}
-                  >
-                    View Milestones — <span className="italic font-display">{cert.title}</span>
-                  </div>
-                </div>
-              </div>
+              />
             ))}
           </div>
 
@@ -253,76 +261,11 @@ const Certifications = () => {
           {/* Right Column */}
           <div ref={rightColRef} className="space-y-10 md:space-y-12 md:mt-24">
             {rightCerts.map((cert, index) => (
-              <div
+              <CertCard
                 key={index}
+                cert={cert}
                 onClick={() => setSelectedCert(cert)}
-                className="aspect-square bg-surface border border-stroke rounded-3xl p-6 flex flex-col justify-between group cursor-pointer relative transition-transform duration-300 hover:scale-[1.03] shadow-2xl overflow-hidden"
-                style={{
-                  transform: `rotate(${cert.rotation})`,
-                  borderColor: 'rgba(255, 255, 255, 0.1)',
-                }}
-              >
-                {/* Halftone overlay */}
-                <div
-                  className="absolute inset-0 opacity-15 pointer-events-none"
-                  style={{
-                    backgroundImage: 'radial-gradient(circle, #89AACC 1.2px, transparent 1.2px)',
-                    backgroundSize: '10px 10px',
-                  }}
-                />
-
-                {/* Top Info */}
-                <div className="relative z-10 flex justify-between items-start">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                      {cert.issuer}
-                    </span>
-                    <h3 className="text-lg md:text-xl font-display italic text-white mt-1">
-                      {cert.title}
-                    </h3>
-                  </div>
-                  <span
-                    className="text-[9px] font-bold px-2 py-0.5 rounded-md border"
-                    style={{
-                      backgroundColor: `${cert.accent}15`,
-                      color: cert.accent,
-                      borderColor: `${cert.accent}30`,
-                    }}
-                  >
-                    {cert.date}
-                  </span>
-                </div>
-
-                {/* Body Text (high contrast) */}
-                <p className="relative z-10 text-xs md:text-sm text-slate-200 leading-relaxed italic my-4 font-medium">
-                  "{cert.description}"
-                </p>
-
-                {/* Bottom Trigger Label */}
-                <div className="relative z-10 flex justify-between items-center border-t border-stroke pt-4">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    Click to View
-                  </span>
-                  <span className="text-xs" style={{ color: cert.accent }}>
-                    ↗
-                  </span>
-                </div>
-
-                {/* Hover overlay */}
-                <div
-                  className="absolute inset-0 bg-bg/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 text-center backdrop-blur-md"
-                >
-                  <div
-                    className="rounded-full px-4 py-2 text-xs font-semibold flex items-center gap-2"
-                    style={{
-                      background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
-                      color: 'hsl(var(--bg))',
-                    }}
-                  >
-                    View Milestones — <span className="italic font-display">{cert.title}</span>
-                  </div>
-                </div>
-              </div>
+              />
             ))}
           </div>
 
