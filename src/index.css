@@ -22,6 +22,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -173,4 +174,11 @@
 
 .project-description {
   overflow: hidden;
+}
+
+/* ─── Cert card rotation (desktop only) ────────── */
+@media (min-width: 768px) {
+  .cert-card-rotate {
+    transform: rotate(var(--cert-rotation, 0deg));
+  }
 }

@@ -149,11 +149,11 @@ const Hero = () => {
         </p>
 
         {/* CTA Buttons */}
-        <div ref={addBlurRef} className="flex flex-wrap items-center justify-center gap-4">
+        <div ref={addBlurRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
           {/* See Works — solid white */}
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group relative rounded-full text-sm px-8 py-3.5 font-semibold transition-all duration-300 hover:scale-105 bg-white text-black hover:bg-white/90"
+            className="group relative rounded-full text-sm px-8 py-3.5 font-semibold transition-all duration-300 hover:scale-105 bg-white text-black hover:bg-white/90 w-full sm:w-auto"
           >
             See Works
           </button>
@@ -161,7 +161,7 @@ const Hero = () => {
           {/* Reach out — outlined */}
           <a
             href="mailto:ranafalak18@gmail.com"
-            className="group relative rounded-full text-sm px-8 py-3.5 font-semibold border-2 border-white/30 text-white backdrop-blur-sm bg-white/5 transition-all duration-300 hover:scale-105 hover:border-white/60 hover:bg-white/10"
+            className="group relative rounded-full text-sm px-8 py-3.5 font-semibold border-2 border-white/30 text-white backdrop-blur-sm bg-white/5 transition-all duration-300 hover:scale-105 hover:border-white/60 hover:bg-white/10 w-full sm:w-auto text-center"
           >
             Reach out...
           </a>

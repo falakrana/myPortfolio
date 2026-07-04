@@ -103,7 +103,7 @@ const Skills = () => {
   const total = skillCategories.length;
 
   return (
-    <section id="skills" className="py-20 md:py-28 px-6 relative overflow-hidden">
+    <section id="skills" className="py-20 md:py-28 px-6 relative overflow-x-hidden">
       {/* Ambient */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
@@ -210,7 +210,9 @@ const Skills = () => {
         <p
           className="mt-6 text-xs uppercase tracking-widest text-slate-300 font-semibold opacity-90"
         >
-          Click a folder to explore skills
+          <span className="hidden sm:inline">Click</span>
+          <span className="sm:hidden">Tap</span>
+          {' '}a folder to explore skills
         </p>
       </div>
 
@@ -344,17 +346,18 @@ const Skills = () => {
           text-transform: uppercase; letter-spacing: 0.06em; user-select: none;
         }
         @media (max-width: 640px) {
-          .orbit-stage-dark { height: 420px; }
-          .orbit-ring-dark { width: 210px; height: 210px; }
-          .orbit-item-dark { width: 210px; height: 210px; margin-left: -105px; margin-top: -105px; }
-          .orbit-inner-dark { margin-top: -30px; }
-          .folder-dark { width: 78px; height: 60px; }
-          .folder-tab-dark { top: -8px; width: 30px; height: 10px; }
-          .folder-front-dark span { font-size: 1rem !important; }
-          .folder-label-dark { font-size: 6px; }
-          .icons-tray-dark { width: 78px; }
-          .icons-open-dark { transform: translateX(-50%) translateY(-55px); }
-          .skill-chip-dark { width: 24px; height: 24px; padding: 4px; border-radius: 6px; margin-left: -10px; }
+          .orbit-stage-dark { height: 380px; }
+          .orbit-ring-dark { width: 200px; height: 200px; }
+          .orbit-item-dark { width: 200px; height: 200px; margin-left: -100px; margin-top: -100px; }
+          .orbit-inner-dark { margin-top: -28px; }
+          .folder-dark { width: 72px; height: 56px; }
+          .folder-tab-dark { top: -8px; width: 28px; height: 9px; }
+          .folder-front-dark span { font-size: 0.9rem !important; }
+          .folder-label-dark { font-size: 5.5px; }
+          .icons-tray-dark { width: 72px; }
+          .icons-open-dark { transform: translateX(-50%) translateY(-50px); }
+          .skill-chip-dark { width: 22px; height: 22px; padding: 3px; border-radius: 5px; margin-left: -8px; }
+          .chip-tooltip-dark { display: none; }
         }
       `}</style>
     </section>

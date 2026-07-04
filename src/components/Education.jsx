@@ -159,7 +159,8 @@ const DraggableCard = ({ edu, index }) => {
           <span
             className="text-[10px] uppercase tracking-widest select-none text-slate-300 font-semibold"
           >
-            Drag to stretch
+            <span className="hidden sm:inline">Drag to stretch</span>
+            <span className="sm:hidden">Slide to stretch</span>
           </span>
         </div>
 
@@ -210,7 +211,7 @@ const Education = () => (
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-24 md:gap-y-20">
         {education.map((edu, i) => (
           <DraggableCard edu={edu} index={i} key={i} />
         ))}

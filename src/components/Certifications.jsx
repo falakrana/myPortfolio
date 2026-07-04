@@ -87,9 +87,10 @@ const CertCard = ({ cert, onClick }) => {
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="aspect-square bg-surface rounded-3xl p-6 flex flex-col justify-between cursor-pointer relative overflow-hidden shadow-2xl transition-all duration-300"
+      className="bg-surface rounded-3xl p-6 flex flex-col justify-between cursor-pointer relative overflow-hidden shadow-2xl transition-all duration-300 min-h-[220px] md:aspect-square cert-card-rotate"
       style={{
-        transform: `rotate(${cert.rotation})`,
+        // rotation is applied via CSS class on md+
+        '--cert-rotation': cert.rotation,
         border: `1px solid ${hovered ? cert.accent : 'rgba(255,255,255,0.1)'}`,
         boxShadow: hovered
           ? `0 0 0 1px ${cert.accent}40, 0 0 18px 4px ${cert.accent}30, 0 8px 32px rgba(0,0,0,0.4)`
@@ -287,7 +288,7 @@ const Certifications = () => {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="bg-surface border border-stroke rounded-3xl w-full max-w-4xl h-[85vh] overflow-hidden flex flex-col relative"
+              className="bg-surface border border-stroke rounded-3xl w-full max-w-4xl max-h-[90vh] h-[85vh] overflow-hidden flex flex-col relative"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}

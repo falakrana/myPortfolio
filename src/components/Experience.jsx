@@ -117,14 +117,14 @@ const ExperienceCard = ({ exp, index, isLast, expandedIndex, toggleExpand }) => 
       {/* Horizontal connector line */}
       <motion.div
         variants={connectorVariants}
-        className="absolute left-[-32px] md:left-[-64px] top-[40px] md:top-[56px] -translate-y-1/2 h-[1px] bg-stroke/50 origin-left -z-10 w-8 md:w-16"
+        className="absolute left-[-40px] md:left-[-64px] top-[40px] md:top-[56px] -translate-y-1/2 h-[1px] bg-stroke/50 origin-left -z-10 w-10 md:w-16"
       />
 
       {/* Timeline dot */}
       <motion.div
         custom={exp.accentColor}
         variants={dotVariants}
-        className="absolute left-[-32px] md:left-[-64px] top-[40px] md:top-[56px] -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 z-20 flex items-center justify-center bg-bg"
+        className="absolute left-[-40px] md:left-[-64px] top-[40px] md:top-[56px] -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 z-20 flex items-center justify-center bg-bg"
       >
         {/* Glowing inner dot */}
         <div
@@ -197,7 +197,7 @@ const ExperienceCard = ({ exp, index, isLast, expandedIndex, toggleExpand }) => 
               className="border-t border-stroke pt-5 overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              <ul className="space-y-3 pl-2 md:pl-20">
+              <ul className="space-y-3 pl-2 md:pl-6">
                 {exp.achievements.map((ach, j) => (
                   <li key={j} className="flex items-start gap-3">
                     <span
@@ -262,7 +262,7 @@ const Experience = () => {
         </motion.div>
 
         {/* Journal style list with timeline scroll animation */}
-        <div className="relative pl-8 md:pl-16 space-y-12">
+        <div className="relative pl-10 md:pl-16 space-y-12">
           {experiences.map((exp, i) => (
             <ExperienceCard
               key={i}

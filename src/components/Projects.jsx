@@ -166,7 +166,7 @@ const Projects = () => {
         </div>
 
         {/* Bento Grid layout inside AnimatePresence */}
-        <div className="relative min-h-[500px]">
+        <div className="relative min-h-[300px] md:min-h-[500px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentPage}
