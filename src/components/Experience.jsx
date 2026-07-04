@@ -7,7 +7,7 @@ const experiences = [
     company: 'Infodesk India Pvt. Ltd.',
     period: "Jan '26 – May '26",
     accentColor: '#89AACC',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=200&auto=format&fit=crop',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLqxVlgp8rooW9OprpQ6nTD5bOaosJWE_0XqlcpYnhJg&s=10',
     achievements: [
       'Developing scalable microservices and REST APIs using .NET (C#) and Spring Boot (Java) for enterprise systems',
       'Building responsive UIs with React, Next.js, TypeScript and managing async workflows using Redux Saga',
@@ -21,7 +21,7 @@ const experiences = [
     company: 'Unified Mentor',
     period: "Jan '25 – Apr '25",
     accentColor: '#7B9FBF',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=200&auto=format&fit=crop',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0zsh2_TFDFCcIjheQYXEpSEni1HFWXm2iyvlbf4FcGA&s=10',
     achievements: [
       'Delivered 6 real-world end-to-end Machine Learning projects',
       'Performed data cleaning and feature engineering at scale',
@@ -35,7 +35,7 @@ const experiences = [
     company: 'Parul University',
     period: "Jun '24 – Jan '25",
     accentColor: '#6087A6',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=200&auto=format&fit=crop',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6XnA5ACKcwdIdEzq4cGQRAn2dBw4Z7wiRWoor4BaHcg&s=10',
     achievements: [
       'Worked in a team conducting research on ML models',
       'Conducted research on transformer architectures and BERT',
