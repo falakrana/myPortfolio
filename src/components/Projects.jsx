@@ -3,6 +3,27 @@ import { motion, AnimatePresence } from 'motion/react';
 
 const allProjects = [
   {
+    title: 'Marg MCP',
+    description: 'Enterprise-grade observability, distributed tracing, and diagnostic intelligence platform for AI agents with OpenTelemetry, Prometheus, and SDK integration.',
+    techStack: ['FastAPI', 'React 19', 'OpenTelemetry', 'Prometheus', 'Python'],
+    image: '/Projects/marg-mcp.png',
+    githubUrl: 'https://github.com/falakrana/AgentOpsMCP.git',
+  },
+  {
+    title: 'Multimodal RAG',
+    description: 'Production-grade Multimodal Retrieval-Augmented Generation platform supporting text and image document understanding powered by Qwen2-VL, PyTorch, and ChromaDB.',
+    techStack: ['Qwen2-VL', 'FastAPI', 'PyTorch', 'ChromaDB', 'React'],
+    image: '/Projects/multimodal-rag.png',
+    githubUrl: 'https://github.com/falakrana/MultimodalRAG.git',
+  },
+  {
+    title: 'AI Evals Framework',
+    description: 'Comprehensive AI evaluation harness and benchmark engine measuring model accuracy, hallucination detection, instruction adherence, and retrieval quality.',
+    techStack: ['Python', 'FastAPI', 'SQLAlchemy', 'LLM Evals', 'Pytest'],
+    image: '/Projects/ai-evals.png',
+    githubUrl: 'https://github.com/falakrana',
+  },
+  {
     title: 'Menova-SaaS',
     description: 'Menova is a full-stack SaaS platform for restaurants to manage digital QR-based menus, branding, and table ordering.',
     techStack: ['React', 'FastAPI', 'MongoDB', 'Clerk'],
@@ -91,6 +112,19 @@ const allProjects = [
 const CARDS_PER_PAGE = 4;
 const TOTAL_PAGES = Math.ceil(allProjects.length / CARDS_PER_PAGE);
 
+const getColSpan = (index, totalCount) => {
+  if (totalCount === 4) {
+    return ['md:col-span-7', 'md:col-span-5', 'md:col-span-5', 'md:col-span-7'][index];
+  }
+  if (totalCount === 3) {
+    return ['md:col-span-6', 'md:col-span-6', 'md:col-span-12'][index];
+  }
+  if (totalCount === 2) {
+    return ['md:col-span-6', 'md:col-span-6'][index];
+  }
+  return 'md:col-span-12';
+};
+
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [direction, setDirection] = useState(0); // -1 for left, 1 for right
@@ -110,9 +144,6 @@ const Projects = () => {
     currentPage * CARDS_PER_PAGE,
     (currentPage + 1) * CARDS_PER_PAGE
   );
-
-  // Bento span config for 4 items
-  const colSpans = ['md:col-span-7', 'md:col-span-5', 'md:col-span-5', 'md:col-span-7'];
 
   return (
     <section
@@ -183,7 +214,7 @@ const Projects = () => {
                   <div
                     key={globalIndex}
                     onClick={() => window.open(project.githubUrl, '_blank')}
-                    className={`col-span-12 ${colSpans[index]} aspect-[4/3] md:aspect-[16/10] bg-surface border border-stroke rounded-3xl overflow-hidden relative group cursor-pointer shadow-lg transition-transform duration-300 hover:scale-[1.01]`}
+                    className={`col-span-12 ${getColSpan(index, currentProjects.length)} aspect-[4/3] md:aspect-[16/10] bg-surface border border-stroke rounded-3xl overflow-hidden relative group cursor-pointer shadow-lg transition-transform duration-300 hover:scale-[1.01]`}
                   >
                     {/* Background image */}
                     <img
